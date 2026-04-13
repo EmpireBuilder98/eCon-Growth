@@ -28,7 +28,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;transition:background .4s,border-color .4s}
 .nav.scrolled{background:rgba(7,10,15,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(234,240,255,.06)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);white-space:nowrap;flex-shrink:0}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:4px;text-decoration:none;color:var(--text);white-space:nowrap;flex-shrink:0}
 .logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0}
 .logo-e{color:var(--text)}.logo-c{color:var(--green)}.logo-rest{color:var(--text)}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0 auto;padding:0}
@@ -65,7 +65,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-body{font-family:'JetBrains Mono',monospace;font-size:clamp(13px,1.5vw,16px);font-weight:300;color:var(--mu);line-height:1.9;max-width:620px;margin:0 auto 40px;animation:fu .7s .3s both}
 .hero-body strong{color:var(--text);font-weight:500}
 .hero-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fu .6s .45s both}
-.hero-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);margin-top:16px;letter-spacing:.06em;animation:fu .5s .6s both}
 
 /* ═══ ROGER LIVE TRANSCRIPT ANIMATION ═══ */
 @keyframes roger-line-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -258,7 +257,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <a href="meet-roger.html" class="btn-primary">Watch Roger Live →</a>
       <a href="book.html" class="btn-ghost">Book Your Growth Call →</a>
     </div>
-    <div class="hero-note">↓ Scroll to see a live call demo</div>
   </div>
 </section>
 
@@ -275,11 +273,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- ROGER LIVE DEMO — pulled from homepage -->
 <section class="section roger-sec" id="roger">
   <div class="section-inner wide">
-    <div class="rv" style="text-align:center;margin-bottom:48px">
-      <div class="section-label">AI Voice Dispatch</div>
-      <h2 class="section-h2" style="text-align:center">MEET <span class="green">ROGER.</span><br>HE WORKS 24/7<br><span class="ghost">AND NEVER MISSES A CALL.</span></h2>
-      <p class="section-sub" style="margin:16px auto 0">Roger is Command OS's built-in AI Voice Agent. He answers every call, qualifies every lead, handles objections, and books the job — automatically, while you sleep.</p>
-    </div>
 
     <!-- LIVE DEMO CTA -->
     <div class="rv" style="text-align:center;margin:48px 0">

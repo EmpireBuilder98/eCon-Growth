@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+if (window.location.protocol === 'http:' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
+    window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Your Growth Call | eCon Growth</title>
@@ -157,6 +163,31 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .footer-inner{padding:0 24px}
   .form-row{grid-template-columns:1fr}
 }
+
+/* ═══ MOBILE NAV ═══ */
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(234,240,255,.12);background:rgba(234,240,255,.04);color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.nav-toggle:hover{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.22)}
+.nav-toggle:focus-visible{outline:2px solid rgba(33,230,138,.55);outline-offset:3px}
+.nav-toggle-bars,.nav-toggle-bars::before,.nav-toggle-bars::after{display:block;position:relative;width:18px;height:2px;border-radius:999px;background:currentColor;transition:transform .25s ease,opacity .2s ease,top .25s ease}
+.nav-toggle-bars::before,.nav-toggle-bars::after{content:'';position:absolute;left:0}
+.nav-toggle-bars::before{top:-6px}
+.nav-toggle-bars::after{top:6px}
+.body-menu-open .nav-toggle-bars{background:transparent}
+.body-menu-open .nav-toggle-bars::before{top:0;transform:rotate(45deg)}
+.body-menu-open .nav-toggle-bars::after{top:0;transform:rotate(-45deg)}
+.mobile-menu-overlay{position:fixed;inset:0;background:rgba(4,7,12,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:540}
+.mobile-menu{position:fixed;top:0;right:-340px;width:min(88vw,320px);height:100vh;height:100dvh;padding:88px 22px 28px;background:rgba(7,10,15,.98);border-left:1px solid rgba(234,240,255,.08);box-shadow:-24px 0 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px;transition:right .3s ease;z-index:550}
+.mobile-menu-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.mobile-menu-links{display:flex;flex-direction:column;gap:8px}
+.mobile-menu-links a{display:block;padding:13px 14px;border-radius:10px;background:rgba(234,240,255,.03);border:1px solid rgba(234,240,255,.06);color:var(--text);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.2);color:var(--green)}
+.mobile-menu-links .nav-cta,.mobile-menu-cta{margin-top:10px;display:block;width:100%;text-align:center;padding:14px 18px;font-size:14px;border-radius:10px}
+.body-menu-open{overflow:hidden}
+.body-menu-open .mobile-menu-overlay{opacity:1;pointer-events:auto}
+.body-menu-open .mobile-menu{right:0}
+@media(max-width:900px){.nav{padding:0 20px}.nav-links,.nav-actions .nav-cta{display:none}.nav-toggle{display:inline-flex}}
+
 </style>
 </head>
 <body>
@@ -170,8 +201,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <li><a href="about.html" >About</a></li>
     <li><a href="visibility.html" >Visibility</a></li>
   </ul>
+  <div class="nav-actions">
   <a href="book.html" class="nav-cta">Book Your Growth Call</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span class="nav-toggle-bars"></span>
+  </button>
+</div>
 </nav>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-title">Navigation</div>
+  <nav class="mobile-menu-links" id="mobileMenuLinks" aria-label="Mobile navigation"></nav>
+</aside>
 
 <div class="page">
   <div class="main">
@@ -325,96 +366,52 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-/* ══════════════════════════════════════════════
-   BOOKING CALENDAR — WATSON WHEELER
-   Google OAuth2 + Calendar FreeBusy API
-   
-   ⚠️  REQUIRES BEFORE IT WORKS ON LIVE DOMAIN:
-   1. Go to console.cloud.google.com
-   2. Credentials → OAuth 2.0 Client ID:
-      939223794904-c8u6nsoqi02ukfodatipldnf5fh2s2ha
-   3. Add your domain to "Authorized JavaScript origins"
-      e.g. https://econgrowth.com
-   4. Save — calendar goes live automatically
-   ══════════════════════════════════════════════ */
-
-const GCAL_CLIENT_ID = '939223794904-c8u6nsoqi02ukfodatipldnf5fh2s2ha.apps.googleusercontent.com';
-const GCAL_SCOPE = 'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.readonly';
+const BOOKING_API_URL = 'https://script.google.com/macros/s/AKfycby5pWyF_TawUei8-xqOJ4xG4S9sM0kX9n4Kbi2Sge6wF2GvS8oBHGnOtW3_J7eqa1AV/exec';
 const TIMEZONE = 'America/Denver';
-const SLOT_HOURS = [9, 10, 11, 14, 15, 16];
+const SLOT_MINUTES = 30;
+const SLOT_TIMES = ['09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30'];
 
-let gapiReady = false;
-let gisReady = false;
-let tokenClient = null;
-let accessToken = null;
-let busySlots = {};
+let availabilityByDate = {};
 let selectedDate = null;
 let selectedTime = null;
 let currentMonth = new Date();
 currentMonth.setDate(1);
 
-/* ── STATE TRANSITIONS ── */
-function showDateStep(){ 
+function showDateStep(){
   document.getElementById('dateStep').style.display='block';
   document.getElementById('timeStep').classList.remove('active');
   document.getElementById('confirmStep').classList.remove('active');
   document.getElementById('successStep').classList.remove('active');
 }
-function showTimeStep(){ 
+
+function showTimeStep(){
   document.getElementById('dateStep').style.display='none';
   document.getElementById('timeStep').classList.add('active');
   document.getElementById('confirmStep').classList.remove('active');
+  document.getElementById('successStep').classList.remove('active');
   renderTimeSlots(selectedDate);
 }
-function showConfirmStep(){ 
+
+function showConfirmStep(){
+  document.getElementById('dateStep').style.display='none';
   document.getElementById('timeStep').classList.remove('active');
   document.getElementById('confirmStep').classList.add('active');
+  document.getElementById('successStep').classList.remove('active');
   updateConfirmSummary();
 }
-function showSuccessStep(){ 
+
+function showSuccessStep(){
   document.getElementById('confirmStep').classList.remove('active');
   document.getElementById('successStep').classList.add('active');
 }
 
-/* ── CALENDAR RENDERING ── */
-function changeMonth(dir){ 
-  currentMonth.setMonth(currentMonth.getMonth()+dir); 
-  renderCalendar(); 
-  fetchBusy(); 
+function fmtDate(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
 
-function renderCalendar(){
-  const now = new Date();
-  const year = currentMonth.getFullYear();
-  const month = currentMonth.getMonth();
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('monthLabel').textContent = months[month]+' '+year;
-  
-  const firstDay = new Date(year,month,1).getDay();
-  const daysInMonth = new Date(year,month+1,0).getDate();
-  let html = ['Su','Mo','Tu','We','Th','Fr','Sa'].map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  for(let i=0;i<firstDay;i++) html+=`<div class="cal-day empty"></div>`;
-  for(let d=1;d<=daysInMonth;d++){
-    const date = new Date(year,month,d);
-    const dateStr = fmtDate(date);
-    const isPast = date < new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    const isWknd = date.getDay()===0||date.getDay()===6;
-    const isToday = dateStr===fmtDate(now);
-    const isSel = selectedDate===dateStr;
-    const fullyBusy = isDayFullyBusy(dateStr);
-    let cls='cal-day';
-    if(isPast||isWknd) cls+=' disabled';
-    else if(fullyBusy) cls+=' busy';
-    else cls+=' available';
-    if(isToday) cls+=' today';
-    if(isSel) cls+=' selected';
-    const click=(!isPast&&!isWknd&&!fullyBusy)?`onclick="selectDate('${dateStr}')"`:' ';
-    html+=`<div class="${cls}" ${click}>${d}</div>`;
-  }
-  document.getElementById('calGrid').innerHTML=html;
+function fmtMonth(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
 }
-
-function fmtDate(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 
 function fmtDateDisplay(ds){
   const [y,m,d]=ds.split('-').map(Number);
@@ -424,250 +421,299 @@ function fmtDateDisplay(ds){
   return days[date.getDay()]+', '+months[date.getMonth()]+' '+d+', '+y;
 }
 
-function fmtTime(h){ const p=h>=12?'PM':'AM'; const hh=h>12?h-12:(h===0?12:h); return hh+':00 '+p; }
+function fmtTimeDisplay(time24){
+  const [hour,minute]=time24.split(':').map(Number);
+  const suffix=hour>=12?'PM':'AM';
+  const normalized=((hour+11)%12)+1;
+  return normalized+':'+String(minute).padStart(2,'0')+' '+suffix;
+}
 
-function parseTimeToHour(t){ 
-  const[time,p]=t.split(' '); 
-  let h=parseInt(time.split(':')[0]); 
-  if(p==='PM'&&h!==12)h+=12; 
-  if(p==='AM'&&h===12)h=0; 
-  return h; 
+function setStatus(html){
+  const el=document.getElementById('calStatus');
+  if(el) el.innerHTML=html;
+}
+
+function getBookableSlots(ds){
+  return Array.isArray(availabilityByDate[ds]) ? availabilityByDate[ds] : [];
 }
 
 function isDayFullyBusy(ds){
-  const avail=SLOT_HOURS.filter(h=>!isSlotBusy(ds,h));
-  return busySlots[ds] && avail.length===0;
+  return getBookableSlots(ds).length===0;
 }
 
-function isSlotBusy(ds,h){
-  if(!busySlots[ds]||busySlots[ds].length===0) return false;
-  const[y,m,d]=ds.split('-').map(Number);
-  const start=new Date(y,m-1,d,h,0,0);
-  const end=new Date(y,m-1,d,h+1,0,0);
-  return busySlots[ds].some(b=>{ const bs=new Date(b.start); const be=new Date(b.end); return start<be&&end>bs; });
-}
-
-function selectDate(ds){
-  selectedDate=ds; 
-  selectedTime=null; 
+function changeMonth(dir){
+  currentMonth.setMonth(currentMonth.getMonth()+dir);
+  selectedDate = null;
+  selectedTime = null;
   renderCalendar();
-  document.getElementById('timeDateHeader').textContent=fmtDateDisplay(ds);
-  showTimeStep();
+  fetchAvailability();
+}
+
+function renderCalendar(){
+  const now = new Date();
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('monthLabel').textContent = months[month]+' '+year;
+
+  const firstDay = new Date(year,month,1).getDay();
+  const daysInMonth = new Date(year,month+1,0).getDate();
+  let html = ['Su','Mo','Tu','We','Th','Fr','Sa'].map((d)=>`<div class="cal-dow">${d}</div>`).join('');
+
+  for(let i=0;i<firstDay;i++) html += '<div class="cal-day empty"></div>';
+
+  for(let d=1; d<=daysInMonth; d++){
+    const date = new Date(year,month,d);
+    const dateStr = fmtDate(date);
+    const isPast = date < new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const isWeekend = date.getDay()===0 || date.getDay()===6;
+    const isToday = dateStr===fmtDate(now);
+    const isSelected = selectedDate===dateStr;
+    const fullyBusy = !isPast && !isWeekend && isDayFullyBusy(dateStr);
+
+    let cls='cal-day';
+    if(isPast || isWeekend) cls+=' disabled';
+    else if(fullyBusy) cls+=' busy';
+    else cls+=' available';
+    if(isToday) cls+=' today';
+    if(isSelected) cls+=' selected';
+
+    const click = (!isPast && !isWeekend && !fullyBusy) ? `onclick="selectDate('${dateStr}')"` : '';
+    html += `<div class="${cls}" ${click}>${d}</div>`;
+  }
+
+  document.getElementById('calGrid').innerHTML = html;
 }
 
 function renderTimeSlots(ds){
-  let html=''; let anyAvail=false;
-  SLOT_HOURS.forEach(h=>{
-    const busy=isSlotBusy(ds,h);
-    const t=fmtTime(h);
-    const sel=selectedTime===t?' selected':'';
-    if(!busy) anyAvail=true;
-    html+=`<div class="time-slot${busy?' busy':sel}" ${busy?'':` onclick="selectTime('${t}')"`}>${t} MT</div>`;
+  const available = getBookableSlots(ds);
+  let anyAvail = false;
+  let html = '';
+
+  SLOT_TIMES.forEach((timeValue)=>{
+    const busy = !available.includes(timeValue);
+    const display = fmtTimeDisplay(timeValue);
+    const selected = selectedTime===timeValue ? ' selected' : '';
+    if(!busy) anyAvail = true;
+    html += `<div class="time-slot${busy ? ' busy' : selected}" ${busy ? '' : `onclick="selectTime('${timeValue}')"`}>${display} MT</div>`;
   });
-  if(!anyAvail) html=`<div class="time-no-slots">No available times on this date.<br>Please pick another day.</div>`;
-  document.getElementById('timeSlots').innerHTML=html;
+
+  if(!anyAvail){
+    html = '<div class="time-no-slots">No available times on this date.<br>Please pick another day.</div>';
+  }
+
+  document.getElementById('timeSlots').innerHTML = html;
 }
 
-function selectTime(t){
-  selectedTime=t;
-  document.querySelectorAll('.time-slot').forEach(el=>el.classList.toggle('selected',el.textContent.trim().startsWith(t)));
-  setTimeout(showConfirmStep,300);
+function selectDate(ds){
+  selectedDate = ds;
+  selectedTime = null;
+  renderCalendar();
+  document.getElementById('timeDateHeader').textContent = fmtDateDisplay(ds);
+  showTimeStep();
+}
+
+function selectTime(timeValue){
+  selectedTime = timeValue;
+  document.querySelectorAll('.time-slot').forEach((el)=>{
+    el.classList.toggle('selected', el.textContent.trim().startsWith(fmtTimeDisplay(timeValue)));
+  });
+  setTimeout(showConfirmStep, 220);
 }
 
 function updateConfirmSummary(){
-  document.getElementById('confirmSummaryText').innerHTML=`<span>${fmtDateDisplay(selectedDate)}</span><br><span>${selectedTime} MT</span> · 30-minute Growth Call`;
+  document.getElementById('confirmSummaryText').innerHTML = `<span>${fmtDateDisplay(selectedDate)}</span><br><span>${fmtTimeDisplay(selectedTime)} MT</span> · ${SLOT_MINUTES}-minute Growth Call`;
 }
 
-/* ── BOOKING SUBMISSION ── */
-function submitBooking(){
+function apiRequest(action, params={}){
+  return new Promise((resolve, reject)=>{
+    if(!BOOKING_API_URL || BOOKING_API_URL.includes('PLACEHOLDER')){
+      reject(new Error('Booking API URL is not configured yet.'));
+      return;
+    }
+
+    const callbackName = `__econGrowthBookingCb_${Date.now()}_${Math.floor(Math.random()*100000)}`;
+    const query = new URLSearchParams({ action, callback: callbackName, ...params });
+    const script = document.createElement('script');
+    let timeoutId = null;
+
+    const cleanup = ()=>{
+      delete window[callbackName];
+      if(script.parentNode) script.parentNode.removeChild(script);
+      if(timeoutId) window.clearTimeout(timeoutId);
+    };
+
+    timeoutId = window.setTimeout(()=>{
+      cleanup();
+      reject(new Error('The booking service timed out.'));
+    }, 15000);
+
+    window[callbackName] = (payload)=>{
+      cleanup();
+      if(payload && payload.ok){
+        resolve(payload);
+      } else {
+        reject(new Error((payload && payload.message) || 'The booking service returned an error.'));
+      }
+    };
+
+    script.onerror = ()=>{
+      cleanup();
+      reject(new Error('The booking service could not be reached.'));
+    };
+
+    script.src = `${BOOKING_API_URL}?${query.toString()}`;
+    document.body.appendChild(script);
+  });
+}
+
+async function fetchAvailability(){
+  setStatus('<span class="cal-loading"></span>&nbsp;Checking live availability…');
+  try{
+    const payload = await apiRequest('availability', { month: fmtMonth(currentMonth), timezone: TIMEZONE });
+    availabilityByDate = payload.availability || {};
+    renderCalendar();
+    setStatus('✓ Live availability — select a date.');
+  }catch(error){
+    availabilityByDate = {};
+    renderCalendar();
+    setStatus('Booking service temporarily unavailable. Call (615) 664-9178 or try again shortly.');
+    console.warn('Availability error:', error.message);
+  }
+}
+
+async function submitBooking(){
   const fname=document.getElementById('fname').value.trim();
   const lname=document.getElementById('lname').value.trim();
   const email=document.getElementById('email').value.trim();
   const phone=document.getElementById('phone').value.trim();
   const company=document.getElementById('company').value.trim();
   const trucks=document.getElementById('trucks').value.trim();
-  
-  if(!fname||!email){ alert('Please enter your name and email to confirm.'); return; }
-  
-  const btn=document.getElementById('bookBtn');
-  btn.disabled=true; btn.textContent='Booking…';
-  
-  const[y,m,d]=selectedDate.split('-').map(Number);
-  const h=parseTimeToHour(selectedTime);
-  
-  // MT offset: UTC-6 (MDT) or UTC-7 (MST) — use -6 for summer, -7 for winter
-  // Detect which based on month (rough DST check)
-  const isDST=m>=3&&m<=10;
-  const offset=isDST?-6:-7;
-  
-  function toISO(date,hr,off){
-    const pad=n=>String(n).padStart(2,'0');
-    const sign=off<0?'-':'+';
-    return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}T${pad(hr)}:00:00${sign}${pad(Math.abs(off))}:00`;
+
+  if(!selectedDate || !selectedTime){
+    alert('Please choose a date and time first.');
+    return;
   }
-  
-  const startISO=toISO(new Date(y,m-1,d),h,offset);
-  const endISO=toISO(new Date(y,m-1,d),h+1,offset);
-  
-  const event={
-    summary:`Growth Call — ${fname} ${lname}${company?' ('+company+')':''}`,
-    description:`eCon Growth Booking\nName: ${fname} ${lname}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nTrucks: ${trucks}\nSource: econ-growth.com`,
-    start:{dateTime:startISO,timeZone:'America/Denver'},
-    end:{dateTime:endISO,timeZone:'America/Denver'},
-    attendees:[{email:email,displayName:`${fname} ${lname}`}],
-    reminders:{useDefault:false,overrides:[{method:'email',minutes:1440},{method:'popup',minutes:30}]},
-    conferenceData:{createRequest:{requestId:'eg-'+Date.now(),conferenceSolutionKey:{type:'hangoutsMeet'}}}
-  };
-  
-  function onSuccess(ev){
-    document.getElementById('successDetails').innerHTML=`
+
+  if(!fname || !email){
+    alert('Please enter your name and email to confirm.');
+    return;
+  }
+
+  const btn=document.getElementById('bookBtn');
+  btn.disabled=true;
+  btn.textContent='Booking…';
+
+  try{
+    const payload = await apiRequest('book', {
+      date: selectedDate,
+      time: selectedTime,
+      duration: String(SLOT_MINUTES),
+      firstName: fname,
+      lastName: lname,
+      email,
+      phone,
+      company,
+      trucks,
+      source: 'econ-growth.com'
+    });
+
+    document.getElementById('successDetails').innerHTML = `
       <div class="success-detail-row"><strong>Name:</strong> ${fname} ${lname}</div>
       <div class="success-detail-row"><strong>Date:</strong> ${fmtDateDisplay(selectedDate)}</div>
-      <div class="success-detail-row"><strong>Time:</strong> ${selectedTime} MT</div>
+      <div class="success-detail-row"><strong>Time:</strong> ${fmtTimeDisplay(selectedTime)} MT</div>
       <div class="success-detail-row"><strong>Email:</strong> ${email}</div>
-      ${ev&&ev.hangoutLink?`<div class="success-detail-row"><strong>Meet Link:</strong> <a href="${ev.hangoutLink}" style="color:var(--green)">${ev.hangoutLink}</a></div>`:''}
+      ${payload.calendarNote ? `<div class="success-detail-row"><strong>Calendar:</strong> ${payload.calendarNote}</div>` : ''}
+      ${payload.eventId ? `<div class="success-detail-row"><strong>Booking ID:</strong> ${payload.eventId}</div>` : ''}
     `;
+
     showSuccessStep();
-  }
-  
-  if(accessToken){
-    fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1&sendUpdates=all',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-      body:JSON.stringify(event)
-    }).then(r=>r.json()).then(ev=>{
-      if(ev.error){ console.warn('GCal error:',ev.error); onSuccess(null); }
-      else{ onSuccess(ev); }
-    }).catch(()=>onSuccess(null));
-  } else {
-    // Store pending booking, request auth
-    window._pendingEvent=event;
-    window._pendingSuccess=onSuccess;
-    if(tokenClient){
-      tokenClient.requestAccessToken({prompt:'consent'});
-    } else {
-      // No Google API — show success anyway (fallback)
-      setTimeout(()=>onSuccess(null),1200);
+    fetchAvailability();
+  }catch(error){
+    const message = error.message || 'Unable to complete the booking right now.';
+    alert(message.toLowerCase().includes('slot') ? 'That time was just taken. Please choose another available slot.' : message);
+    if(message.toLowerCase().includes('slot')){
+      await fetchAvailability();
+      showDateStep();
     }
+  }finally{
+    btn.disabled=false;
+    btn.textContent='Confirm My Growth Call →';
   }
 }
 
-/* ── GOOGLE FREEBUSY CHECK ── */
-function fetchBusy(){
-  if(!accessToken){ generateFallback(); return; }
-  const year=currentMonth.getFullYear();
-  const month=currentMonth.getMonth();
-  const timeMin=new Date(year,month,1).toISOString();
-  const timeMax=new Date(year,month+1,0,23,59,59).toISOString();
-  setStatus('<span class="cal-loading"></span>&nbsp;Checking live availability…');
-  fetch('https://www.googleapis.com/calendar/v3/freeBusy',{
-    method:'POST',
-    headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-    body:JSON.stringify({timeMin,timeMax,timeZone:TIMEZONE,items:[{id:'primary'}]})
-  }).then(r=>r.json()).then(data=>{
-    const busy=(data.calendars&&Object.values(data.calendars)[0]?.busy)||[];
-    busySlots={};
-    busy.forEach(b=>{ const ds=b.start.substring(0,10); if(!busySlots[ds])busySlots[ds]=[]; busySlots[ds].push(b); });
-    renderCalendar();
-    setStatus('✓ Live availability — select a date.');
-  }).catch(()=>{ generateFallback(); setStatus('Select a date to see available times.'); });
-}
-
-function generateFallback(){
-  busySlots={};
-  const y=currentMonth.getFullYear(), m=currentMonth.getMonth();
-  const days=new Date(y,m+1,0).getDate();
-  for(let d=1;d<=days;d++){
-    const date=new Date(y,m,d);
-    if(date.getDay()===0||date.getDay()===6) continue;
-    if(Math.random()<0.25){
-      const ds=fmtDate(date);
-      busySlots[ds]=[{start:new Date(y,m,d,10,0).toISOString(),end:new Date(y,m,d,12,0).toISOString()}];
-    }
-  }
+window.addEventListener('load', ()=>{
+  const authBtn = document.getElementById('authBtn');
+  if(authBtn) authBtn.style.display='none';
   renderCalendar();
-}
-
-function setStatus(h){ const el=document.getElementById('calStatus'); if(el) el.innerHTML=h; }
-
-/* ── GAPI + GIS INIT ── */
-function gapiInit(){
-  if(typeof gapi==='undefined'){ initFallback(); return; }
-  gapi.load('client',async()=>{
-    try{
-      await gapi.client.init({discoveryDocs:['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']});
-      gapiReady=true;
-      tryConnect();
-    }catch(e){ console.warn('gapi init:',e); initFallback(); }
-  });
-}
-
-function gisInit(){
-  if(typeof google==='undefined'||!google.accounts){ initFallback(); return; }
-  try{
-    tokenClient=google.accounts.oauth2.initTokenClient({
-      client_id:GCAL_CLIENT_ID,
-      scope:GCAL_SCOPE,
-      callback:(resp)=>{
-        if(resp.error){ console.warn('OAuth:',resp.error); return; }
-        accessToken=resp.access_token;
-        if(typeof gapi!=='undefined') gapi.client.setToken({access_token:accessToken});
-        // Handle pending booking
-        if(window._pendingEvent){
-          const ev=window._pendingEvent; const cb=window._pendingSuccess;
-          window._pendingEvent=null; window._pendingSuccess=null;
-          fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1&sendUpdates=all',{
-            method:'POST',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-            body:JSON.stringify(ev)
-          }).then(r=>r.json()).then(result=>cb&&cb(result)).catch(()=>cb&&cb(null));
-        } else {
-          fetchBusy();
-          showCalendarAuth(false);
-        }
-      }
-    });
-    gisReady=true;
-    tryConnect();
-  }catch(e){ console.warn('gis init:',e); initFallback(); }
-}
-
-function tryConnect(){
-  if(gapiReady&&gisReady){
-    // Try silent auth first
-    try{ tokenClient.requestAccessToken({prompt:''}); } catch(e){ /* silent fail is fine */ }
-  }
-}
-
-function connectCalendar(){
-  if(tokenClient){ 
-    tokenClient.requestAccessToken({prompt:'select_account'}); 
-  } else {
-    alert('Google Calendar API is loading. Please try again in a moment.');
-  }
-}
-
-function showCalendarAuth(show){
-  const btn=document.getElementById('authBtn');
-  if(btn) btn.style.display=show?'flex':'none';
-}
-
-function initFallback(){ generateFallback(); setStatus('Select a date to see available times.'); renderCalendar(); }
-
-window.addEventListener('load',()=>{
-  renderCalendar();
-  generateFallback();
-  setStatus('<span class="cal-loading"></span>&nbsp;Loading calendar…');
-  // Show connect button after 3s if not authed
-  setTimeout(()=>{ if(!accessToken){ setStatus('Select a date to see available times.'); showCalendarAuth(true); } },3000);
+  fetchAvailability();
 });
 
-window.addEventListener('scroll',()=>{ document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10); });
-document.addEventListener('DOMContentLoaded',()=>{ document.getElementById('nav').classList.add('scrolled'); });
-</script>
-<script src="https://accounts.google.com/gsi/client" onload="gisInit()" onerror="initCalendarFallback()" async defer></script>
+window.addEventListener('scroll', ()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>10);
+});
 
-<!-- Google Calendar API -->
-<script src="https://apis.google.com/js/api.js" onload="gapiInit()" onerror="initFallback()" async defer></script>
-<script src="https://accounts.google.com/gsi/client" onload="gisInit()" onerror="initFallback()" async defer></script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('nav').classList.add('scrolled');
+});
+</script>
+
+<script>
+(function(){
+  const body=document.body;
+  const nav=document.getElementById('nav');
+  const toggle=document.getElementById('navToggle');
+  const drawer=document.getElementById('mobileMenu');
+  const overlay=document.getElementById('mobileMenuOverlay');
+  const linksTarget=document.getElementById('mobileMenuLinks');
+
+  if(nav&&linksTarget){
+    const desktopLinks=nav.querySelector('.nav-links');
+    const desktopCta=nav.querySelector('.nav-cta');
+    if(desktopLinks){ linksTarget.innerHTML=desktopLinks.innerHTML; }
+    if(desktopCta){
+      const mobileCta=desktopCta.cloneNode(true);
+      mobileCta.classList.add('mobile-menu-cta');
+      linksTarget.appendChild(mobileCta);
+    }
+  }
+
+  window.toggleMobileMenu=function(force){
+    const shouldOpen=typeof force==='boolean'?force:!body.classList.contains('body-menu-open');
+    body.classList.toggle('body-menu-open',shouldOpen);
+    if(toggle){
+      toggle.setAttribute('aria-expanded',shouldOpen?'true':'false');
+      toggle.setAttribute('aria-label',shouldOpen?'Close navigation menu':'Open navigation menu');
+    }
+    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); }
+  };
+
+  window.closeMobileMenu=function(){ window.toggleMobileMenu(false); };
+
+  if(toggle){
+    toggle.addEventListener('click',function(){ window.toggleMobileMenu(); });
+  }
+
+  if(overlay){
+    overlay.addEventListener('click',window.closeMobileMenu);
+  }
+
+  if(linksTarget){
+    linksTarget.addEventListener('click',function(event){
+      const target=event.target.closest('a');
+      if(target){ window.closeMobileMenu(); }
+    });
+  }
+
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>900){ window.closeMobileMenu(); }
+  });
+
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){ window.closeMobileMenu(); }
+  });
+})();
+</script>
+
 </body>
 </html>

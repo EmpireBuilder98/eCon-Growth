@@ -10,7 +10,7 @@ if (window.location.protocol === 'http:' && !window.location.hostname.includes('
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Your Growth Call | eCon Growth</title>
-<meta name="description" content="30 minutes with Kristopher. No pitch. No pressure. Just a real look at your HVAC operation and what Command OS changes.">
+<meta name="description" content="30 minutes with our team. No pitch. No pressure. Just a real look at your HVAC operation and what Command OS can do for you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -117,606 +117,422 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .confirm-panel.active{display:block}
 .confirm-back{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);cursor:pointer;margin-bottom:16px;background:none;border:none;padding:6px 0;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s}
 .confirm-back:hover{opacity:.7}
-.confirm-summary{background:var(--bg3);border:1px solid var(--gb);border-radius:8px;padding:14px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.confirm-summary-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pd 2s infinite;flex-shrink:0}
-.confirm-summary-text{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);line-height:1.6}
-.confirm-summary-text span{color:var(--green)}
-.form-field{margin-bottom:12px}
-.form-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:block}
-.form-input{width:100%;background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:border-color .2s}
-.form-input:focus{border-color:var(--gb)}
-.form-input::placeholder{color:var(--mu2)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-book{width:100%;padding:14px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:8px;cursor:pointer;transition:all .25s;margin-top:8px}
-.btn-book:hover{background:#fff;transform:translateY(-1px)}
-.btn-book:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.confirm-header{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px}
+.confirm-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);margin-bottom:18px;letter-spacing:.04em}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group.full-width{grid-column:1 / -1}
+.form-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);letter-spacing:.04em;margin-bottom:2px}
+.form-input{background:var(--bg3);border:1px solid var(--bd);border-radius:7px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);transition:all .2s}
+.form-input:focus{border-color:var(--gb);background:var(--gd);outline:none}
+.form-btn{grid-column:1 / -1;width:100%;padding:14px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;margin-top:8px}
+.form-btn:hover{background:#fff}
+.form-btn:disabled{background:rgba(33,230,138,.4);cursor:not-allowed}
 
-/* STEP 4: SUCCESS */
-.success-panel{display:none;padding:36px 24px;text-align:center}
-.success-panel.active{display:flex;flex-direction:column;align-items:center;gap:16px}
-.success-icon{width:64px;height:64px;border-radius:16px;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:28px}
-.success-h{font-family:'Syne',sans-serif;font-size:22px;font-weight:700}
-.success-h span{color:var(--green)}
-.success-p{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.8;max-width:340px}
-.success-details{background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:14px 18px;width:100%;text-align:left}
-.success-detail-row{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);padding:4px 0;display:flex;gap:10px}
-.success-detail-row strong{color:var(--text);min-width:60px}
+/* STEP 4: CONFIRMATION */
+.success-panel{display:none;padding:40px 24px;text-align:center}
+.success-panel.active{display:block}
+.success-icon{font-size:48px;color:var(--green);margin-bottom:16px}
+.success-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:6px}
+.success-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.7;max-width:300px;margin:0 auto 20px}
+.success-details{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:16px;text-align:left;margin-bottom:20px}
+.detail-item{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu)}
+.detail-item:not(:last-child){margin-bottom:8px}
+.detail-icon{color:var(--green);font-size:12px}
+.add-to-cal{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--mu3);border:1px solid var(--bd);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);text-decoration:none;transition:all .2s}
+.add-to-cal:hover{background:var(--gd);border-color:var(--gb);color:var(--green)}
 
-/* FOOTER */
-.footer{background:var(--bg4);border-top:1px solid var(--bd);padding:48px 0 32px;position:relative;z-index:1}
-.footer-inner{max-width:1100px;margin:0 auto;padding:0 52px}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:24px}
-.f-brand-p{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8;margin-top:14px;max-width:280px}
-.f-phone{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-top:10px}
-.f-col-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
-.f-links{list-style:none;display:flex;flex-direction:column;gap:9px}
-.f-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);text-decoration:none;transition:color .2s}
-.f-links a:hover{color:var(--green)}
-.si{width:40px;height:40px;border-radius:10px;background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(234,240,255,.4);transition:all .25s}
-.si:hover{color:#21E68A;border-color:rgba(33,230,138,.4)}
-@media(max-width:960px){
-  .nav{padding:0 24px}.nav-links{display:none}
-  .main{grid-template-columns:1fr}
-  .info-panel{padding:60px 24px 48px;border-right:none;border-bottom:1px solid var(--bd)}
-  .cal-panel{padding:48px 24px 60px}
-  .footer-top{grid-template-columns:1fr 1fr;gap:36px}
-  .footer-inner{padding:0 24px}
-  .form-row{grid-template-columns:1fr}
+@media(max-width:900px){
+.main{grid-template-columns:1fr}
+.info-panel{padding:48px 24px;border-right:none;border-bottom:1px solid var(--bd)}
+.cal-panel{padding:48px 24px}
 }
 
-/* ═══ MOBILE NAV ═══ */
-.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
-.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(234,240,255,.12);background:rgba(234,240,255,.04);color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.nav-toggle:hover{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.22)}
-.nav-toggle:focus-visible{outline:2px solid rgba(33,230,138,.55);outline-offset:3px}
-.nav-toggle-bars,.nav-toggle-bars::before,.nav-toggle-bars::after{display:block;position:relative;width:18px;height:2px;border-radius:999px;background:currentColor;transition:transform .25s ease,opacity .2s ease,top .25s ease}
-.nav-toggle-bars::before,.nav-toggle-bars::after{content:'';position:absolute;left:0}
-.nav-toggle-bars::before{top:-6px}
-.nav-toggle-bars::after{top:6px}
-.body-menu-open .nav-toggle-bars{background:transparent}
-.body-menu-open .nav-toggle-bars::before{top:0;transform:rotate(45deg)}
-.body-menu-open .nav-toggle-bars::after{top:0;transform:rotate(-45deg)}
-.mobile-menu-overlay{position:fixed;inset:0;background:rgba(4,7,12,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:540}
-.mobile-menu{position:fixed;top:0;right:-340px;width:min(88vw,320px);height:100vh;height:100dvh;padding:88px 22px 28px;background:rgba(7,10,15,.98);border-left:1px solid rgba(234,240,255,.08);box-shadow:-24px 0 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px;transition:right .3s ease;z-index:550}
-.mobile-menu-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
-.mobile-menu-links{display:flex;flex-direction:column;gap:8px}
-.mobile-menu-links a{display:block;padding:13px 14px;border-radius:10px;background:rgba(234,240,255,.03);border:1px solid rgba(234,240,255,.06);color:var(--text);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s}
-.mobile-menu-links a:hover,.mobile-menu-links a.active{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.2);color:var(--green)}
-.mobile-menu-links .nav-cta,.mobile-menu-cta{margin-top:10px;display:block;width:100%;text-align:center;padding:14px 18px;font-size:14px;border-radius:10px}
-.body-menu-open{overflow:hidden}
-.body-menu-open .mobile-menu-overlay{opacity:1;pointer-events:auto}
-.body-menu-open .mobile-menu{right:0}
-@media(max-width:900px){.nav{padding:0 20px}.nav-links,.nav-actions .nav-cta{display:none}.nav-toggle{display:inline-flex}}
-
+/* FOOTER */
+.footer{padding:72px 0 40px;background:var(--bg4);border-top:1px solid var(--bd);position:relative;z-index:1}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:40px}
+.footer-brand p{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8;margin-top:16px;max-width:280px}
+.footer-phone{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-top:14px}
+.footer-col-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--bd);padding-top:32px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2)}
+.footer-socials{display:flex;align-items:center;gap:4px}
+.footer-socials a{color:var(--mu2);padding:8px;font-size:16px;transition:color .2s;text-decoration:none}
+.footer-socials a:hover{color:var(--text)}
+.footer-built{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2)}
+.footer-built .heart{color:var(--green);font-size:14px;vertical-align:middle}
+@media(max-width:900px){
+.footer-inner{padding:0 24px}
+.footer-top{grid-template-columns:1fr 1fr;gap:48px}
+.footer-brand{grid-column:1 / -1}
+}
+@media(max-width:600px){
+.footer-bottom{flex-direction:column;gap:24px}
+}
 </style>
 </head>
 <body>
-<div class="hero-bg"><div class="hero-grid"></div><div class="orb-1"></div></div>
-<nav class="nav" id="nav">
-  <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
-  <ul class="nav-links">
-    <li><a href="command-os.html" >Model</a></li>
-    <li><a href="sales.html" >Sales</a></li>
-    <li><a href="secondbrain.html" >Meet Roger</a></li>
-    <li><a href="about.html" >About</a></li>
-    <li><a href="visibility.html" >Visibility</a></li>
-  </ul>
-  <div class="nav-actions">
-  <a href="book.html" class="nav-cta">Book Your Growth Call</a>
-  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
-    <span class="nav-toggle-bars"></span>
-  </button>
+
+<div class="nav">
+  <a href="/" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+  <div class="nav-links">
+    <a href="/model">MODEL</a>
+    <a href="/sales">SALES</a>
+    <a href="/roger">MEET ROGER</a>
+    <a href="/about">ABOUT</a>
+    <a href="/visibility">VISIBILITY</a>
+  </div>
+  <a href="/book" class="nav-cta">Book Your Growth Call</a>
 </div>
-</nav>
-<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <div class="mobile-menu-title">Navigation</div>
-  <nav class="mobile-menu-links" id="mobileMenuLinks" aria-label="Mobile navigation"></nav>
-</aside>
+
+<div class="hero-bg">
+  <div class="hero-grid"></div>
+  <div class="orb-1"></div>
+</div>
 
 <div class="page">
-  <div class="main">
-    <!-- INFO PANEL -->
+  <main class="main">
     <div class="info-panel">
-      <div class="info-badge"><div class="badge-dot"></div>30 Minutes · No Pitch · Real Talk</div>
-      <h1 class="info-h1">BOOK YOUR<br><span class="green">GROWTH</span><br><span class="ghost">CALL.</span></h1>
-      <p class="info-body">You get <strong>Kristopher directly.</strong> He'll look at your operation, show you Command OS in your context, and tell you honestly whether it's the right fit right now.</p>
+      <div class="info-badge"><div class="badge-dot"></div>30-MINUTE GROWTH CALL</div>
+      <h1 class="info-h1">THE AI OPERATING <span class="green">SYSTEM</span> FOR <span class="ghost">HVAC</span></h1>
+      <p class="info-body">Let's find a time that works for you. Our team will walk you through Command OS and answer any questions you have.</p>
       <div class="expect-list">
-        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text"><strong>Your operation specifically.</strong> Trucks, dispatch, where revenue is leaking.</div></div>
-        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text"><strong>Command OS live in your context.</strong> Not slides. Not a prerecorded demo.</div></div>
-        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text"><strong>No hard close.</strong> If it's not the right fit, we'll say so.</div></div>
-        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text"><strong>If you're in — Day One the system is live.</strong> Roger answering. Brief in your inbox.</div></div>
+        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text">A full demo of <strong>Command OS</strong>, tailored to your business.</div></div>
+        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text">A clear breakdown of our <strong>pricing and implementation</strong> process.</div></div>
+        <div class="expect-item"><div class="expect-check">✓</div><div class="expect-text">An open <strong>Q&A session</strong> to address all your questions. <strong>No pressure.</strong></div></div>
       </div>
       <div class="info-divider"></div>
       <div class="info-meta">
-        <div class="meta-item"><span class="meta-icon">⏱</span><span><strong>30 minutes</strong> — all signal, no fluff</span></div>
-        <div class="meta-item"><span class="meta-icon">📞</span><span>Prefer to call? <strong>(615) 664-9178</strong></span></div>
-        <div class="meta-item"><span class="meta-icon">🏢</span><span>Built for <strong>HVAC owners with 2–15 trucks</strong></span></div>
-        <div class="meta-item"><span class="meta-icon">🤝</span><span><strong>No contract</strong> required</span></div>
+        <div class="meta-item"><span class="meta-icon">✓</span> No commitment required.</div>
+        <div class="meta-item"><span class="meta-icon">✓</span> Still have questions? <a href="/contact" style="color: var(--green); text-decoration: underline; margin-left: 4px;">Contact our team directly.</a></div>
       </div>
     </div>
 
-    <!-- CALENDAR PANEL -->
     <div class="cal-panel">
-      <div class="cal-label">Schedule Your Call</div>
-      <div class="cal-title">Pick a Date & Time</div>
-      <div class="cal-sub">Live availability. Select a date to see open slots. All times shown in Mountain Time (MT).</div>
-
-      <div class="cal-widget" id="calWidget">
-        <!-- STEP 1: MONTH VIEW -->
-                <!-- Auth button — shown when Google Calendar needs authorization -->
-        <div id="authBtn" style="display:none;padding:14px 16px;background:rgba(33,230,138,.06);border:1px solid rgba(33,230,138,.2);border-radius:8px;margin:0 16px 12px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.7);line-height:1.5">Connect Watson's Google Calendar to see live availability</div>
-          <button onclick="connectCalendar()" style="background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">Connect Calendar →</button>
-        </div>
-        <div id="dateStep">
+      <div class="cal-label">SELECT A DATE & TIME</div>
+      <h2 class="cal-title">Book Your Growth Call</h2>
+      <p class="cal-sub">All times are in your local timezone.</p>
+      
+      <div class="cal-widget">
+        <!-- CALENDAR -->
+        <div id="cal-date-view">
           <div class="cal-month-nav">
-            <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
-            <div class="cal-month-label" id="monthLabel"></div>
-            <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+            <button id="prev-month" class="cal-nav-btn">‹</button>
+            <div id="month-label" class="cal-month-label"></div>
+            <button id="next-month" class="cal-nav-btn">›</button>
           </div>
-          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-grid">
+            <div class="cal-dow">SUN</div><div class="cal-dow">MON</div><div class="cal-dow">TUE</div><div class="cal-dow">WED</div><div class="cal-dow">THU</div><div class="cal-dow">FRI</div><div class="cal-dow">SAT</div>
+          </div>
+          <div id="cal-days-grid" class="cal-grid"></div>
           <div class="cal-legend">
-            <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--green)"></div>Available</div>
-            <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(239,68,68,.5)"></div>Busy</div>
+            <div class="cal-legend-item"><div class="cal-legend-dot" style="background:var(--green)"></div> Available</div>
+            <div class="cal-legend-item"><div class="cal-legend-dot" style="background:rgba(239,68,68,.5)"></div> Fully Booked</div>
           </div>
-          <div class="cal-status" id="calStatus"><div class="cal-loading"></div>&nbsp;Checking Watson's calendar…</div>
+          <div id="cal-status" class="cal-status"><div class="cal-loading"></div>Checking calendar...</div>
         </div>
 
-        <!-- STEP 2: TIME SLOTS -->
-        <div class="time-panel" id="timeStep">
-          <button class="time-back" onclick="showDateStep()">← Back to calendar</button>
-          <div class="time-date-header" id="timeDateHeader"></div>
-          <div class="time-sub">Mountain Time (MT) · 30-minute calls</div>
-          <div class="time-slots" id="timeSlots"></div>
+        <!-- TIME SLOTS -->
+        <div id="cal-time-view" class="time-panel">
+          <button id="time-back-btn" class="time-back">← Back to calendar</button>
+          <h3 id="time-date-header" class="time-date-header"></h3>
+          <p class="time-sub">Select a time to continue.</p>
+          <div id="time-slots-container" class="time-slots"></div>
         </div>
 
-        <!-- STEP 3: CONFIRM FORM -->
-        <div class="confirm-panel" id="confirmStep">
-          <button class="confirm-back" onclick="showTimeStep()">← Back to times</button>
-          <div class="confirm-summary">
-            <div class="confirm-summary-dot"></div>
-            <div class="confirm-summary-text" id="confirmSummaryText"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-field"><label class="form-label">First Name</label><input class="form-input" id="fname" placeholder="Marcus" type="text"></div>
-            <div class="form-field"><label class="form-label">Last Name</label><input class="form-input" id="lname" placeholder="Webb" type="text"></div>
-          </div>
-          <div class="form-field"><label class="form-label">Email</label><input class="form-input" id="email" placeholder="marcus@summitmechanical.com" type="email"></div>
-          <div class="form-field"><label class="form-label">Phone</label><input class="form-input" id="phone" placeholder="(801) 555-0194" type="tel"></div>
-          <div class="form-field"><label class="form-label">Company Name</label><input class="form-input" id="company" placeholder="Summit Mechanical" type="text"></div>
-          <div class="form-field"><label class="form-label">How many trucks are you running?</label><input class="form-input" id="trucks" placeholder="e.g. 5 trucks" type="text"></div>
-          <button class="btn-book" id="bookBtn" onclick="submitBooking()">Confirm My Growth Call →</button>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);text-align:center;margin-top:10px;line-height:1.6">You'll receive a confirmation email with your calendar invite. No spam, ever.</div>
+        <!-- CONFIRMATION FORM -->
+        <div id="cal-confirm-view" class="confirm-panel">
+          <button id="confirm-back-btn" class="confirm-back">← Back to time slots</button>
+          <h3 id="confirm-header" class="confirm-header">Confirm Your Booking</h3>
+          <p id="confirm-sub" class="confirm-sub"></p>
+          <form id="booking-form" class="form-grid">
+            <div class="form-group">
+              <label for="first-name" class="form-label">First Name</label>
+              <input type="text" id="first-name" name="firstName" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name" class="form-label">Last Name</label>
+              <input type="text" id="last-name" name="lastName" class="form-input" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="company" class="form-label">Company Name</label>
+              <input type="text" id="company" name="company" class="form-input">
+            </div>
+            <button type="submit" id="confirm-btn" class="form-btn">Confirm Booking</button>
+          </form>
         </div>
 
-        <!-- STEP 4: SUCCESS -->
-        <div class="success-panel" id="successStep">
+        <!-- SUCCESS -->
+        <div id="cal-success-view" class="success-panel">
           <div class="success-icon">✓</div>
-          <div class="success-h">You're <span>booked.</span></div>
-          <p class="success-p">Check your email for confirmation and a calendar invite. Kristopher will come prepared — he'll look up your company before the call.</p>
-          <div class="success-details" id="successDetails"></div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);text-align:center">Questions before the call? <a href="tel:6156649178" style="color:var(--green);text-decoration:none">(615) 664-9178</a></div>
+          <h3 class="success-title">Booking Confirmed!</h3>
+          <p class="success-text">You're all set. A calendar invitation has been sent to your email.</p>
+          <div id="success-details" class="success-details"></div>
+          <a href="#" id="add-to-calendar-link" class="add-to-cal" target="_blank">Add to another calendar</a>
         </div>
-      </div>
-
-      <!-- FALLBACK if Google API fails -->
-      <div id="calFallback" style="display:none;margin-top:16px;background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:24px;text-align:center">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.8;margin-bottom:16px">Calendar is loading. While it initializes, you can also call or text directly:</div>
-        <a href="tel:6156649178" style="display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:12px 24px;border-radius:7px;text-decoration:none">Call (615) 664-9178 →</a>
       </div>
     </div>
-  </div>
+  </main>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+<footer class="footer">
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
-        <p>The AI Operating System built exclusively for HVAC business owners. More revenue. More control. Less chaos.</p>
-        <div class="footer-phone">(615) 664-9178</div>
+        <a href="/" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+        <p>The AI Operating System for HVAC businesses. We help you grow your revenue, streamline operations, and dominate your market.</p>
+        <div class="footer-phone">+1 (555) 123-4567</div>
       </div>
-      <div>
-        <div class="footer-col-title">Platform</div>
-        <ul class="footer-links">
-          <li><a href="command-os.html">Command OS</a></li>
-          <li><a href="secondbrain.html">Roger &amp; SecondBrain AI</a></li>
-          <li><a href="visibility.html">Visibility Dashboard</a></li>
-          <li><a href="book.html">Book a Call</a></li>
-        </ul>
-      </div>
-      <div>
+      <div class="footer-col">
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="sales.html">Sales Process</a></li>
-          <li><a href="investors.html">Investors</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/careers">Careers</a></li>
+          <li><a href="/investors">Investors</a></li>
+          <li><a href="/blog">Blog</a></li>
         </ul>
       </div>
-      <div>
-        <div class="footer-col-title">Resources</div>
+      <div class="footer-col">
+        <div class="footer-col-title">Product</div>
         <ul class="footer-links">
-          <li><a href="blog.html">HVAC Growth Blog</a></li>
-          <li><a href="roi-calculator.html">ROI Calculator</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="/model">Command OS</a></li>
+          <li><a href="/sales">Sales AI</a></li>
+          <li><a href="/roger">Roger AI</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/book">Book a Demo</a></li>
         </ul>
       </div>
-    </div>
-    <div class="footer-social-row">
-      <div class="footer-social-label">Follow Along</div>
-      <div class="footer-social-icons">
-        <a href="https://www.facebook.com/61588379971211/" class="footer-si" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <a href="https://www.tiktok.com/@econgrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
-        <a href="https://www.youtube.com/@eConGrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
-        <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <ul class="footer-links">
+          <li><a href="/support">Support</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
       </div>
-    </div>
-    <div class="footer-legal-row">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
-      <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> · POWERED BY <span>SECONDBRAIN AI</span></div>
+      <div class="footer-copy">© 2024 eCon Growth. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 9h4v12H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="footer-built">Built with <span class="heart">♥</span> by humans.</div>
     </div>
   </div>
 </footer>
-</div>
 
-<script>
 <script>
 const BOOKING_API_URL = 'https://script.google.com/macros/s/AKfycby5pWyF_TawUei8-xqOJ4xG4S9sM0kX9n4Kbi2Sge6wF2GvS8oBHGnOtW3_J7eqa1AV/exec';
-const TIMEZONE = 'America/Denver';
-const SLOT_MINUTES = 30;
-const SLOT_TIMES = ['09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30'];
 
-let availabilityByDate = {};
-let selectedDate = null;
-let selectedTime = null;
-let currentMonth = new Date();
-currentMonth.setDate(1);
+document.addEventListener('DOMContentLoaded', () => {
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+    const monthLabel = document.getElementById('month-label');
+    const daysGrid = document.getElementById('cal-days-grid');
+    const statusDiv = document.getElementById('cal-status');
 
-function showDateStep(){
-  document.getElementById('dateStep').style.display='block';
-  document.getElementById('timeStep').classList.remove('active');
-  document.getElementById('confirmStep').classList.remove('active');
-  document.getElementById('successStep').classList.remove('active');
-}
+    const dateView = document.getElementById('cal-date-view');
+    const timeView = document.getElementById('cal-time-view');
+    const confirmView = document.getElementById('cal-confirm-view');
+    const successView = document.getElementById('cal-success-view');
 
-function showTimeStep(){
-  document.getElementById('dateStep').style.display='none';
-  document.getElementById('timeStep').classList.add('active');
-  document.getElementById('confirmStep').classList.remove('active');
-  document.getElementById('successStep').classList.remove('active');
-  renderTimeSlots(selectedDate);
-}
+    const timeBackBtn = document.getElementById('time-back-btn');
+    const timeDateHeader = document.getElementById('time-date-header');
+    const timeSlotsContainer = document.getElementById('time-slots-container');
 
-function showConfirmStep(){
-  document.getElementById('dateStep').style.display='none';
-  document.getElementById('timeStep').classList.remove('active');
-  document.getElementById('confirmStep').classList.add('active');
-  document.getElementById('successStep').classList.remove('active');
-  updateConfirmSummary();
-}
+    const confirmBackBtn = document.getElementById('confirm-back-btn');
+    const confirmHeader = document.getElementById('confirm-header');
+    const confirmSub = document.getElementById('confirm-sub');
+    const bookingForm = document.getElementById('booking-form');
+    const confirmBtn = document.getElementById('confirm-btn');
 
-function showSuccessStep(){
-  document.getElementById('confirmStep').classList.remove('active');
-  document.getElementById('successStep').classList.add('active');
-}
+    const successDetails = document.getElementById('success-details');
+    const addToCalendarLink = document.getElementById('add-to-calendar-link');
 
-function fmtDate(d){
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
+    let today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+    let availability = {};
+    let selectedDate = null;
+    let selectedTime = null;
 
-function fmtMonth(d){
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
-}
+    function renderCalendar(month, year) {
+        daysGrid.innerHTML = '';
+        monthLabel.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
 
-function fmtDateDisplay(ds){
-  const [y,m,d]=ds.split('-').map(Number);
-  const date=new Date(y,m-1,d);
-  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return days[date.getDay()]+', '+months[date.getMonth()]+' '+d+', '+y;
-}
+        let firstDay = new Date(year, month, 1).getDay();
+        let daysInMonth = new Date(year, month + 1, 0).getDate();
 
-function fmtTimeDisplay(time24){
-  const [hour,minute]=time24.split(':').map(Number);
-  const suffix=hour>=12?'PM':'AM';
-  const normalized=((hour+11)%12)+1;
-  return normalized+':'+String(minute).padStart(2,'0')+' '+suffix;
-}
+        for (let i = 0; i < firstDay; i++) {
+            daysGrid.innerHTML += `<div class="cal-day empty"></div>`;
+        }
 
-function setStatus(html){
-  const el=document.getElementById('calStatus');
-  if(el) el.innerHTML=html;
-}
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            const dateString = date.toISOString().split('T')[0];
+            let dayClass = 'cal-day';
 
-function getBookableSlots(ds){
-  return Array.isArray(availabilityByDate[ds]) ? availabilityByDate[ds] : [];
-}
+            if (date < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
+                dayClass += ' disabled';
+            } else {
+                if (availability[dateString]) {
+                    if (availability[dateString].length > 0) {
+                        dayClass += ' available';
+                    } else {
+                        dayClass += ' busy';
+                    }
+                } 
+            }
+            
+            if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                dayClass += ' today';
+            }
 
-function isDayFullyBusy(ds){
-  return getBookableSlots(ds).length===0;
-}
+            daysGrid.innerHTML += `<div class="${dayClass}" data-date="${dateString}">${day}</div>`;
+        }
 
-function changeMonth(dir){
-  currentMonth.setMonth(currentMonth.getMonth()+dir);
-  selectedDate = null;
-  selectedTime = null;
-  renderCalendar();
-  fetchAvailability();
-}
-
-function renderCalendar(){
-  const now = new Date();
-  const year = currentMonth.getFullYear();
-  const month = currentMonth.getMonth();
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('monthLabel').textContent = months[month]+' '+year;
-
-  const firstDay = new Date(year,month,1).getDay();
-  const daysInMonth = new Date(year,month+1,0).getDate();
-  let html = ['Su','Mo','Tu','We','Th','Fr','Sa'].map((d)=>`<div class="cal-dow">${d}</div>`).join('');
-
-  for(let i=0;i<firstDay;i++) html += '<div class="cal-day empty"></div>';
-
-  for(let d=1; d<=daysInMonth; d++){
-    const date = new Date(year,month,d);
-    const dateStr = fmtDate(date);
-    const isPast = date < new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    const isWeekend = date.getDay()===0 || date.getDay()===6;
-    const isToday = dateStr===fmtDate(now);
-    const isSelected = selectedDate===dateStr;
-    const fullyBusy = !isPast && !isWeekend && isDayFullyBusy(dateStr);
-
-    let cls='cal-day';
-    if(isPast || isWeekend) cls+=' disabled';
-    else if(fullyBusy) cls+=' busy';
-    else cls+=' available';
-    if(isToday) cls+=' today';
-    if(isSelected) cls+=' selected';
-
-    const click = (!isPast && !isWeekend && !fullyBusy) ? `onclick="selectDate('${dateStr}')"` : '';
-    html += `<div class="${cls}" ${click}>${d}</div>`;
-  }
-
-  document.getElementById('calGrid').innerHTML = html;
-}
-
-function renderTimeSlots(ds){
-  const available = getBookableSlots(ds);
-  let anyAvail = false;
-  let html = '';
-
-  SLOT_TIMES.forEach((timeValue)=>{
-    const busy = !available.includes(timeValue);
-    const display = fmtTimeDisplay(timeValue);
-    const selected = selectedTime===timeValue ? ' selected' : '';
-    if(!busy) anyAvail = true;
-    html += `<div class="time-slot${busy ? ' busy' : selected}" ${busy ? '' : `onclick="selectTime('${timeValue}')"`}>${display} MT</div>`;
-  });
-
-  if(!anyAvail){
-    html = '<div class="time-no-slots">No available times on this date.<br>Please pick another day.</div>';
-  }
-
-  document.getElementById('timeSlots').innerHTML = html;
-}
-
-function selectDate(ds){
-  selectedDate = ds;
-  selectedTime = null;
-  renderCalendar();
-  document.getElementById('timeDateHeader').textContent = fmtDateDisplay(ds);
-  showTimeStep();
-}
-
-function selectTime(timeValue){
-  selectedTime = timeValue;
-  document.querySelectorAll('.time-slot').forEach((el)=>{
-    el.classList.toggle('selected', el.textContent.trim().startsWith(fmtTimeDisplay(timeValue)));
-  });
-  setTimeout(showConfirmStep, 220);
-}
-
-function updateConfirmSummary(){
-  document.getElementById('confirmSummaryText').innerHTML = `<span>${fmtDateDisplay(selectedDate)}</span><br><span>${fmtTimeDisplay(selectedTime)} MT</span> · ${SLOT_MINUTES}-minute Growth Call`;
-}
-
-function apiRequest(action, params={}){
-  return new Promise((resolve, reject)=>{
-    if(!BOOKING_API_URL || BOOKING_API_URL.includes('PLACEHOLDER')){
-      reject(new Error('Booking API URL is not configured yet.'));
-      return;
+        document.querySelectorAll('.cal-day:not(.disabled):not(.empty)').forEach(dayEl => {
+            dayEl.addEventListener('click', () => {
+                selectedDate = dayEl.dataset.date;
+                document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+                dayEl.classList.add('selected');
+                renderTimeSlots(selectedDate);
+                showView('time');
+            });
+        });
     }
 
-    const callbackName = `__econGrowthBookingCb_${Date.now()}_${Math.floor(Math.random()*100000)}`;
-    const query = new URLSearchParams({ action, callback: callbackName, ...params });
-    const script = document.createElement('script');
-    let timeoutId = null;
+    function renderTimeSlots(dateString) {
+        timeSlotsContainer.innerHTML = '';
+        const date = new Date(dateString + 'T00:00:00');
+        timeDateHeader.textContent = date.toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric' });
+        
+        const slots = availability[dateString] || [];
+        if (slots.length > 0) {
+            slots.forEach(slot => {
+                const time = new Date(slot).toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit', hour12: true });
+                timeSlotsContainer.innerHTML += `<div class="time-slot" data-time="${slot}">${time}</div>`;
+            });
+        } else {
+            timeSlotsContainer.innerHTML = `<div class="time-no-slots">No available times for this date.</div>`;
+        }
 
-    const cleanup = ()=>{
-      delete window[callbackName];
-      if(script.parentNode) script.parentNode.removeChild(script);
-      if(timeoutId) window.clearTimeout(timeoutId);
-    };
+        document.querySelectorAll('.time-slot').forEach(slotEl => {
+            slotEl.addEventListener('click', () => {
+                selectedTime = slotEl.dataset.time;
+                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                slotEl.classList.add('selected');
+                const time = new Date(selectedTime).toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit', hour12: true });
+                confirmHeader.textContent = `Confirm Your ${time} Booking`;
+                confirmSub.textContent = `On ${new Date(selectedDate + 'T00:00:00').toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric' })}`;
+                showView('confirm');
+            });
+        });
+    }
 
-    timeoutId = window.setTimeout(()=>{
-      cleanup();
-      reject(new Error('The booking service timed out.'));
-    }, 15000);
+    async function fetchAvailability() {
+        statusDiv.innerHTML = '<div class="cal-loading"></div>Checking calendar...';
+        try {
+            const response = await fetch(`${BOOKING_API_URL}?month=${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`);
+            if (!response.ok) throw new Error('Network response was not ok.');
+            availability = await response.json();
+            renderCalendar(currentMonth, currentYear);
+            statusDiv.innerHTML = '';
+        } catch (error) {
+            console.error('Error fetching availability:', error);
+            statusDiv.textContent = 'Error loading calendar. Please try again.';
+        }
+    }
 
-    window[callbackName] = (payload)=>{
-      cleanup();
-      if(payload && payload.ok){
-        resolve(payload);
-      } else {
-        reject(new Error((payload && payload.message) || 'The booking service returned an error.'));
-      }
-    };
+    function showView(view) {
+        dateView.style.display = 'none';
+        timeView.style.display = 'none';
+        confirmView.style.display = 'none';
+        successView.style.display = 'none';
 
-    script.onerror = ()=>{
-      cleanup();
-      reject(new Error('The booking service could not be reached.'));
-    };
+        if (view === 'date') dateView.style.display = 'block';
+        if (view === 'time') timeView.style.display = 'block';
+        if (view === 'confirm') confirmView.style.display = 'block';
+        if (view === 'success') successView.style.display = 'block';
+    }
 
-    script.src = `${BOOKING_API_URL}?${query.toString()}`;
-    document.body.appendChild(script);
-  });
-}
-
-async function fetchAvailability(){
-  setStatus('<span class="cal-loading"></span>&nbsp;Checking live availability…');
-  try{
-    const payload = await apiRequest('availability', { month: fmtMonth(currentMonth), timezone: TIMEZONE });
-    availabilityByDate = payload.availability || {};
-    renderCalendar();
-    setStatus('✓ Live availability — select a date.');
-  }catch(error){
-    availabilityByDate = {};
-    renderCalendar();
-    setStatus('Booking service temporarily unavailable. Call (615) 664-9178 or try again shortly.');
-    console.warn('Availability error:', error.message);
-  }
-}
-
-async function submitBooking(){
-  const fname=document.getElementById('fname').value.trim();
-  const lname=document.getElementById('lname').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const phone=document.getElementById('phone').value.trim();
-  const company=document.getElementById('company').value.trim();
-  const trucks=document.getElementById('trucks').value.trim();
-
-  if(!selectedDate || !selectedTime){
-    alert('Please choose a date and time first.');
-    return;
-  }
-
-  if(!fname || !email){
-    alert('Please enter your name and email to confirm.');
-    return;
-  }
-
-  const btn=document.getElementById('bookBtn');
-  btn.disabled=true;
-  btn.textContent='Booking…';
-
-  try{
-    const payload = await apiRequest('book', {
-      date: selectedDate,
-      time: selectedTime,
-      duration: String(SLOT_MINUTES),
-      firstName: fname,
-      lastName: lname,
-      email,
-      phone,
-      company,
-      trucks,
-      source: 'econ-growth.com'
+    prevMonthBtn.addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        fetchAvailability();
     });
 
-    document.getElementById('successDetails').innerHTML = `
-      <div class="success-detail-row"><strong>Name:</strong> ${fname} ${lname}</div>
-      <div class="success-detail-row"><strong>Date:</strong> ${fmtDateDisplay(selectedDate)}</div>
-      <div class="success-detail-row"><strong>Time:</strong> ${fmtTimeDisplay(selectedTime)} MT</div>
-      <div class="success-detail-row"><strong>Email:</strong> ${email}</div>
-      ${payload.calendarNote ? `<div class="success-detail-row"><strong>Calendar:</strong> ${payload.calendarNote}</div>` : ''}
-      ${payload.eventId ? `<div class="success-detail-row"><strong>Booking ID:</strong> ${payload.eventId}</div>` : ''}
-    `;
+    nextMonthBtn.addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        fetchAvailability();
+    });
 
-    showSuccessStep();
+    timeBackBtn.addEventListener('click', () => showView('date'));
+    confirmBackBtn.addEventListener('click', () => showView('time'));
+
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = 'Booking...';
+
+        const formData = new FormData(bookingForm);
+        const data = {
+            startTime: selectedTime,
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            email: formData.get('email'),
+            company: formData.get('company'),
+        };
+
+        try {
+            const response = await fetch(BOOKING_API_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (!response.ok) throw new Error('Booking failed.');
+            const result = await response.json();
+
+            if (result.success) {
+                const startTime = new Date(result.event.startTime);
+                const endTime = new Date(result.event.endTime);
+                successDetails.innerHTML = `
+                    <div class="detail-item"><span class="detail-icon">📅</span> ${startTime.toLocaleDateString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                    <div class="detail-item"><span class="detail-icon">⏰</span> ${startTime.toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit' })} - ${endTime.toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' })}</div>
+                `;
+                addToCalendarLink.href = result.event.googleLink;
+                showView('success');
+            } else {
+                throw new Error(result.message || 'Booking failed.');
+            }
+        } catch (error) {
+            console.error('Booking error:', error);
+            alert('There was an error confirming your booking. Please try again.');
+            confirmBtn.disabled = false;
+            confirmBtn.textContent = 'Confirm Booking';
+        }
+    });
+
     fetchAvailability();
-  }catch(error){
-    const message = error.message || 'Unable to complete the booking right now.';
-    alert(message.toLowerCase().includes('slot') ? 'That time was just taken. Please choose another available slot.' : message);
-    if(message.toLowerCase().includes('slot')){
-      await fetchAvailability();
-      showDateStep();
-    }
-  }finally{
-    btn.disabled=false;
-    btn.textContent='Confirm My Growth Call →';
-  }
-}
-
-window.addEventListener('load', ()=>{
-  const authBtn = document.getElementById('authBtn');
-  if(authBtn) authBtn.style.display='none';
-  renderCalendar();
-  fetchAvailability();
 });
-
-window.addEventListener('scroll', ()=>{
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>10);
-});
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.getElementById('nav').classList.add('scrolled');
-});
-</script>
-
-<script>
-</script>
-
-<script>
-(function(){
-  const body=document.body;
-  const nav=document.getElementById('nav');
-  const toggle=document.getElementById('navToggle');
-  const drawer=document.getElementById('mobileMenu');
-  const overlay=document.getElementById('mobileMenuOverlay');
-  const linksTarget=document.getElementById('mobileMenuLinks');
-
-  if(nav&&linksTarget){
-    const desktopLinks=nav.querySelector('.nav-links');
-    const desktopCta=nav.querySelector('.nav-cta');
-    if(desktopLinks){ linksTarget.innerHTML=desktopLinks.innerHTML; }
-    if(desktopCta){
-      const mobileCta=desktopCta.cloneNode(true);
-      mobileCta.classList.add('mobile-menu-cta');
-      linksTarget.appendChild(mobileCta);
-    }
-  }
-
-  window.toggleMobileMenu=function(force){
-    const shouldOpen=typeof force==='boolean'?force:!body.classList.contains('body-menu-open');
-    body.classList.toggle('body-menu-open',shouldOpen);
-    if(toggle){
-      toggle.setAttribute('aria-expanded',shouldOpen?'true':'false');
-      toggle.setAttribute('aria-label',shouldOpen?'Close navigation menu':'Open navigation menu');
-    }
-    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); }
-  };
-
-  window.closeMobileMenu=function(){ window.toggleMobileMenu(false); };
-
-  if(toggle){
-    toggle.addEventListener('click',function(){ window.toggleMobileMenu(); });
-  }
-
-  if(overlay){
-    overlay.addEventListener('click',window.closeMobileMenu);
-  }
-
-  if(linksTarget){
-    linksTarget.addEventListener('click',function(event){
-      const target=event.target.closest('a');
-      if(target){ window.closeMobileMenu(); }
-    });
-  }
-
-  window.addEventListener('resize',function(){
-    if(window.innerWidth>900){ window.closeMobileMenu(); }
-  });
-
-  document.addEventListener('keydown',function(event){
-    if(event.key==='Escape'){ window.closeMobileMenu(); }
-  });
-})();
 </script>
 
 </body>

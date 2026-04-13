@@ -334,7 +334,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </footer>
 
 <script>
-const BOOKING_API_URL = 'https://script.google.com/macros/s/AKfycby5pWyF_TawUei8-xqOJ4xG4S9sM0kX9n4Kbi2Sge6wF2GvS8oBHGnOtW3_J7eqa1AV/exec';
+const BOOKING_API_URL = 'https://agrestal-birgit-inswept.ngrok-free.dev/booking';
 
 document.addEventListener('DOMContentLoaded', () => {
     const prevMonthBtn = document.getElementById('prev-month');
@@ -445,9 +445,24 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchAvailability() {
         statusDiv.innerHTML = '<div class="cal-loading"></div>Checking calendar...';
         try {
-            const response = await fetch(`${BOOKING_API_URL}?month=${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`);
+            const monthStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+            const response = await fetch(`${BOOKING_API_URL}/availability?month=${monthStr}`);
             if (!response.ok) throw new Error('Network response was not ok.');
-            availability = await response.json();
+            const data = await response.json();
+            if (!data.ok) throw new Error(data.message || 'API error');
+
+            // Convert new API format to the format renderCalendar expects
+            // Old format: { "2026-04-14": ["iso-time", ...] }
+            // New format: { availability: { "2026-04-14": { available: true, slots: [{time, display, isoStart}] } } }
+            availability = {};
+            for (const [dateKey, dayData] of Object.entries(data.availability || {})) {
+                if (dayData.available && dayData.slots) {
+                    availability[dateKey] = dayData.slots.map(s => s.isoStart);
+                } else {
+                    availability[dateKey] = [];
+                }
+            }
+
             renderCalendar(currentMonth, currentYear);
             statusDiv.innerHTML = '';
         } catch (error) {
@@ -504,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch(BOOKING_API_URL, {
+            const response = await fetch(`${BOOKING_API_URL}/book`, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json' }

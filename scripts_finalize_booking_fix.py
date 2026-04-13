@@ -3,7 +3,7 @@ import os
 BACKEND_URL = "https://script.google.com/macros/s/AKfycby5pWyF_TawUei8-xqOJ4xG4S9sM0kX9n4Kbi2Sge6wF2GvS8oBHGnOtW3_J7eqa1AV/exec"
 
 def patch_book_html():
-    path = "book.html"
+    path = "/home/ubuntu/econ-growth/book.html"
     if not os.path.exists(path):
         print(f"Error: {path} not found.")
         return

@@ -20,5 +20,63 @@ if (window.location.protocol === 'http:' && !window.location.hostname.includes('
     <noscript>
         <a href="/econ-growth-final-sales-1.html">Click here to continue</a>
     </noscript>
+
+<script>
+(function(){
+  const body=document.body;
+  const nav=document.getElementById('nav');
+  const toggle=document.getElementById('navToggle');
+  const drawer=document.getElementById('mobileMenu');
+  const overlay=document.getElementById('mobileMenuOverlay');
+  const linksTarget=document.getElementById('mobileMenuLinks');
+
+  if(nav&&linksTarget){
+    const desktopLinks=nav.querySelector('.nav-links');
+    const desktopCta=nav.querySelector('.nav-cta');
+    if(desktopLinks){ linksTarget.innerHTML=desktopLinks.innerHTML; }
+    if(desktopCta){
+      const mobileCta=desktopCta.cloneNode(true);
+      mobileCta.classList.add('mobile-menu-cta');
+      linksTarget.appendChild(mobileCta);
+    }
+  }
+
+  window.toggleMobileMenu=function(force){
+    const shouldOpen=typeof force==='boolean'?force:!body.classList.contains('body-menu-open');
+    body.classList.toggle('body-menu-open',shouldOpen);
+    if(toggle){
+      toggle.setAttribute('aria-expanded',shouldOpen?'true':'false');
+      toggle.setAttribute('aria-label',shouldOpen?'Close navigation menu':'Open navigation menu');
+    }
+    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); }
+  };
+
+  window.closeMobileMenu=function(){ window.toggleMobileMenu(false); };
+
+  if(toggle){
+    toggle.addEventListener('click',function(){ window.toggleMobileMenu(); });
+  }
+
+  if(overlay){
+    overlay.addEventListener('click',window.closeMobileMenu);
+  }
+
+  if(linksTarget){
+    linksTarget.addEventListener('click',function(event){
+      const target=event.target.closest('a');
+      if(target){ window.closeMobileMenu(); }
+    });
+  }
+
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>900){ window.closeMobileMenu(); }
+  });
+
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){ window.closeMobileMenu(); }
+  });
+})();
+</script>
+
 </body>
 </html>

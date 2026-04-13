@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<script>
+if (window.location.protocol === 'http:' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
+    window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEET ROGER | eCon Growth — Watch Roger Handle Live HVAC Calls</title>
+<meta name="description" content="Watch Roger answer real HVAC calls in real-time. Live transcript, AI brain activity, and CRM updates happening right now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gg:rgba(33,230,138,.25);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.52);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06);--red:#ef4444;--blue:#60a5fa}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;line-height:1.5}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.3;pointer-events:none;z-index:0}
+@keyframes pd{0%,100%{box-shadow:0 0 6px rgba(33,230,138,.25),0 0 0 0 rgba(33,230,138,.35)}50%{box-shadow:0 0 14px rgba(33,230,138,.25),0 0 0 6px rgba(33,230,138,0)}}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ob{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,-26px)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-ring{0%{transform:scale(.8);opacity:1}100%{transform:scale(2.2);opacity:0}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.v{opacity:1;transform:translateY(0)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;transition:background .4s,border-color .4s}
+.nav.scrolled{background:rgba(7,10,15,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(234,240,255,.06)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);white-space:nowrap;flex-shrink:0}
+.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0}
+.logo-e{color:var(--text)}.logo-c{color:var(--green)}.logo-rest{color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0 auto;padding:0}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.52);padding:6px 12px;border-radius:5px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(234,240,255,.08)}
+.nav-cta{background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:9px 20px;border-radius:7px;letter-spacing:0;transition:all .2s;flex-shrink:0;white-space:nowrap;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#fff;color:#070A0F}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:16px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;box-shadow:0 0 32px rgba(33,230,138,.28);transition:all .25s;white-space:nowrap}
+.btn-primary:hover{background:#fff;transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:15px;padding:16px 28px;border-radius:8px;border:1px solid rgba(234,240,255,.1);cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-ghost:hover{border-color:var(--gb);color:var(--green)}
+
+/* SECTIONS */
+.section{padding:120px 0}
+.section-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.section-inner.wide{max-width:1200px;margin:0 auto;padding:0 52px}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.section-label::before,.section-label::after{content:'';flex:1;max-width:36px;height:1px;background:var(--green)}
+.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5.5vw,68px);letter-spacing:1.5px;line-height:.9;margin-bottom:20px}
+.section-h2 .green{color:var(--green)}.section-h2 .ghost{-webkit-text-stroke:1.5px rgba(234,240,255,.18);color:transparent}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.85;max-width:640px}
+
+/* HERO */
+.hero{min-height:60vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,230,138,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.018) 1px,transparent 1px);background-size:56px 56px;z-index:0}
+.orb{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(33,230,138,.065) 0%,transparent 60%);top:-300px;right:-200px;filter:blur(90px);animation:ob 18s ease-in-out infinite;border-radius:50%;z-index:0}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:60px 52px;width:100%;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:32px;animation:fu .6s both}
+.badge-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite;flex-shrink:0}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,100px);letter-spacing:.5px;line-height:.88;margin-bottom:28px;animation:fu .7s .15s both}
+.hero-h1 .green{color:var(--green)}.hero-h1 .ghost{-webkit-text-stroke:1.5px rgba(234,240,255,.18);color:transparent}
+.hero-body{font-family:'JetBrains Mono',monospace;font-size:clamp(12px,1.4vw,15px);font-weight:300;color:var(--mu);line-height:1.9;max-width:620px;margin:0 auto 0;animation:fu .7s .3s both}
+.hero-body strong{color:var(--text);font-weight:500}
+
+/* SETUP / CALL ME */
+.setup-section{padding:48px 0 32px;position:relative;z-index:1}
+.setup-card{max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:32px 36px;text-align:center}
+.setup-title{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;margin-bottom:16px}
+.setup-row{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin:14px 0}
+.setup-input{background:rgba(234,240,255,.04);border:1px solid var(--bd);border-radius:10px;padding:13px 18px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;outline:none;width:220px;transition:border .2s}
+.setup-input:focus{border-color:var(--green)}
+.setup-input::placeholder{color:rgba(234,240,255,.28)}
+.btn-call{background:linear-gradient(135deg,#21E68A,#15b86e);color:#070A0F;border:none;padding:13px 30px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-call:hover{transform:scale(1.05);box-shadow:0 8px 30px rgba(33,230,138,.3)}
+.btn-call:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.call-direct{color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:12px}
+.call-direct a{color:var(--green);text-decoration:none}
+.call-direct a:hover{text-decoration:underline}
+
+/* LIVE STATS BAR */
+.live-stats{display:flex;justify-content:center;gap:40px;padding:20px 0 32px;position:relative;z-index:1}
+.live-stat{text-align:center}
+.live-stat-val{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:var(--green)}
+.live-stat-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* DEMO GRID */
+.demo-section{position:relative;z-index:1;padding:0 0 80px}
+.demo-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.demo-grid{display:grid;grid-template-columns:1fr 340px;gap:18px}
+@media(max-width:900px){.demo-grid{grid-template-columns:1fr}}
+
+/* TRANSCRIPT PANEL */
+.transcript-panel{background:var(--bg2);border:1px solid rgba(33,230,138,.15);border-radius:16px;padding:22px;min-height:440px;display:flex;flex-direction:column}
+.tp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.live-dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block;margin-right:8px;position:relative}
+.live-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--green);animation:pulse-ring 2s infinite}
+.tp-title{font-weight:700;font-size:15px}
+.stage-badge{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(33,230,138,.15);color:var(--green);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.stage-badge.emergency{background:rgba(239,68,68,.2);color:var(--red)}
+.progress{display:flex;gap:3px;margin-bottom:16px}
+.progress-step{flex:1;height:4px;border-radius:2px;background:rgba(234,240,255,.06);transition:background .4s}
+.progress-step.active{background:var(--green)}
+.progress-labels{display:flex;gap:3px;margin-top:4px;margin-bottom:14px}
+.progress-label{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu2);letter-spacing:.06em;text-transform:uppercase}
+.progress-label.active{color:var(--green)}
+.transcript{flex:1;overflow-y:auto;max-height:380px;padding-right:6px}
+.transcript::-webkit-scrollbar{width:4px}
+.transcript::-webkit-scrollbar-thumb{background:rgba(234,240,255,.1);border-radius:2px}
+.msg{display:flex;flex-direction:column;margin-bottom:12px;animation:fadeIn .3s}
+.msg.caller .bubble{align-self:flex-start;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.18);border-radius:14px 14px 14px 3px}
+.msg.agent .bubble{align-self:flex-end;background:rgba(33,230,138,.08);border:1px solid rgba(33,230,138,.12);border-radius:14px 14px 3px 14px}
+.bubble{padding:10px 16px;max-width:85%;font-size:13px;line-height:1.55;font-family:'Syne',sans-serif}
+.msg-meta{font-size:9px;color:var(--mu2);margin-top:3px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.msg.caller .msg-meta{text-align:left}
+.msg.agent .msg-meta{text-align:right}
+
+/* SIDEBAR PANELS */
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.panel{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:18px;max-height:280px;overflow-y:auto}
+.panel::-webkit-scrollbar{width:3px}
+.panel::-webkit-scrollbar-thumb{background:rgba(234,240,255,.08);border-radius:2px}
+.panel-title{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.brain-item{font-size:12px;color:rgba(234,240,255,.7);margin-bottom:8px;padding:8px 12px;background:rgba(33,230,138,.04);border-radius:8px;border-left:3px solid var(--green);animation:fadeIn .3s;font-family:'JetBrains Mono',monospace}
+.brain-item .action{color:var(--green);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.crm-item{font-size:12px;color:rgba(234,240,255,.7);margin-bottom:8px;padding:8px 12px;background:rgba(96,165,250,.04);border-radius:8px;border-left:3px solid var(--blue);animation:fadeIn .3s;font-family:'JetBrains Mono',monospace}
+
+/* REPORT CARD */
+.report-card{display:none;animation:fadeIn .5s}
+.report-card.show{display:block}
+.rc-score{font-family:'Bebas Neue',sans-serif;font-size:52px;font-weight:800;color:var(--green);text-align:center;margin:10px 0}
+.rc-items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rc-item{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);padding:8px;background:rgba(234,240,255,.02);border-radius:6px}
+.rc-item span{display:block;font-weight:700;color:var(--text);font-size:14px;margin-bottom:2px}
+
+/* WAITING STATE */
+.waiting-state{text-align:center;padding:80px 20px;position:relative;z-index:1}
+.waiting-icon{font-size:56px;margin-bottom:16px;opacity:.6}
+.waiting-text{font-family:'JetBrains Mono',monospace;color:var(--mu);font-size:13px;font-weight:300;line-height:1.8;max-width:460px;margin:0 auto}
+
+/* CAPABILITIES GRID */
+.caps-section{padding:60px 0 100px;position:relative;z-index:1}
+.caps-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.caps-label{text-align:center;margin-bottom:36px}
+.caps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.cap-card{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:22px 18px;transition:all .3s;position:relative;overflow:hidden}
+.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity .3s}
+.cap-card:hover{border-color:var(--gb);transform:translateY(-3px)}.cap-card:hover::before{opacity:1}
+.cap-icon{font-size:22px;margin-bottom:10px;display:block}
+.cap-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:6px}
+.cap-desc{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:300;color:var(--mu);line-height:1.7}
+
+/* FOOTER */
+.footer{padding:72px 0 40px;background:var(--bg4);border-top:1px solid var(--bd);position:relative;z-index:1}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:40px}
+.footer-brand p{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8;margin-top:16px;max-width:280px}
+.footer-phone{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-top:14px}
+.footer-col-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+.footer-social-row{padding-top:28px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-social-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
+.footer-social-icons{display:flex;align-items:center;gap:10px}
+.footer-si{width:42px;height:42px;border-radius:10px;background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(234,240,255,.4);transition:all .25s}
+.footer-si:hover{color:#21E68A;border-color:rgba(33,230,138,.4);background:rgba(33,230,138,.06);transform:translateY(-2px)}
+.footer-si svg{width:18px;height:18px}
+.footer-legal-row{display:flex;justify-content:center;gap:32px;padding:20px 0;flex-wrap:wrap}
+.footer-legal-row a{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.38);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.footer-legal-row a:hover{color:var(--green)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--bd);flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.06em}
+.footer-tagline{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2)}
+.footer-tagline span{color:var(--green)}
+
+/* MOBILE NAV */
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(234,240,255,.12);background:rgba(234,240,255,.04);color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.nav-toggle:hover{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.22)}
+.nav-toggle:focus-visible{outline:2px solid rgba(33,230,138,.55);outline-offset:3px}
+.nav-toggle-bars,.nav-toggle-bars::before,.nav-toggle-bars::after{display:block;position:relative;width:18px;height:2px;border-radius:999px;background:currentColor;transition:transform .25s ease,opacity .2s ease,top .25s ease}
+.nav-toggle-bars::before,.nav-toggle-bars::after{content:'';position:absolute;left:0}
+.nav-toggle-bars::before{top:-6px}
+.nav-toggle-bars::after{top:6px}
+.body-menu-open .nav-toggle-bars{background:transparent}
+.body-menu-open .nav-toggle-bars::before{top:0;transform:rotate(45deg)}
+.body-menu-open .nav-toggle-bars::after{top:0;transform:rotate(-45deg)}
+.mobile-menu-overlay{position:fixed;inset:0;background:rgba(4,7,12,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:540}
+.mobile-menu{position:fixed;top:0;right:-340px;width:min(88vw,320px);height:100vh;height:100dvh;padding:88px 22px 28px;background:rgba(7,10,15,.98);border-left:1px solid rgba(234,240,255,.08);box-shadow:-24px 0 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px;transition:right .3s ease;z-index:550}
+.mobile-menu-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.mobile-menu-links{display:flex;flex-direction:column;gap:8px}
+.mobile-menu-links a{display:block;padding:13px 14px;border-radius:10px;background:rgba(234,240,255,.03);border:1px solid rgba(234,240,255,.06);color:var(--text);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.2);color:var(--green)}
+.mobile-menu-links .nav-cta,.mobile-menu-cta{margin-top:10px;display:block;width:100%;text-align:center;padding:14px 18px;font-size:14px;border-radius:10px}
+.body-menu-open{overflow:hidden}
+.body-menu-open .mobile-menu-overlay{opacity:1;pointer-events:auto}
+.body-menu-open .mobile-menu{right:0}
+@media(max-width:900px){
+  .nav{padding:0 20px}
+  .nav-links,.nav-actions .nav-cta{display:none}
+  .nav-toggle{display:inline-flex}
+  .footer-top{grid-template-columns:1fr 1fr!important;gap:36px}
+  .footer-inner{padding:0 24px}
+  .hero-inner{padding:40px 24px}
+  .demo-inner,.caps-inner{padding:0 20px}
+  .setup-card{margin:0 20px;padding:24px 20px}
+  .live-stats{gap:20px;flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:42px}
+  .live-stats{gap:16px}
+  .live-stat-val{font-size:20px}
+  .footer-top{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+  <ul class="nav-links">
+    <li><a href="command-os.html">Model</a></li>
+    <li><a href="sales.html">Sales</a></li>
+    <li><a href="roger.html">Roger</a></li>
+    <li><a href="meet-roger.html" class="active">Roger Live</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="visibility.html">Visibility</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="book.html" class="nav-cta">Book Your Growth Call</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="nav-toggle-bars"></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-title">Navigation</div>
+  <nav class="mobile-menu-links" id="mobileMenuLinks" aria-label="Mobile navigation"></nav>
+</aside>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div><div class="orb"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><div class="badge-dot"></div>Live Demo &middot; Real-Time AI &middot; Watch It Happen</div>
+    <h1 class="hero-h1">MEET<br><span class="green">ROGER.</span><br><span class="ghost">LIVE.</span></h1>
+    <p class="hero-body">Watch Roger answer real HVAC calls in real-time. <strong>Live transcript, AI brain activity, and CRM updates</strong> — all happening right now.</p>
+  </div>
+</section>
+
+<!-- CALL ME SETUP -->
+<div class="setup-section">
+  <div class="setup-card" id="setupSection">
+    <div class="setup-title">Try Roger with YOUR company name</div>
+    <div class="setup-row">
+      <input type="text" class="setup-input" id="bizName" placeholder="Your HVAC Company Name" />
+      <input type="tel" class="setup-input" id="phoneInput" placeholder="Your Phone Number" />
+      <button class="btn-call" id="callMeBtn" onclick="callMe()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call Me Now
+      </button>
+    </div>
+    <div class="call-direct">Or call directly: <a href="tel:+18445419279">(844) 541-9279</a></div>
+  </div>
+</div>
+
+<!-- LIVE STATS -->
+<div class="live-stats">
+  <div class="live-stat"><div class="live-stat-val" id="sCalls">0</div><div class="live-stat-lbl">Calls Today</div></div>
+  <div class="live-stat"><div class="live-stat-val" id="sBooked">0</div><div class="live-stat-lbl">Jobs Booked</div></div>
+  <div class="live-stat"><div class="live-stat-val" id="sAvg">0s</div><div class="live-stat-lbl">Avg Duration</div></div>
+  <div class="live-stat">
+    <div class="live-stat-val" id="sDot" style="color:var(--green)">&#9679;</div>
+    <div class="live-stat-lbl" id="sStatus">Connected</div>
+  </div>
+</div>
+
+<!-- DEMO GRID: Transcript + Sidebar -->
+<div class="demo-section">
+  <div class="demo-inner">
+    <div class="demo-grid" id="mainGrid" style="display:none">
+      <!-- LEFT: TRANSCRIPT -->
+      <div class="transcript-panel">
+        <div class="tp-header">
+          <div style="display:flex;align-items:center">
+            <span class="live-dot"></span>
+            <span class="tp-title" id="tpTitle">Live Call</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <span class="stage-badge" id="stageBadge">Greeting</span>
+            <span id="timer" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu)">0:00</span>
+          </div>
+        </div>
+        <div class="progress">
+          <div class="progress-step active" id="p0"></div>
+          <div class="progress-step" id="p1"></div>
+          <div class="progress-step" id="p2"></div>
+          <div class="progress-step" id="p3"></div>
+          <div class="progress-step" id="p4"></div>
+        </div>
+        <div class="progress-labels">
+          <div class="progress-label active" id="pl0">Greeting</div>
+          <div class="progress-label" id="pl1">Collecting</div>
+          <div class="progress-label" id="pl2">Scheduling</div>
+          <div class="progress-label" id="pl3">Confirming</div>
+          <div class="progress-label" id="pl4">Closing</div>
+        </div>
+        <div class="transcript" id="transcript"></div>
+      </div>
+
+      <!-- RIGHT: SIDEBAR -->
+      <div class="sidebar">
+        <div class="panel">
+          <div class="panel-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 2a9 9 0 0 1 9 9c0 3.9-2.5 7.2-6 8.5V21a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5C5.5 18.2 3 14.9 3 11a9 9 0 0 1 9-9z"/><path d="M9 21v1h6v-1"/></svg> Roger's Brain</div>
+          <div id="brainList"><div style="font-size:11px;color:var(--mu2);font-style:italic;font-family:'JetBrains Mono',monospace">Waiting for activity...</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg> CRM Updates</div>
+          <div id="crmList"><div style="font-size:11px;color:var(--mu2);font-style:italic;font-family:'JetBrains Mono',monospace">No updates yet</div></div>
+        </div>
+        <div class="panel report-card" id="reportCard">
+          <div class="panel-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Call Report Card</div>
+          <div class="rc-score" id="rcScore"></div>
+          <div class="rc-items" id="rcItems"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAITING STATE -->
+    <div class="waiting-state" id="waitingState">
+      <div class="waiting-icon">&#129312;</div>
+      <div class="waiting-text">Enter your company name above, hit "Call Me Now", and watch Roger work in real-time.<br><br>Or call <strong style="color:var(--green)">(844) 541-9279</strong> from any phone and watch the transcript appear live on this page.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPABILITIES -->
+<div class="caps-section">
+  <div class="caps-inner">
+    <div class="caps-label rv">
+      <div class="section-label">What Roger Does</div>
+    </div>
+    <div class="caps-grid rv">
+      <div class="cap-card">
+        <div class="cap-icon">&#128222;</div>
+        <div class="cap-title">Answers 24/7</div>
+        <div class="cap-desc">No missed calls. Ever. Roger picks up on the first ring, day or night, weekends and holidays.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#128197;</div>
+        <div class="cap-title">Books on Calendar</div>
+        <div class="cap-desc">Live Google Calendar sync. Roger checks availability and books the job in real-time.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#128172;</div>
+        <div class="cap-title">Sends Texts</div>
+        <div class="cap-desc">Confirmation SMS to the caller with appointment details, your company name, and address.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#129504;</div>
+        <div class="cap-title">Remembers Callers</div>
+        <div class="cap-desc">Name, history, preferences, past appointments. Roger knows your customers better than you do.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#127777;&#65039;</div>
+        <div class="cap-title">Weather Aware</div>
+        <div class="cap-desc">Knows local conditions. Adjusts urgency for heat waves, freezes, and storm damage calls.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#128680;</div>
+        <div class="cap-title">Emergency Protocol</div>
+        <div class="cap-desc">Gas leaks, no heat with elderly, carbon monoxide — Roger escalates instantly. Safety first.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+        <p>The AI Operating System built exclusively for HVAC business owners. More revenue. More control. Less chaos.</p>
+        <div class="footer-phone">(615) 664-9178</div>
+      </div>
+      <div><div class="footer-col-title">Platform</div><ul class="footer-links"><li><a href="command-os.html">Command OS</a></li><li><a href="roger.html">Roger</a></li><li><a href="meet-roger.html">Roger Live Demo</a></li><li><a href="visibility.html">Visibility Dashboard</a></li><li><a href="book.html">Book a Call</a></li></ul></div>
+      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="sales.html">Sales Process</a></li><li><a href="investors.html">Investors</a></li></ul></div>
+      <div><div class="footer-col-title">Resources</div><ul class="footer-links"><li><a href="blog.html">HVAC Growth Blog</a></li><li><a href="roi-calculator.html">ROI Calculator</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></div>
+    </div>
+    <div class="footer-social-row">
+      <div class="footer-social-label">Follow Along</div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/61588379971211/" class="footer-si" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.tiktok.com/@econgrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        <a href="https://www.youtube.com/@eConGrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-legal-row"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
+      <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> &middot; POWERED BY <span>SECONDBRAIN AI</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40)});
+
+/* ═══ REVEAL ON SCROLL ═══ */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+/* ═══ MOBILE NAV ═══ */
+(function(){
+  const body=document.body;
+  const nav=document.getElementById('nav');
+  const toggle=document.getElementById('navToggle');
+  const drawer=document.getElementById('mobileMenu');
+  const overlay=document.getElementById('mobileMenuOverlay');
+  const linksTarget=document.getElementById('mobileMenuLinks');
+
+  if(nav&&linksTarget){
+    const desktopLinks=nav.querySelector('.nav-links');
+    const desktopCta=nav.querySelector('.nav-cta');
+    if(desktopLinks){ linksTarget.innerHTML=desktopLinks.innerHTML; }
+    if(desktopCta){
+      const mobileCta=desktopCta.cloneNode(true);
+      mobileCta.classList.add('mobile-menu-cta');
+      linksTarget.appendChild(mobileCta);
+    }
+  }
+
+  window.toggleMobileMenu=function(force){
+    const shouldOpen=typeof force==='boolean'?force:!body.classList.contains('body-menu-open');
+    body.classList.toggle('body-menu-open',shouldOpen);
+    if(toggle){
+      toggle.setAttribute('aria-expanded',shouldOpen?'true':'false');
+      toggle.setAttribute('aria-label',shouldOpen?'Close navigation menu':'Open navigation menu');
+    }
+    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); }
+  };
+
+  window.closeMobileMenu=function(){ window.toggleMobileMenu(false); };
+
+  if(toggle){ toggle.addEventListener('click',function(){ window.toggleMobileMenu(); }); }
+  if(overlay){ overlay.addEventListener('click',window.closeMobileMenu); }
+  if(linksTarget){ linksTarget.addEventListener('click',function(event){ const target=event.target.closest('a'); if(target){ window.closeMobileMenu(); } }); }
+  window.addEventListener('resize',function(){ if(window.innerWidth>900){ window.closeMobileMenu(); } });
+  document.addEventListener('keydown',function(event){ if(event.key==='Escape'){ window.closeMobileMenu(); } });
+})();
+</script>
+
+<script>
+/* ═══ ROGER LIVE DEMO — WebSocket Engine ═══ */
+const ROGER_SERVER = 'wss://agrestal-birgit-inswept.ngrok-free.dev';
+
+let ws, callStart, timerInt, totalCalls=0, totalBooked=0, totalDur=0, stage=0;
+
+function connectWS() {
+  ws = new WebSocket(ROGER_SERVER + '/ws/demo');
+
+  ws.onopen = function() {
+    document.getElementById('sDot').style.color='var(--green)';
+    document.getElementById('sStatus').textContent='Connected';
+  };
+
+  ws.onmessage = function(e) {
+    try {
+      const m = JSON.parse(e.data);
+      handle(m.type, m.data);
+    } catch(x) {}
+  };
+
+  ws.onclose = function() {
+    document.getElementById('sDot').style.color='var(--red)';
+    document.getElementById('sStatus').textContent='Reconnecting...';
+    setTimeout(connectWS, 3000);
+  };
+
+  ws.onerror = function() {
+    document.getElementById('sDot').style.color='var(--red)';
+    document.getElementById('sStatus').textContent='Connection Error';
+  };
+}
+
+function handle(type, data) {
+  switch(type) {
+    case 'roger_call_started':
+      totalCalls++;
+      document.getElementById('sCalls').textContent = totalCalls;
+      document.getElementById('mainGrid').style.display = '';
+      document.getElementById('waitingState').style.display = 'none';
+      document.getElementById('tpTitle').textContent = 'Live Call — ' + (data.callerName || data.customerPhone || 'Incoming');
+      document.getElementById('transcript').innerHTML = '';
+      document.getElementById('brainList').innerHTML = '';
+      document.getElementById('crmList').innerHTML = '';
+      document.getElementById('reportCard').classList.remove('show');
+      document.getElementById('sStatus').textContent = 'Call Active';
+      callStart = Date.now();
+      stage = 0;
+      updateProgress(0);
+      timerInt = setInterval(updateTimer, 1000);
+      addBrain('Call started', 'Listening to caller...');
+      break;
+
+    case 'voice_transcript':
+      addMsg(data.speaker, data.text);
+      updateStage(data.text);
+      break;
+
+    case 'roger_thinking':
+      var labels = {
+        check_availability: 'Checking calendar...',
+        book_appointment: 'Booking appointment...',
+        cancel_appointment: 'Cancelling appointment...',
+        reschedule_appointment: 'Rescheduling...',
+        send_sms: 'Sending text message...',
+        transfer_to_human: 'Transferring to Watson...'
+      };
+      addBrain(data.action, labels[data.action] || data.action);
+      break;
+
+    case 'appointment_update':
+      totalBooked++;
+      document.getElementById('sBooked').textContent = totalBooked;
+      addCRM('Booked: ' + data.service_type + ' on ' + data.scheduled_date + ' at ' + data.scheduled_time);
+      addBrain('Appointment confirmed', 'Calendar synced + SMS sent');
+      break;
+
+    case 'roger_caller_recognized':
+      if (data.contactName) {
+        document.getElementById('tpTitle').textContent = 'Live Call — ' + data.contactName;
+        addCRM('Recognized: ' + data.contactName);
+      }
+      break;
+
+    case 'voice_call_ended':
+      clearInterval(timerInt);
+      totalDur += (data.duration || 0);
+      document.getElementById('sAvg').textContent = Math.round(totalDur / totalCalls) + 's';
+      document.getElementById('sStatus').textContent = 'Call ended';
+      addBrain('Call complete', (data.duration || 0) + 's, ' + (data.exchanges || 0) + ' exchanges');
+      showReportCard(data);
+      setTimeout(function() {
+        document.getElementById('mainGrid').style.display = 'none';
+        document.getElementById('waitingState').style.display = '';
+        document.getElementById('sStatus').textContent = 'Waiting for call';
+      }, 60000);
+      break;
+  }
+}
+
+function addMsg(speaker, text) {
+  var d = document.createElement('div');
+  d.className = 'msg ' + speaker;
+  var time = new Date().toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', second:'2-digit', hour12:true});
+  d.innerHTML = '<div class="bubble">' + esc(text) + '</div><div class="msg-meta">' + (speaker === 'caller' ? 'Caller' : 'Roger') + ' &middot; ' + time + '</div>';
+  var c = document.getElementById('transcript');
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+}
+
+function addBrain(action, detail) {
+  var d = document.createElement('div');
+  d.className = 'brain-item';
+  d.innerHTML = '<span class="action">' + esc(action) + '</span><br>' + esc(detail);
+  var c = document.getElementById('brainList');
+  if (c.querySelector('div[style]')) c.innerHTML = '';
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+}
+
+function addCRM(text) {
+  var d = document.createElement('div');
+  d.className = 'crm-item';
+  d.textContent = text;
+  var c = document.getElementById('crmList');
+  if (c.querySelector('div[style]')) c.innerHTML = '';
+  c.appendChild(d);
+}
+
+function showReportCard(data) {
+  var rc = document.getElementById('reportCard');
+  document.getElementById('rcScore').textContent = 'A+';
+  document.getElementById('rcItems').innerHTML =
+    '<div class="rc-item"><span>' + (data.duration || 0) + 's</span>Duration</div>' +
+    '<div class="rc-item"><span>' + (data.exchanges || 0) + '</span>Exchanges</div>' +
+    '<div class="rc-item"><span>' + totalBooked + '</span>Jobs Booked</div>' +
+    '<div class="rc-item"><span>0</span>Calls Missed</div>';
+  rc.classList.add('show');
+}
+
+function updateTimer() {
+  if (!callStart) return;
+  var s = Math.round((Date.now() - callStart) / 1000);
+  document.getElementById('timer').textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+function updateStage(text) {
+  var t = (text || '').toLowerCase();
+  var ns = stage;
+  if (/address|name|what's going|problem|heating|cooling|air condition|furnace|unit/.test(t)) ns = Math.max(ns, 1);
+  if (/schedule|calendar|morning|afternoon|available|tomorrow|next week|time slot/.test(t)) ns = Math.max(ns, 2);
+  if (/booked|all set|confirmed|appointment/.test(t)) ns = Math.max(ns, 3);
+  if (/goodbye|take care|bye|thanks for callin|have a great/.test(t)) ns = Math.max(ns, 4);
+
+  if (ns !== stage) {
+    stage = ns;
+    updateProgress(stage);
+    var stageLabels = {0:'Greeting', 1:'Collecting Info', 2:'Scheduling', 3:'Confirming', 4:'Closing'};
+    document.getElementById('stageBadge').textContent = stageLabels[stage];
+  }
+
+  if (/fire|gas|emergency|evacuate|911|carbon monoxide/.test(t)) {
+    document.getElementById('stageBadge').textContent = 'EMERGENCY';
+    document.getElementById('stageBadge').classList.add('emergency');
+  }
+}
+
+function updateProgress(s) {
+  for (var i = 0; i < 5; i++) {
+    document.getElementById('p' + i).classList.toggle('active', i <= s);
+    document.getElementById('pl' + i).classList.toggle('active', i <= s);
+  }
+}
+
+function esc(t) {
+  var d = document.createElement('div');
+  d.textContent = t;
+  return d.innerHTML;
+}
+
+async function callMe() {
+  var phone = document.getElementById('phoneInput').value.trim();
+  var biz = document.getElementById('bizName').value.trim();
+  if (!phone) { alert('Please enter your phone number'); return; }
+
+  var btn = document.getElementById('callMeBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Calling...';
+
+  try {
+    var serverUrl = ROGER_SERVER.replace('wss://', 'https://').replace('ws://', 'http://');
+    var res = await fetch(serverUrl + '/demo/call-me', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({phoneNumber: phone, businessName: biz || null})
+    });
+    var data = await res.json();
+
+    if (data.success) {
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Ringing...';
+      setTimeout(function() {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call Me Now';
+      }, 30000);
+    } else {
+      alert('Call failed: ' + data.error);
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call Me Now';
+    }
+  } catch(e) {
+    alert('Error: ' + e.message);
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Call Me Now';
+  }
+}
+
+/* ═══ CONNECT ON LOAD ═══ */
+connectWS();
+</script>
+
+</body>
+</html>

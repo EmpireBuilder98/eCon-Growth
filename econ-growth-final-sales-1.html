@@ -148,41 +148,40 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 
 /* ═══ STORY / BRIDGE ═══ */
 .bridge-sec{background:var(--bg2);border-top:1px solid var(--bd)}
-.bridge-layout{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center;margin-top:60px}
 
-.bridge-col-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+
+
 .bridge-col-label.before{color:var(--red)}
 .bridge-col-label.before::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%}
 .bridge-col-label.after{color:var(--green)}
 .bridge-col-label.after::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
 
-.bridge-list{display:flex;flex-direction:column;gap:4px}
-.bridge-row{display:flex;align-items:flex-start;gap:13px;padding:16px 18px;border-radius:8px;background:rgba(7,10,15,.7);border:1px solid var(--bd)}
-.bridge-row.is-after{background:rgba(33,230,138,.05);border-color:var(--gb)}
-.bridge-icon{font-size:13px;flex-shrink:0;margin-top:1px;line-height:1.5}
+
+
+.bridge-row
+
 .bridge-row.is-before .bridge-icon{color:var(--red)}
-.bridge-row.is-after .bridge-icon{color:var(--green)}
-.bridge-row-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.65}
-.bridge-row.is-after .bridge-row-text{color:rgba(234,240,255,.82)}
+.bridge-row.is-after .bridge-icon{color:vaont-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.65}
+.bridge-row.is-after 
 
-.bridge-right-col{display:flex;flex-direction:column;gap:28px}
-.bridge-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,4.2vw,54px);letter-spacing:1.5px;line-height:.92;margin-bottom:10px}
+
+
 .bridge-headline .green{color:var(--green)}
-.bridge-body{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.85;margin-bottom:6px}
 
-.callout-box{background:rgba(33,230,138,.07);border:1px solid var(--gb);border-radius:10px;padding:24px 28px}
-.callout-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+
+
+
 .callout-title::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
-.callout-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8}
+
 
 /* ═══ SCROLL DEMO ═══ */
-.demo-wrap{position:relative}
-.demo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg);border-top:1px solid var(--bd)}
-.demo-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,230,138,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.015) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
-.demo-inner{position:relative;z-index:2;width:100%;max-width:1180px;padding:0 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 
-.demo-copy-wrap{position:relative;min-height:320px}
-.demo-step{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(16px);transition:opacity .45s,transform .45s;pointer-events:none}
+
+
+
+
+
+
 .demo-step.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative}
 .step-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .step-num::before{content:'';width:22px;height:1px;background:var(--green)}
@@ -245,15 +244,15 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .os-readout-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);overflow:hidden;white-space:nowrap;flex:1}
 
 /* ghost cursor */
-.ghost-cursor{position:absolute;pointer-events:none;z-index:50;opacity:0;transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),opacity .25s}
+
 .ghost-cursor.show{opacity:1}
 .ghost-cursor svg{width:16px;height:16px;filter:drop-shadow(0 0 5px rgba(33,230,138,.9))}
 .ghost-cursor.click{animation:gclick .2s ease}
 @keyframes gclick{0%{transform:scale(1)}50%{transform:scale(.6)}100%{transform:scale(1)}}
-.click-ripple{position:absolute;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--green);pointer-events:none;z-index:49;opacity:0;transform:translate(-50%,-50%) scale(0)}
+
 .click-ripple.fire{animation:ripple .5s ease forwards}
 @keyframes ripple{0%{opacity:.7;transform:translate(-50%,-50%) scale(0)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}
-.highlight-box{position:absolute;border:1.5px solid var(--green);border-radius:6px;pointer-events:none;z-index:48;background:rgba(33,230,138,.04);opacity:0;transition:opacity .35s,left .5s,top .5s,width .5s,height .5s;box-shadow:0 0 20px rgba(33,230,138,.1)}
+
 .highlight-box.show{opacity:1}
 
 /* ═══ OUTCOMES ═══ */
@@ -288,10 +287,10 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .founder-full-bio strong{color:var(--text);font-weight:500}
 .founder-full-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px}
 .founder-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:4px 10px;border-radius:4px;letter-spacing:.07em;text-transform:uppercase}
-.founders-cta{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:32px 40px;background:rgba(33,230,138,.06);border:1px solid var(--gb);border-radius:12px;position:relative;overflow:hidden}
+
 .founders-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
-.founders-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:1.5px;margin-bottom:6px}
-.founders-cta-sub{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.6}
+
+
 @media(max-width:900px){
   .founders-duo{grid-template-columns:1fr}
   .founders-cta{flex-direction:column;gap:20px;text-align:center}
@@ -299,8 +298,7 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 }
 
 /* ═══ QUALIFY ═══ */
-.qualify-sec{background:var(--bg2);border-top:1px solid var(--bd)}
-.qualify-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;margin-top:60px}
+.qualify-sec{background:var(--bg2);border-top:1px solid var(--;gap:72px;align-items:start;margin-top:60px}
 .qualify-list{display:flex;flex-direction:column;gap:4px}
 .qualify-item{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;background:rgba(7,10,15,.8);border:1px solid var(--bd);border-radius:9px;transition:all .3s}
 .qualify-item:hover{background:rgba(33,230,138,.04);border-color:var(--gb)}
@@ -385,9 +383,7 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
   .bridge-layout,.founders-layout,.qualify-layout,.intel-layout{grid-template-columns:1fr!important;gap:48px}
   .demo-inner{grid-template-columns:1fr!important;gap:32px;padding:0 20px!important}
   .demo-copy-wrap{min-height:auto}
-  .demo-step.active{position:relative}
-  .outcomes-grid{grid-template-columns:1fr!important}
-  .os-metrics{grid-template-columns:repeat(2,1fr)!important}
+  .demo-step.activ-grid{grid-templatnt}
   .os-panels{grid-template-columns:1fr!important}
   .founders-duo{grid-template-columns:1fr!important}
   .footer-inner{padding:0 20px}
@@ -406,7 +402,7 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
   .os-metrics{grid-template-columns:1fr!important}
 }
 /* ═══ SOCIAL FOOTER ═══ */
-.footer-social{padding-top:28px;margin-top:8px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+
 .footer-social-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
 .footer-social-icons{display:flex;align-items:center;gap:10px}
 .social-icon{width:42px;height:42px;border-radius:10px;background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(234,240,255,.4);transition:all .25s;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
@@ -419,12 +415,8 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .outcome-card-featured{grid-column:1/-1;background:linear-gradient(135deg,rgba(33,230,138,.07),rgba(33,230,138,.03));border-color:var(--gb);position:relative}
 .outcome-card-featured:hover{border-color:var(--green)}
 .outcome-card-featured::before{opacity:1!important}
-.outcome-featured-badge{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:rgba(33,230,138,.1);border:1px solid var(--gb);border-radius:4px;padding:4px 12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
 
-/* ═══ ROGER LIVE TRANSCRIPT ANIMATION ═══ */
-@keyframes roger-line-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.roger-line{animation:none}
-.roger-line.animating{animation:roger-line-in .4s ease forwards}
+
 .ba-table{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);margin-bottom:28px}
 .ba-col-header{padding:18px 28px;display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 .ba-header-before{background:rgba(239,68,68,.06);border-bottom:1px solid rgba(239,68,68,.15);border-right:1px solid var(--bd)}
@@ -458,19 +450,16 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 }
 
 /* Exit card variant */
-.outcome-card-exit{background:linear-gradient(135deg,rgba(33,230,138,.06),rgba(33,230,138,.02))!important}
+
 .outcome-card-exit .outcome-featured-badge{background:rgba(33,230,138,.12);border-color:rgba(33,230,138,.3)}
 
 .founders-cta{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:36px 44px;background:rgba(33,230,138,.06);border:1px solid var(--gb);border-radius:12px;flex-wrap:wrap}
-.founders-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.5vw,30px);letter-spacing:1.5px;margin-bottom:6px}
-.founders-cta-sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.7}
-@media(max-width:900px){.founders-cta{flex-direction:column;text-align:center}.founders-cta .btn-primary{width:100%;justify-content:center}}
+.founders-ctng:1.5px;margin-bottom:6px}
+.founders-cta-sub{font-family:'JetBrains center}}
 
 /* ═══ SOCIAL FOOTER ═══ */
-.social-footer{background:var(--bg4);border-top:1px solid var(--bd);padding:40px 0}
-.social-footer-inner{max-width:1100px;margin:0 auto;padding:0 52px;display:flex;flex-direction:column;align-items:center;gap:20px}
-.social-footer-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
-.social-icons{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.social-footer{background:var(--bg4);bordal-footer-inner{max-width:1100px;margin:0 auto;padding:0 52px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.social-footer-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;tign-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
 .social-icon{width:48px;height:48px;border-radius:12px;background:rgba(7,10,15,.9);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
 .social-icon::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(33,230,138,.12),transparent 70%);opacity:0;transition:opacity .3s}
 .social-icon:hover{border-color:var(--green);box-shadow:0 0 20px rgba(33,230,138,.2),0 0 40px rgba(33,230,138,.08);transform:translateY(-3px)}
@@ -478,63 +467,6 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .social-icon svg{width:20px;height:20px;fill:rgba(234,240,255,.5);transition:fill .3s;position:relative;z-index:1}
 .social-icon:hover svg{fill:var(--green)}
 @media(max-width:900px){.social-footer-inner{padding:0 24px}}
-.roger-sec{background:var(--bg);border-top:1px solid var(--bd)}
-/* Top-level UI container */
-.roger-ui{background:var(--bg3);border:1px solid var(--gb);border-radius:14px;overflow:hidden;margin-bottom:56px;box-shadow:0 0 80px rgba(33,230,138,.06)}
-.roger-ui-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(4,6,9,.92);border-bottom:1px solid var(--bd)}
-.roger-ui-live-pill{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text);letter-spacing:.06em}
-.roger-ui-live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--gg);animation:pd 2s infinite;flex-shrink:0}
-.roger-ui-version{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.1em}
-.roger-ui-counter{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase}
-.roger-ui-counter-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pd 1.5s infinite;flex-shrink:0}
-.roger-ui-counter-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);letter-spacing:2px;line-height:1}
-.roger-ui-panels{display:grid;grid-template-columns:1fr 120px 1fr;min-height:360px}
-/* LEFT PANEL */
-.roger-ui-panel{border-right:1px solid var(--bd);display:flex;flex-direction:column}
-.roger-ui-panel:last-child{border-right:none}
-.roger-call-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3)}
-.roger-caller-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px}
-.roger-caller-phone{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu)}
-.roger-rec-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:4px;padding:3px 9px;letter-spacing:.08em;animation:blink 1.4s infinite}
-.roger-call-stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd)}
-.roger-call-stat{padding:10px 14px;border-right:1px solid var(--bd)}
-.roger-call-stat:last-child{border-right:none}
-.roger-call-stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.roger-call-stat-val{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);font-weight:500}
-.roger-transcript-scroll{flex:1;padding:14px 16px;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;scrollbar-width:none}
-.roger-line{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;padding:8px 12px;border-radius:6px}
-.roger-line-lead{background:rgba(234,240,255,.04);border:1px solid var(--bd);color:rgba(234,240,255,.8)}
-.roger-line-bot{background:rgba(33,230,138,.06);border:1px solid var(--gb);color:rgba(234,240,255,.9)}
-.roger-bot-label{display:block;font-size:8px;color:var(--green);letter-spacing:.1em;margin-bottom:4px}
-.roger-call-footer{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bd);padding:10px 0}
-.roger-footer-stat{padding:8px 14px;border-right:1px solid var(--bd);text-align:center}
-.roger-footer-stat:last-child{border-right:none}
-.roger-footer-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--mu2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
-.roger-footer-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text)}
-/* CENTER WAVEFORM */
-.roger-ui-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px 0;border-right:1px solid var(--bd)}
-.roger-waveform-wrap{position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center}
-.roger-waveform-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(33,230,138,.35);animation:pulse-ring 1.8s ease-out infinite}
-.roger-waveform-mic{font-size:24px;position:relative;z-index:1}
-.roger-speaking-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.1em;animation:blink 1.4s infinite}
-/* RIGHT PANEL - TASKS */
-.roger-tasks-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3)}
-.roger-tasks-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
-.roger-tasks-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:3px 9px;letter-spacing:.06em}
-.roger-tasks-list{flex:1;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
-.roger-task{display:flex;align-items:flex-start;padding:10px 12px;background:rgba(0,0,0,.25);border:1px solid var(--bd);border-radius:7px}
-.roger-task-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-.roger-task-body{flex:1;min-width:0}
-.roger-task-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);font-weight:500;margin-bottom:3px}
-.roger-task-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);line-height:1.4}
-.roger-task-time{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
-.roger-task-check{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--green);letter-spacing:.06em;white-space:nowrap}
-.roger-task-ms{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2)}
-.roger-tasks-footer{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bd);padding:10px 0}
-.roger-tasks-kpi{padding:8px 12px;border-right:1px solid var(--bd);text-align:center}
-.roger-tasks-kpi:last-child{border-right:none}
-.roger-tasks-kpi-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:rgba(234,240,255,.9);line-height:1;margin-bottom:3px}
-.roger-tasks-kpi-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--mu2);letter-spacing:.08em;text-transform:uppercase}
 /* BOTTOM: FLOW + BEFORE/AFTER */
 .roger-bottom{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .roger-flow{display:flex;flex-direction:column;gap:0}
@@ -557,9 +489,6 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .roger-ba-col.after .roger-ba-item{background:rgba(33,230,138,.04);border:1px solid var(--gb);color:rgba(234,240,255,.82)}
 .roger-ba-arrow{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--mu2);letter-spacing:2px;text-align:center;padding:8px 0}
 @media(max-width:900px){
-  .roger-ui-panels{grid-template-columns:1fr;min-height:auto}
-  .roger-ui-center{flex-direction:row;justify-content:center;padding:16px;border-right:none;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
-  .roger-ui-panel{border-right:none;border-bottom:1px solid var(--bd)}
   .roger-bottom{grid-template-columns:1fr;gap:32px}
 }
 .eg-statsbar-root{width:100%;background:#070A0F;overflow:hidden}
@@ -1376,110 +1305,16 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
       <p class="section-sub" style="margin:16px auto 0">Roger is Command OS's built-in AI Voice Agent. He answers every call, qualifies every lead, handles objections, and books the job — automatically, while you sleep.</p>
     </div>
 
-    <!-- LIVE DEMO UI — matches Image 2 -->
-    <div class="roger-ui rv">
-      <!-- TOP BAR -->
-      <div class="roger-ui-topbar">
-        <div class="roger-ui-live-pill">
-          <div class="roger-ui-live-dot"></div>
-          AI Voice Bot — Live
-        </div>
-        <div class="roger-ui-version">econ-ai-v1</div>
-      </div>
-
-      <!-- ACTIONS COUNTER -->
-      <div class="roger-ui-counter">
-        <div class="roger-ui-counter-dot"></div>
-        ACTIONS EXECUTED TODAY&nbsp;&nbsp;<span class="roger-ui-counter-num" id="roger-actions">1,924</span>
-      </div>
-
-      <!-- TWO PANELS -->
-      <div class="roger-ui-panels">
-
-        <!-- LEFT: LIVE CALL TRANSCRIPT -->
-        <div class="roger-ui-panel">
-          <div class="roger-call-header">
-            <div class="roger-caller-info">
-              <div class="roger-caller-name" id="roger-caller-name">Marcus Webb</div>
-              <div class="roger-caller-phone">+1 (702) 555-0194</div>
-            </div>
-            <div class="roger-rec-badge">● REC</div>
-          </div>
-          <div class="roger-call-stats">
-            <div class="roger-call-stat"><div class="roger-call-stat-label">DURATION</div><div class="roger-call-stat-val" id="roger-duration">0:42</div></div>
-            <div class="roger-call-stat"><div class="roger-call-stat-label">INTENT</div><div class="roger-call-stat-val" id="roger-intent" style="color:var(--green)">94%</div></div>
-            <div class="roger-call-stat"><div class="roger-call-stat-label">SENTIMENT</div><div class="roger-call-stat-val" id="roger-sentiment" style="color:var(--green)">Positive</div></div>
-          </div>
-          <div class="roger-transcript-scroll" id="roger-transcript">
-            <div class="roger-line roger-line-lead">Alright, I'm open to it.</div>
-            <div class="roger-line roger-line-bot"><span class="roger-bot-label">AI BOT</span>Perfect. Thursday at 2PM work for you?</div>
-            <div class="roger-line roger-line-lead">Yeah, Thursday's good.</div>
-            <div class="roger-line roger-line-bot"><span class="roger-bot-label">AI BOT</span>Locked in. Sending the details to your email right now. We'll see you Thursday, Marcus.</div>
-          </div>
-          <div class="roger-call-footer">
-            <div class="roger-footer-stat"><div class="roger-footer-label">LEAD SCORE</div><div class="roger-footer-val" style="color:var(--green)">87 / 100</div></div>
-            <div class="roger-footer-stat"><div class="roger-footer-label">NEXT ACTION</div><div class="roger-footer-val"><span style="background:rgba(33,230,138,.15);color:var(--green);padding:2px 10px;border-radius:4px;font-size:10px">Booked ✓</span></div></div>
-            <div class="roger-footer-stat"><div class="roger-footer-label">STATUS</div><div class="roger-footer-val" style="color:var(--green)">● Active</div></div>
-          </div>
-        </div>
-
-        <!-- CENTER: WAVEFORM + SPEAKING INDICATOR -->
-        <div class="roger-ui-center">
-          <div class="roger-waveform-wrap">
-            <div class="roger-waveform-ring"></div>
-            <div class="roger-waveform-mic">🎙</div>
-          </div>
-          <div class="roger-speaking-label">● SPEAKING</div>
-        </div>
-
-        <!-- RIGHT: BOT EXECUTING TASKS -->
-        <div class="roger-ui-panel">
-          <div class="roger-tasks-header">
-            <div class="roger-tasks-title">Bot Executing Tasks</div>
-            <div class="roger-tasks-count" id="roger-tasks-count">4 tasks</div>
-          </div>
-          <div class="roger-tasks-list">
-            <div class="roger-task">
-              <div class="roger-task-icon">📅</div>
-              <div class="roger-task-body">
-                <div class="roger-task-title">Demo booked · Thu 2PM</div>
-                <div class="roger-task-sub">Calendar invite sent · Zoom generated · Reminder set</div>
-              </div>
-              <div class="roger-task-time"><div class="roger-task-check">✓ BOOKED</div><div class="roger-task-ms">0.2s</div></div>
-            </div>
-            <div class="roger-task">
-              <div class="roger-task-icon">📄</div>
-              <div class="roger-task-body">
-                <div class="roger-task-title">Proposal queued & sent</div>
-                <div class="roger-task-sub">Growth Plan · $497/mo · PDF attached</div>
-              </div>
-              <div class="roger-task-time"><div class="roger-task-check">✓ SENT</div><div class="roger-task-ms">0.3s</div></div>
-            </div>
-            <div class="roger-task">
-              <div class="roger-task-icon">⚡</div>
-              <div class="roger-task-body">
-                <div class="roger-task-title">Lead scored & sequenced</div>
-                <div class="roger-task-sub">Intent: 94% · High Value · Sequence A4 triggered</div>
-              </div>
-              <div class="roger-task-time"><div class="roger-task-check">✓ SCORED</div><div class="roger-task-ms">0.2s</div></div>
-            </div>
-            <div class="roger-task">
-              <div class="roger-task-icon">👤</div>
-              <div class="roger-task-body">
-                <div class="roger-task-title">Contact record created</div>
-                <div class="roger-task-sub">Marcus Webb · +1 (702) 555-0194 · Added to pipeline</div>
-              </div>
-              <div class="roger-task-time"><div class="roger-task-check">✓ LOGGED</div><div class="roger-task-ms">0.1s</div></div>
-            </div>
-          </div>
-          <div class="roger-tasks-footer">
-            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" id="roger-tasks-today">1,947</div><div class="roger-tasks-kpi-label">TASKS TODAY</div></div>
-            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" style="color:var(--green)">98.2%</div><div class="roger-tasks-kpi-label">SUCCESS RATE</div></div>
-            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" style="color:var(--green)">0.3s</div><div class="roger-tasks-kpi-label">AVG SPEED</div></div>
-          </div>
-        </div>
+    <!-- WATCH ROGER CTA -->
+    <div class="rv" style="text-align:center;margin:48px 0">
+      <div style="background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.15);border-radius:16px;padding:60px 40px;max-width:700px;margin:0 auto">
+        <div style="font-size:48px;margin-bottom:20px">&#x1F920;</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;margin-bottom:12px">WATCH ROGER <span style="color:#21E68A">IN ACTION</span></h3>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(234,240,255,.65);line-height:1.8;margin-bottom:28px">See real calls. Live transcripts. AI brain activity — all in real-time.</p>
+        <a href="meet-roger.html" class="btn-primary">Watch Roger Live &rarr;</a>
       </div>
     </div>
+
 
     <!-- HOW IT WORKS + BEFORE/AFTER -->
     <div class="roger-bottom rv">
@@ -1923,178 +1758,6 @@ document.querySelectorAll('a,button').forEach(el=>{
 /* ═══ NAV SCROLL ═══ */
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40)});
 
-/* ═══ ROGER LIVE TRANSCRIPT ANIMATION ═══ */
-(function(){
-  var conversations = [
-    {
-      caller:'Marcus Webb', phone:'+1 (702) 555-0194', duration:'0:42', intent:'94%', sentiment:'Positive', score:'87 / 100',
-      lines:[
-        {type:'lead', text:"Alright, I'm open to it."},
-        {type:'bot', text:"Perfect. Thursday at 2PM work for you?"},
-        {type:'lead', text:"Yeah, Thursday's good."},
-        {type:'bot', text:"Locked in. Sending the details to your email right now. We'll see you Thursday, Marcus."},
-      ],
-      tasks:[
-        {icon:'📅',title:'Demo booked · Thu 2PM',sub:'Calendar invite sent · Zoom generated · Reminder set',check:'✓ BOOKED',ms:'0.2s'},
-        {icon:'📄',title:'Proposal queued & sent',sub:'Growth Plan · $497/mo · PDF attached',check:'✓ SENT',ms:'0.3s'},
-        {icon:'⚡',title:'Lead scored & sequenced',sub:'Intent: 94% · High Value · Sequence A4 triggered',check:'✓ SCORED',ms:'0.2s'},
-        {icon:'👤',title:'Contact record created',sub:'Marcus Webb · +1 (702) 555-0194 · Added to pipeline',check:'✓ LOGGED',ms:'0.1s'},
-      ]
-    },
-    {
-      caller:'Lisa Rodriguez', phone:'+1 (801) 555-0271', duration:'1:14', intent:'88%', sentiment:'Positive', score:'82 / 100',
-      lines:[
-        {type:'lead', text:"My AC's been making a loud noise and it stopped cooling yesterday."},
-        {type:'bot', text:"Sorry to hear that — let's get someone out to you today. What's the make and model if you know it?"},
-        {type:'lead', text:"It's a Carrier. About 8 years old I think."},
-        {type:'bot', text:"Got it. I've got a tech available this afternoon around 3PM. Does that work for you, Lisa?"},
-        {type:'lead', text:"Yes, perfect."},
-        {type:'bot', text:"Booked. You'll get a confirmation text with your tech's name and a 30-minute heads up before arrival."},
-      ],
-      tasks:[
-        {icon:'🗓',title:'Service call booked · Today 3PM',sub:'Tech: Marcus T. · Equipment: Carrier 8yr · Diagnostic queued',check:'✓ BOOKED',ms:'0.2s'},
-        {icon:'💬',title:'Confirmation SMS sent',sub:'Lisa · Tech info included · ETA notification set',check:'✓ SENT',ms:'0.3s'},
-        {icon:'🔧',title:'Tech briefing generated',sub:'Carrier history pulled · Common issues flagged',check:'✓ BRIEFED',ms:'0.2s'},
-        {icon:'👤',title:'Lead logged to pipeline',sub:'Lisa Rodriguez · Emergency · $2,400 est.',check:'✓ LOGGED',ms:'0.1s'},
-      ]
-    },
-    {
-      caller:'Tom Hargrove', phone:'+1 (615) 555-0388', duration:'0:58', intent:'91%', sentiment:'Positive', score:'79 / 100',
-      lines:[
-        {type:'lead', text:"I've been wanting to get a new system installed. Mine's ancient."},
-        {type:'bot', text:"Great timing — we can walk through your options. What size home and what system do you have now?"},
-        {type:'lead', text:"About 2200 square feet. It's an old Goodman, probably 15 years."},
-        {type:'bot', text:"Understood. I'd recommend a Comfort Advisor visit — they'll assess and give you exact pricing. When are you available this week?"},
-        {type:'lead', text:"Thursday morning works."},
-        {type:'bot', text:"Perfect. Thursday at 10AM — I'll have a Comfort Advisor there. You'll get a full proposal same day."},
-      ],
-      tasks:[
-        {icon:'📋',title:'Advisor visit booked · Thu 10AM',sub:'Tom Hargrove · 2200sqft · Goodman 15yr replacement',check:'✓ BOOKED',ms:'0.2s'},
-        {icon:'📄',title:'Pre-visit brief created',sub:'Home size · System age · Replacement quote ready',check:'✓ READY',ms:'0.3s'},
-        {icon:'⚡',title:'High-value lead flagged',sub:'Intent: 91% · Full replacement · Seq B2 triggered',check:'✓ SCORED',ms:'0.2s'},
-        {icon:'👤',title:'Contact added to pipeline',sub:'Tom Hargrove · $11,400 est. · Advisor assigned',check:'✓ LOGGED',ms:'0.1s'},
-      ]
-    }
-  ];
-
-  var currentConvo = 0;
-  var animating = false;
-  var observer;
-
-  function clearTranscript() {
-    var t = document.getElementById('roger-transcript');
-    if(t) t.innerHTML = '';
-    var tl = document.getElementById('roger-tasks-list');
-    if(tl) {
-      tl.querySelectorAll('.roger-task').forEach(function(el){el.style.opacity='0';el.style.transform='translateX(8px)';});
-    }
-  }
-
-  function runConvo(idx) {
-    if(animating) return;
-    animating = true;
-    var c = conversations[idx % conversations.length];
-    var t = document.getElementById('roger-transcript');
-    var nameEl = document.getElementById('roger-caller-name');
-    var durEl = document.getElementById('roger-duration');
-    var intentEl = document.getElementById('roger-intent');
-    var sentEl = document.getElementById('roger-sentiment');
-    if(!t) return;
-
-    // Update header
-    if(nameEl) nameEl.textContent = c.caller;
-    if(durEl) durEl.textContent = c.duration;
-    if(intentEl) intentEl.textContent = c.intent;
-    if(sentEl) sentEl.textContent = c.sentiment;
-
-    clearTranscript();
-    var delay = 600;
-
-    c.lines.forEach(function(line, i) {
-      setTimeout(function(){
-        var div = document.createElement('div');
-        div.className = 'roger-line roger-line-' + line.type + ' animating';
-        if(line.type === 'bot') {
-          var label = document.createElement('span');
-          label.className = 'roger-bot-label';
-          label.textContent = 'AI BOT';
-          div.appendChild(label);
-          div.appendChild(document.createTextNode(line.text));
-        } else {
-          div.textContent = line.text;
-        }
-        t.appendChild(div);
-        t.scrollTop = t.scrollHeight;
-        setTimeout(function(){ div.classList.remove('animating'); }, 400);
-
-        // After last line, animate tasks
-        if(i === c.lines.length - 1) {
-          setTimeout(function(){
-            animateTasks(c.tasks);
-          }, 800);
-        }
-      }, delay);
-      delay += (line.type === 'bot' ? 1400 : 900);
-    });
-  }
-
-  function animateTasks(tasks) {
-    var tl = document.getElementById('roger-tasks-list');
-    if(!tl) return;
-    tl.innerHTML = '';
-    tasks.forEach(function(task, i){
-      setTimeout(function(){
-        var div = document.createElement('div');
-        div.className = 'roger-task';
-        div.style.opacity = '0';
-        div.style.transform = 'translateX(10px)';
-        div.style.transition = 'opacity .35s ease, transform .35s ease';
-        div.innerHTML = '<div class="roger-task-icon">'+task.icon+'</div><div class="roger-task-body"><div class="roger-task-title">'+task.title+'</div><div class="roger-task-sub">'+task.sub+'</div></div><div class="roger-task-time"><div class="roger-task-check" style="color:var(--green)">'+task.check+'</div><div class="roger-task-ms">'+task.ms+'</div></div>';
-        tl.appendChild(div);
-        requestAnimationFrame(function(){
-          div.style.opacity = '1';
-          div.style.transform = 'translateX(0)';
-        });
-
-        if(i === tasks.length - 1) {
-          // Loop to next conversation
-          setTimeout(function(){
-            currentConvo = (currentConvo + 1) % conversations.length;
-            animating = false;
-            runConvo(currentConvo);
-          }, 5000);
-        }
-      }, i * 400);
-    });
-  }
-
-  // Start immediately when Roger section comes into view
-  var rogerSection = document.getElementById('roger');
-  if(rogerSection) {
-    observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting && !animating) {
-          observer.unobserve(rogerSection);
-          setTimeout(function(){ runConvo(currentConvo); }, 300);
-        }
-      });
-    }, {threshold:0.1, rootMargin:'0px 0px -60px 0px'});
-    observer.observe(rogerSection);
-  }
-})();
-(function(){
-  var actions = 1924, tasks = 1947;
-  function bump() {
-    actions += Math.floor(Math.random()*3+1);
-    tasks += Math.floor(Math.random()*2+1);
-    var a = document.getElementById('roger-actions');
-    var t = document.getElementById('roger-tasks-today');
-    if(a) a.textContent = actions.toLocaleString();
-    if(t) t.textContent = tasks.toLocaleString();
-    setTimeout(bump, Math.random()*4000+2000);
-  }
-  setTimeout(bump, 2500);
-})();
 
 /* ═══ REVEAL ═══ */
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});

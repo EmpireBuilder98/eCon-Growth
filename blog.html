@@ -13,10 +13,11 @@ if (window.location.protocol === 'http:' && !window.location.hostname.includes('
 <title>HVAC Business Growth Blog | eCon Growth — Dispatch, Revenue, AI, Operations</title>
 <meta name="description" content="Real insights for HVAC business owners running 2-15 trucks. Dispatch strategy, revenue recovery, AI in HVAC, tech coaching, exit valuation, and operational systems that actually work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.52);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06)}
+:root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.65);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06)}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;line-height:1.5}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.3;pointer-events:none;z-index:0}
@@ -25,11 +26,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.v{opacity:1;transform:translateY(0)}
 .nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:64px;display:flex;align-items:center;transition:all .4s}
 .nav.scrolled{background:rgba(7,10,15,.95);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(234,240,255,.06)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:4px;text-decoration:none;color:var(--text);white-space:nowrap}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:0;text-decoration:none;color:var(--text);white-space:nowrap}
 .logo-e{color:var(--text)}
 .logo-c{color:var(--green)}
 .logo-rest{color:var(--text)}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0}
+.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0;margin-right:8px}
 
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0 auto}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);padding:6px 12px;border-radius:5px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,background .2s}
@@ -172,6 +173,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="mobile-menu-title">Navigation</div>
   <nav class="mobile-menu-links" id="mobileMenuLinks" aria-label="Mobile navigation"></nav>
 </aside>
+<main>
 
 <div class="blog-hero">
   <div class="blog-badge"><div class="bdot"></div>HVAC Business Growth · No Fluff</div>
@@ -509,6 +511,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
+</main>
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-top">
@@ -618,6 +621,7 @@ function filterCat(cat,btn){
       mobileCta.classList.add('mobile-menu-cta');
       linksTarget.appendChild(mobileCta);
     }
+    linksTarget.querySelectorAll('a,button').forEach(el=>el.setAttribute('tabindex','-1'));
   }
 
   window.toggleMobileMenu=function(force){
@@ -627,7 +631,7 @@ function filterCat(cat,btn){
       toggle.setAttribute('aria-expanded',shouldOpen?'true':'false');
       toggle.setAttribute('aria-label',shouldOpen?'Close navigation menu':'Open navigation menu');
     }
-    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); }
+    if(drawer){ drawer.setAttribute('aria-hidden',shouldOpen?'false':'true'); drawer.querySelectorAll('a,button').forEach(el=>el.setAttribute('tabindex',shouldOpen?'0':'-1')); }
   };
 
   window.closeMobileMenu=function(){ window.toggleMobileMenu(false); };

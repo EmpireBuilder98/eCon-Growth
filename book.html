@@ -13,10 +13,11 @@ if (window.location.protocol === 'http:' && !window.location.hostname.includes('
 <title>Book Your Growth Call | eCon Growth</title>
 <meta name="description" content="30 minutes with our team. No pitch. No pressure. Just a real look at your HVAC operation and what Command OS can do for you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gg:rgba(33,230,138,.25);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.52);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06)}
+:root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gg:rgba(33,230,138,.25);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.65);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06)}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;line-height:1.5;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.3;pointer-events:none;z-index:0}
@@ -28,11 +29,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* ═══ NAV ═══ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:64px;display:flex;align-items:center;transition:background .4s,border-color .4s}
 .nav.scrolled{background:rgba(7,10,15,.96);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(234,240,255,.06)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:4px;text-decoration:none;color:var(--text);white-space:nowrap}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:0;text-decoration:none;color:var(--text);white-space:nowrap}
+.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0;margin-right:8px}
 .logo-e{color:var(--text)}.logo-c{color:var(--green)}.logo-rest{color:var(--text)}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0 auto}
-.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.52);padding:6px 12px;border-radius:5px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.65);padding:6px 12px;border-radius:5px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,background .2s;white-space:nowrap}
 .nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(234,240,255,.08)}
 .nav-cta{background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:9px 20px;border-radius:7px;text-transform:none;letter-spacing:0;transition:all .2s;flex-shrink:0;white-space:nowrap;text-decoration:none;display:inline-block}
 .nav-cta:hover{background:#fff;color:#070A0F}

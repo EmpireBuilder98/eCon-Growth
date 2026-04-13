@@ -8,19 +8,2388 @@ if (window.location.protocol === 'http:' && !window.location.hostname.includes('
 }
 </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCon Growth | The AI Operating System Built Exclusively for HVAC Business Owners</title>
-    <link rel="stylesheet" href="assets/site.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eCon Growth | The AI Operating System Built Exclusively for HVAC Business Owners</title>
+<meta name="description" content="You started this business for freedom. eCon Growth installs the AI Operating System that gives it back. Built exclusively for HVAC business owners with 2–15 trucks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;
+  --green:#21E68A;--gd:rgba(33,230,138,.08);--gg:rgba(33,230,138,.25);--gb:rgba(33,230,138,.15);--gf:rgba(33,230,138,.5);
+  --text:#EAF0FF;--mu:rgba(234,240,255,.52);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);
+  --bd:rgba(234,240,255,.06);--bd2:rgba(234,240,255,.03);
+  --red:#EF4444;--amber:#F59E0B;
+  --r:12px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;line-height:1.5}
+
+/* NOISE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.3;pointer-events:none;z-index:0}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;background:var(--green);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .12s,height .12s}
+#ring{position:fixed;width:26px;height:26px;border:1px solid rgba(33,230,138,.28);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .22s}
+body.hovering #cur{width:18px;height:18px}
+body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
+
+/* ANIMATIONS */
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pd{0%,100%{box-shadow:0 0 6px var(--gg),0 0 0 0 rgba(33,230,138,.35)}50%{box-shadow:0 0 14px var(--gg),0 0 0 6px rgba(33,230,138,0)}}
+@keyframes ob{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,-26px)}}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.v{opacity:1;transform:translateY(0)}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 48px;height:64px;display:flex;align-items:center;transition:background .4s,border-color .4s}
+.nav.scrolled{background:rgba(7,10,15,.96);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid rgba(234,240,255,.06)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);white-space:nowrap;flex-shrink:0}
+.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.5);animation:pd 2.2s infinite;flex-shrink:0}
+.logo-e{color:var(--text)}.logo-c{color:var(--green)}.logo-rest{color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;margin:0 auto;padding:0}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.52);padding:6px 12px;border-radius:5px;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(234,240,255,.08)}
+.nav-cta{background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:9px 20px;border-radius:7px;text-transform:none;letter-spacing:0;transition:all .2s;flex-shrink:0;white-space:nowrap;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#fff;color:#070A0F}
+@media(max-width:900px){.nav{padding:0 24px}.nav-links{display:none}}
+
+/* ═══ BUTTONS ═══ */
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:16px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;box-shadow:0 0 32px rgba(33,230,138,.28);transition:all .25s;letter-spacing:.01em;white-space:nowrap}
+.btn-primary:hover{background:#fff;box-shadow:0 0 56px rgba(33,230,138,.45);transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:15px;padding:16px 28px;border-radius:8px;border:1px solid rgba(234,240,255,.1);cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-ghost:hover{border-color:var(--gb);color:var(--green);background:var(--gd)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,230,138,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.018) 1px,transparent 1px);background-size:56px 56px}
+.orb-1{position:absolute;width:1000px;height:1000px;background:radial-gradient(circle,rgba(33,230,138,.065) 0%,transparent 60%);top:-500px;right:-350px;filter:blur(90px);animation:ob 18s ease-in-out infinite;border-radius:50%}
+.orb-2{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(33,230,138,.035) 0%,transparent 65%);bottom:-200px;left:-250px;filter:blur(80px);animation:ob 22s ease-in-out infinite reverse;border-radius:50%}
+.orb-3{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(33,230,138,.025) 0%,transparent 65%);top:40%;left:30%;filter:blur(60px);animation:ob 14s ease-in-out infinite 6s;border-radius:50%}
+
+/* Scan line */
+.scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(33,230,138,.06),transparent);animation:scanline 8s linear infinite;pointer-events:none}
+
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:110px 52px 80px;width:100%;text-align:center}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:44px;animation:fu .6s .1s both}
+.badge-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite;flex-shrink:0}
+
+/* THE HOOK */
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,9.5vw,122px);letter-spacing:.5px;line-height:.88;margin-bottom:0;animation:fu .7s .2s both}
+.hero-h1 .green{color:var(--green)}
+.hero-h1 .ghost{-webkit-text-stroke:1.5px rgba(234,240,255,.18);color:transparent}
+.hero-h1 .sub-line{font-size:clamp(30px,4.2vw,58px);display:block;letter-spacing:2px;margin-top:12px}
+
+.hero-divider{width:56px;height:2px;background:var(--green);margin:44px auto 0;animation:fu .7s .42s both;box-shadow:0 0 14px var(--gg)}
+
+.hero-body{font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.7vw,17px);font-weight:300;color:var(--mu);line-height:1.9;max-width:620px;margin:36px auto 52px;animation:fu .7s .52s both}
+.hero-body strong{color:var(--text);font-weight:500}
+
+.hero-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;animation:fu .6s .7s both}
+.hero-note{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.06em;animation:fu .6s .85s both}
+
+/* PROOF STRIP */
+.proof-strip{display:flex;align-items:center;justify-content:center;gap:48px;margin-top:64px;padding-top:56px;border-top:1px solid var(--bd);flex-wrap:wrap;animation:fu .6s 1s both}
+.proof-item{text-align:center}
+.proof-number{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:1px;color:var(--green);line-height:1;margin-bottom:5px}
+.proof-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:.09em;text-transform:uppercase}
+.proof-sep{width:1px;height:44px;background:var(--bd)}
+
+/* ═══ TICKER ═══ */
+.ticker{position:relative;z-index:1;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);background:rgba(7,10,15,.85);backdrop-filter:blur(12px);padding:11px 0;overflow:hidden}
+.ticker-track{display:flex;white-space:nowrap;animation:tk 28s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;padding:0 24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);letter-spacing:.07em;text-transform:uppercase}
+.ticker-item::after{content:'●';color:var(--green);opacity:.5;margin-left:18px;font-size:6px}
+
+/* ═══ PAIN SECTION ═══ */
+.section{padding:130px 0}
+.section-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.section-inner.wide{max-width:1200px}
+
+.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.section-label::before,.section-label::after{content:'';flex:1;max-width:36px;height:1px;background:var(--green)}
+.section-label.left::before{display:none}
+.section-label.left::after{display:none}
+
+.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5.5vw,68px);letter-spacing:1.5px;line-height:.9;margin-bottom:20px}
+.section-h2 .green{color:var(--green)}
+.section-h2 .ghost{-webkit-text-stroke:1.5px rgba(234,240,255,.18);color:transparent}
+.section-sub{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.85;max-width:580px;margin:0 auto}
+
+/* Pain */
+.pain-sec{background:var(--bg)}
+.pain-intro{text-align:center;margin-bottom:72px}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--bd);border-radius:14px;overflow:hidden}
+.pain-card{background:var(--bg2);padding:44px 40px;position:relative;overflow:hidden;transition:background .35s}
+.pain-card:hover{background:var(--bg3)}
+.pain-card-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pain-card:hover .pain-card-line{transform:scaleX(1)}
+.pain-number{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em;margin-bottom:18px;opacity:.7}
+.pain-quote{font-family:'Syne',sans-serif;font-size:clamp(17px,1.9vw,21px);font-weight:700;line-height:1.35;margin-bottom:14px}
+.pain-quote .green{color:var(--green)}
+.pain-body{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;color:var(--mu);line-height:1.85}
+.pain-tag{display:inline-block;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:4px 10px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase}
+
+.pain-truth{margin-top:64px;text-align:center;padding:52px 48px;background:linear-gradient(135deg,rgba(33,230,138,.06),rgba(33,230,138,.02));border:1px solid var(--gb);border-radius:14px;position:relative;overflow:hidden}
+.pain-truth::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.pain-truth-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3.2vw,40px);letter-spacing:1.5px;line-height:1.15;position:relative;z-index:1}
+.pain-truth-text .green{color:var(--green)}
+
+/* ═══ STORY / BRIDGE ═══ */
+.bridge-sec{background:var(--bg2);border-top:1px solid var(--bd)}
+.bridge-layout{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center;margin-top:60px}
+
+.bridge-col-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.bridge-col-label.before{color:var(--red)}
+.bridge-col-label.before::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%}
+.bridge-col-label.after{color:var(--green)}
+.bridge-col-label.after::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
+
+.bridge-list{display:flex;flex-direction:column;gap:4px}
+.bridge-row{display:flex;align-items:flex-start;gap:13px;padding:16px 18px;border-radius:8px;background:rgba(7,10,15,.7);border:1px solid var(--bd)}
+.bridge-row.is-after{background:rgba(33,230,138,.05);border-color:var(--gb)}
+.bridge-icon{font-size:13px;flex-shrink:0;margin-top:1px;line-height:1.5}
+.bridge-row.is-before .bridge-icon{color:var(--red)}
+.bridge-row.is-after .bridge-icon{color:var(--green)}
+.bridge-row-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.65}
+.bridge-row.is-after .bridge-row-text{color:rgba(234,240,255,.82)}
+
+.bridge-right-col{display:flex;flex-direction:column;gap:28px}
+.bridge-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,4.2vw,54px);letter-spacing:1.5px;line-height:.92;margin-bottom:10px}
+.bridge-headline .green{color:var(--green)}
+.bridge-body{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.85;margin-bottom:6px}
+
+.callout-box{background:rgba(33,230,138,.07);border:1px solid var(--gb);border-radius:10px;padding:24px 28px}
+.callout-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+.callout-title::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
+.callout-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8}
+
+/* ═══ SCROLL DEMO ═══ */
+.demo-wrap{position:relative}
+.demo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg);border-top:1px solid var(--bd)}
+.demo-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,230,138,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.015) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.demo-inner{position:relative;z-index:2;width:100%;max-width:1180px;padding:0 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+
+.demo-copy-wrap{position:relative;min-height:320px}
+.demo-step{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(16px);transition:opacity .45s,transform .45s;pointer-events:none}
+.demo-step.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.step-num::before{content:'';width:22px;height:1px;background:var(--green)}
+.step-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);letter-spacing:1.5px;line-height:.92;margin-bottom:18px}
+.step-h .green{color:var(--green)}
+.step-p{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;color:var(--mu);line-height:1.9;margin-bottom:24px}
+.step-p strong{color:var(--text);font-weight:500}
+.step-chips{display:flex;flex-wrap:wrap;gap:7px}
+.step-chip{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:4px 10px;border-radius:4px;letter-spacing:.07em;text-transform:uppercase}
+.step-progress{position:absolute;left:0;bottom:-44px;display:flex;gap:7px;align-items:center}
+.step-dot{width:20px;height:3px;border-radius:2px;background:var(--bd);transition:all .4s}
+.step-dot.active{width:32px;background:var(--green);box-shadow:0 0 8px rgba(33,230,138,.5)}
+
+/* OS Window */
+.os-window{background:var(--bg3);border:1px solid var(--gb);border-radius:13px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.03);position:relative}
+.os-titlebar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(4,6,9,.92);border-bottom:1px solid var(--bd)}
+.os-dots{display:flex;gap:5px}
+.os-dots span{width:9px;height:9px;border-radius:50%}
+.os-dots span:nth-child(1){background:#FF5F56}
+.os-dots span:nth-child(2){background:#FFBD2E}
+.os-dots span:nth-child(3){background:var(--green)}
+.os-title-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);letter-spacing:.08em}
+.os-live{display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green)}
+.os-live::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
+.os-body{padding:16px;min-height:380px;position:relative}
+.os-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.os-metric{background:rgba(4,6,9,.8);border:1px solid var(--bd);border-radius:7px;padding:11px;text-align:center;transition:border-color .3s,box-shadow .3s,transform .3s}
+.os-metric.lit{border-color:var(--green);box-shadow:0 0 18px rgba(33,230,138,.12);transform:translateY(-2px)}
+.os-metric-val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--green);line-height:1;margin-bottom:2px}
+.os-metric-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.os-panels{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.os-panel{background:rgba(4,6,9,.7);border:1px solid var(--bd);border-radius:8px;overflow:hidden;transition:border-color .3s}
+.os-panel.lit{border-color:var(--green)}
+.os-panel-head{padding:8px 12px;border-bottom:1px solid var(--bd2);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+.os-panel-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pd 2s infinite}
+.os-lead{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid var(--bd2);transition:background .25s}
+.os-lead:last-child{border-bottom:none}
+.os-lead.selected{background:rgba(33,230,138,.06)}
+.os-avatar{width:24px;height:24px;border-radius:50%;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--green);flex-shrink:0}
+.os-lead-name{font-size:10px;font-weight:600}
+.os-lead-src{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu)}
+.os-lead-val{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);margin-left:auto;flex-shrink:0}
+.os-badge{padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.05em;text-transform:uppercase;margin-left:5px;flex-shrink:0}
+.os-badge.new{background:rgba(33,230,138,.12);color:var(--green);border:1px solid rgba(33,230,138,.2)}
+.os-badge.hot{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+.os-event{padding:8px 11px;border-bottom:1px solid var(--bd2);transition:background .25s}
+.os-event:last-child{border-bottom:none}
+.os-event.lit{background:rgba(33,230,138,.05)}
+.os-event-row{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.os-event-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.os-event-dot.g{background:var(--green)}.os-event-dot.y{background:var(--amber)}.os-event-dot.b{background:#60A5FA}
+.os-event-text{font-size:10px;color:rgba(234,240,255,.82)}
+.os-event-time{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu2);margin-left:auto;flex-shrink:0}
+.os-event-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu);padding-left:12px}
+
+/* AI readout */
+.os-readout{margin-top:10px;background:rgba(33,230,138,.07);border:1px solid var(--gb);border-radius:7px;padding:9px 12px;display:flex;align-items:center;gap:9px;opacity:0;transition:opacity .4s}
+.os-readout.show{opacity:1}
+.os-readout-icon{width:20px;height:20px;background:var(--green);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.os-readout-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);overflow:hidden;white-space:nowrap;flex:1}
+
+/* ghost cursor */
+.ghost-cursor{position:absolute;pointer-events:none;z-index:50;opacity:0;transition:left .55s cubic-bezier(.4,0,.2,1),top .55s cubic-bezier(.4,0,.2,1),opacity .25s}
+.ghost-cursor.show{opacity:1}
+.ghost-cursor svg{width:16px;height:16px;filter:drop-shadow(0 0 5px rgba(33,230,138,.9))}
+.ghost-cursor.click{animation:gclick .2s ease}
+@keyframes gclick{0%{transform:scale(1)}50%{transform:scale(.6)}100%{transform:scale(1)}}
+.click-ripple{position:absolute;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--green);pointer-events:none;z-index:49;opacity:0;transform:translate(-50%,-50%) scale(0)}
+.click-ripple.fire{animation:ripple .5s ease forwards}
+@keyframes ripple{0%{opacity:.7;transform:translate(-50%,-50%) scale(0)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}
+.highlight-box{position:absolute;border:1.5px solid var(--green);border-radius:6px;pointer-events:none;z-index:48;background:rgba(33,230,138,.04);opacity:0;transition:opacity .35s,left .5s,top .5s,width .5s,height .5s;box-shadow:0 0 20px rgba(33,230,138,.1)}
+.highlight-box.show{opacity:1}
+
+/* ═══ OUTCOMES ═══ */
+.outcomes-sec{background:var(--bg2);border-top:1px solid var(--bd)}
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px}
+.outcome-card{background:rgba(7,10,15,.9);border:1px solid var(--bd);border-radius:13px;padding:34px;position:relative;overflow:hidden;transition:all .3s;cursor:default}
+.outcome-card:hover{border-color:var(--gb);transform:translateY(-5px);box-shadow:0 28px 70px rgba(0,0,0,.4),0 0 28px rgba(33,230,138,.04)}
+.outcome-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity .3s}
+.outcome-card:hover::before{opacity:1}
+.outcome-number{font-family:'Bebas Neue',sans-serif;font-size:54px;letter-spacing:1px;color:var(--green);line-height:1;margin-bottom:4px;display:block}
+.outcome-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;margin-bottom:15px;display:block}
+.outcome-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3}
+.outcome-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8}
+
+/* ═══ FOUNDERS REBUILT ═══ */
+.founders-sec{background:var(--bg);border-top:1px solid var(--bd)}
+.founders-origin{margin-bottom:56px}
+.founders-origin-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:1.5px;line-height:.92;margin-bottom:20px}
+.founders-origin-h .green{color:var(--green)}
+.founders-origin-p{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.9;max-width:760px}
+.founders-duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.founder-full{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:40px;display:flex;flex-direction:column;gap:18px;transition:all .3s;position:relative;overflow:hidden}
+.founder-full::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:0;transition:opacity .3s}
+.founder-full:hover{border-color:var(--gb)}
+.founder-full:hover::before{opacity:1}
+.founder-full-top{display:flex;align-items:center;gap:18px}
+.founder-full-avatar{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--gd),rgba(33,230,138,.15));border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--green);letter-spacing:1px;flex-shrink:0}
+.founder-full-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+.founder-full-role{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase}
+.founder-full-divider{width:100%;height:1px;background:var(--bd)}
+.founder-full-bio{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;color:var(--mu);line-height:1.85}
+.founder-full-bio strong{color:var(--text);font-weight:500}
+.founder-full-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px}
+.founder-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);padding:4px 10px;border-radius:4px;letter-spacing:.07em;text-transform:uppercase}
+.founders-cta{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:32px 40px;background:rgba(33,230,138,.06);border:1px solid var(--gb);border-radius:12px;position:relative;overflow:hidden}
+.founders-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.founders-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:1.5px;margin-bottom:6px}
+.founders-cta-sub{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.6}
+@media(max-width:900px){
+  .founders-duo{grid-template-columns:1fr}
+  .founders-cta{flex-direction:column;gap:20px;text-align:center}
+  .founders-cta .btn-primary{width:100%;justify-content:center}
+}
+
+/* ═══ QUALIFY ═══ */
+.qualify-sec{background:var(--bg2);border-top:1px solid var(--bd)}
+.qualify-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;margin-top:60px}
+.qualify-list{display:flex;flex-direction:column;gap:4px}
+.qualify-item{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;background:rgba(7,10,15,.8);border:1px solid var(--bd);border-radius:9px;transition:all .3s}
+.qualify-item:hover{background:rgba(33,230,138,.04);border-color:var(--gb)}
+.qualify-item.no{opacity:.7}
+.qualify-item.no:hover{background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.18)}
+.qualify-check{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:11px;font-weight:700}
+.qualify-check.yes{background:var(--gd);border:1px solid var(--gb);color:var(--green)}
+.qualify-check.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--red)}
+.qualify-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:rgba(234,240,255,.82);line-height:1.65}
+.qualify-text strong{color:var(--text);font-weight:500}
+
+.cta-card{background:rgba(7,10,15,.95);border:1px solid var(--gb);border-radius:14px;padding:44px;position:sticky;top:80px;box-shadow:0 0 80px rgba(33,230,138,.06)}
+.cta-card-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:7px}
+.cta-card-tag::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
+.cta-card-h{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:1.5px;line-height:.95;margin-bottom:16px}
+.cta-card-h .green{color:var(--green)}
+.cta-card-p{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;color:var(--mu);line-height:1.9;margin-bottom:32px}
+.cta-card-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);text-align:center;margin-top:16px;letter-spacing:.04em;line-height:1.6}
+
+/* ═══ INTEL ═══ */
+.intel-sec{background:var(--bg);border-top:1px solid var(--bd)}
+.intel-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:60px}
+.intel-quote-box{background:rgba(7,10,15,.9);border:1px solid var(--gb);border-radius:13px;padding:44px;position:relative;overflow:hidden}
+.intel-quote-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent 50%)}
+.intel-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.intel-eyebrow::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
+.intel-quote-text{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.55;margin-bottom:18px}
+.intel-source{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);line-height:1.6}
+.intel-source strong{color:var(--text)}
+.intel-points{display:flex;flex-direction:column;gap:26px}
+.intel-point{display:flex;gap:16px}
+.intel-point-num{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:1px;color:var(--green);background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:3px 8px;flex-shrink:0;height:fit-content;margin-top:3px}
+.intel-point-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:7px}
+.intel-point-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.75}
+
+/* ═══ FINAL CTA ═══ */
+.final-cta{padding:160px 0;background:var(--bg2);border-top:1px solid var(--bd);position:relative;overflow:hidden;text-align:center}
+.final-cta::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(33,230,138,.07) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(80px);pointer-events:none}
+.final-cta-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 52px}
+.final-cta-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,88px);letter-spacing:1px;line-height:.88;margin-bottom:32px}
+.final-cta-h .green{color:var(--green)}
+.final-cta-h .ghost{-webkit-text-stroke:1.5px rgba(234,240,255,.18);color:transparent}
+.final-cta-p{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:300;color:var(--mu);line-height:1.85;margin-bottom:48px}
+.final-cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.final-cta-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);margin-top:20px;letter-spacing:.06em;line-height:1.7}
+
+/* ═══ FOOTER ═══ */
+.footer{padding:72px 0 40px;background:var(--bg4);border-top:1px solid var(--bd)}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.footer-brand p{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8;margin-top:16px;max-width:280px}
+.footer-phone{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-top:14px;letter-spacing:.04em}
+.footer-col-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+.footer-social-row{padding-top:28px;margin-top:0;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-social-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
+.footer-social-icons{display:flex;align-items:center;gap:10px}
+.footer-si{width:42px;height:42px;border-radius:10px;background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(234,240,255,.4);transition:all .25s}
+.footer-si:hover{color:#21E68A;border-color:rgba(33,230,138,.4);background:rgba(33,230,138,.06);transform:translateY(-2px)}
+.footer-si svg{width:18px;height:18px}
+.footer-legal-row{display:flex;justify-content:center;gap:32px;padding:20px 0 0;flex-wrap:wrap}
+.footer-legal-row a{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.38);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.footer-legal-row a:hover{color:var(--green)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--bd);flex-wrap:wrap;gap:12px;margin-top:20px}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.06em}
+.footer-tagline{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.06em}
+.footer-tagline span{color:var(--green)}
+@media(max-width:900px){.footer-inner{padding:0 24px}.footer-top{grid-template-columns:1fr 1fr;gap:40px}}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links{display:none}
+  .hero-inner{padding:90px 24px 60px}
+  .section-inner{padding:0 24px}
+  .proof-strip{gap:24px}
+  .proof-sep{display:none}
+  .pain-grid{grid-template-columns:1fr}
+  .bridge-layout,.founders-layout,.qualify-layout,.intel-layout{grid-template-columns:1fr;gap:48px}
+  .demo-inner{grid-template-columns:1fr;gap:32px;padding:0 24px}
+  .demo-copy-wrap{min-height:auto}
+  .demo-step.active{position:relative}
+  .outcomes-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .final-cta-inner{padding:0 24px}
+  .cta-card{position:relative;top:auto}
+}
+/* ═══ SOCIAL FOOTER ═══ */
+.footer-social{padding-top:28px;margin-top:8px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-social-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
+.footer-social-icons{display:flex;align-items:center;gap:10px}
+.social-icon{width:42px;height:42px;border-radius:10px;background:rgba(33,230,138,.04);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(234,240,255,.4);transition:all .25s;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+.social-icon::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(33,230,138,.15),transparent 70%);opacity:0;transition:opacity .25s}
+.social-icon:hover{border-color:rgba(33,230,138,.4);color:var(--green);background:rgba(33,230,138,.08);box-shadow:0 0 20px rgba(33,230,138,.12),inset 0 1px 0 rgba(33,230,138,.15);transform:translateY(-2px)}
+.social-icon:hover::before{opacity:1}
+.social-icon svg{width:18px;height:18px;position:relative;z-index:1}
+
+/* ═══ OUTCOME CARD FEATURED ═══ */
+.outcome-card-featured{grid-column:1/-1;background:linear-gradient(135deg,rgba(33,230,138,.07),rgba(33,230,138,.03));border-color:var(--gb);position:relative}
+.outcome-card-featured:hover{border-color:var(--green)}
+.outcome-card-featured::before{opacity:1!important}
+.outcome-featured-badge{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:rgba(33,230,138,.1);border:1px solid var(--gb);border-radius:4px;padding:4px 12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+
+/* ═══ ROGER LIVE TRANSCRIPT ANIMATION ═══ */
+@keyframes roger-line-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.roger-line{animation:none}
+.roger-line.animating{animation:roger-line-in .4s ease forwards}
+.ba-table{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);margin-bottom:28px}
+.ba-col-header{padding:18px 28px;display:flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.ba-header-before{background:rgba(239,68,68,.06);border-bottom:1px solid rgba(239,68,68,.15);border-right:1px solid var(--bd)}
+.ba-header-after{background:rgba(33,230,138,.06);border-bottom:1px solid var(--gb)}
+.ba-header-before .ba-header-label{color:var(--red)}
+.ba-header-after .ba-header-label{color:var(--green)}
+.ba-header-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ba-dot-red{background:var(--red)}
+.ba-dot-green{background:var(--green);animation:pd 2s infinite}
+.ba-row{display:contents}
+.ba-cell{padding:18px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;line-height:1.65;display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid var(--bd)}
+.ba-row:last-of-type .ba-cell{border-bottom:none}
+.ba-cell-before{background:rgba(7,10,15,.8);border-right:1px solid var(--bd);color:var(--mu)}
+.ba-cell-after{background:rgba(33,230,138,.03);color:rgba(234,240,255,.85)}
+.ba-row:hover .ba-cell-before{background:rgba(239,68,68,.04)}
+.ba-row:hover .ba-cell-after{background:rgba(33,230,138,.06)}
+.ba-x{color:var(--red);flex-shrink:0;font-size:14px;margin-top:1px}
+.ba-check{color:var(--green);flex-shrink:0;font-size:14px;margin-top:1px}
+.ba-callout{display:flex;align-items:center;gap:28px;padding:32px 36px;background:rgba(33,230,138,.06);border:1px solid var(--gb);border-radius:12px;position:relative;overflow:hidden}
+.ba-callout::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.ba-callout-icon{font-size:28px;flex-shrink:0}
+.ba-callout-text{flex:1}
+.ba-callout-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.ba-callout-body{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.8}
+@media(max-width:900px){
+  .ba-table{grid-template-columns:1fr}
+  .ba-col-header{border-right:none!important}
+  .ba-cell-before{border-right:none}
+  .ba-callout{flex-direction:column;gap:20px}
+  .ba-callout .btn-primary{width:100%;justify-content:center}
+}
+
+/* Exit card variant */
+.outcome-card-exit{background:linear-gradient(135deg,rgba(33,230,138,.06),rgba(33,230,138,.02))!important}
+.outcome-card-exit .outcome-featured-badge{background:rgba(33,230,138,.12);border-color:rgba(33,230,138,.3)}
+
+.founders-cta{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:36px 44px;background:rgba(33,230,138,.06);border:1px solid var(--gb);border-radius:12px;flex-wrap:wrap}
+.founders-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.5vw,30px);letter-spacing:1.5px;margin-bottom:6px}
+.founders-cta-sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.7}
+@media(max-width:900px){.founders-cta{flex-direction:column;text-align:center}.founders-cta .btn-primary{width:100%;justify-content:center}}
+
+/* ═══ SOCIAL FOOTER ═══ */
+.social-footer{background:var(--bg4);border-top:1px solid var(--bd);padding:40px 0}
+.social-footer-inner{max-width:1100px;margin:0 auto;padding:0 52px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.social-footer-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.14em;text-transform:uppercase}
+.social-icons{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.social-icon{width:48px;height:48px;border-radius:12px;background:rgba(7,10,15,.9);border:1px solid rgba(33,230,138,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.social-icon::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(33,230,138,.12),transparent 70%);opacity:0;transition:opacity .3s}
+.social-icon:hover{border-color:var(--green);box-shadow:0 0 20px rgba(33,230,138,.2),0 0 40px rgba(33,230,138,.08);transform:translateY(-3px)}
+.social-icon:hover::before{opacity:1}
+.social-icon svg{width:20px;height:20px;fill:rgba(234,240,255,.5);transition:fill .3s;position:relative;z-index:1}
+.social-icon:hover svg{fill:var(--green)}
+@media(max-width:900px){.social-footer-inner{padding:0 24px}}
+.roger-sec{background:var(--bg);border-top:1px solid var(--bd)}
+/* Top-level UI container */
+.roger-ui{background:var(--bg3);border:1px solid var(--gb);border-radius:14px;overflow:hidden;margin-bottom:56px;box-shadow:0 0 80px rgba(33,230,138,.06)}
+.roger-ui-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(4,6,9,.92);border-bottom:1px solid var(--bd)}
+.roger-ui-live-pill{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text);letter-spacing:.06em}
+.roger-ui-live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--gg);animation:pd 2s infinite;flex-shrink:0}
+.roger-ui-version{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);letter-spacing:.1em}
+.roger-ui-counter{display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase}
+.roger-ui-counter-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pd 1.5s infinite;flex-shrink:0}
+.roger-ui-counter-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);letter-spacing:2px;line-height:1}
+.roger-ui-panels{display:grid;grid-template-columns:1fr 120px 1fr;min-height:360px}
+/* LEFT PANEL */
+.roger-ui-panel{border-right:1px solid var(--bd);display:flex;flex-direction:column}
+.roger-ui-panel:last-child{border-right:none}
+.roger-call-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3)}
+.roger-caller-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px}
+.roger-caller-phone{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu)}
+.roger-rec-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--red);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:4px;padding:3px 9px;letter-spacing:.08em;animation:blink 1.4s infinite}
+.roger-call-stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd)}
+.roger-call-stat{padding:10px 14px;border-right:1px solid var(--bd)}
+.roger-call-stat:last-child{border-right:none}
+.roger-call-stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.roger-call-stat-val{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);font-weight:500}
+.roger-transcript-scroll{flex:1;padding:14px 16px;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;scrollbar-width:none}
+.roger-line{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;padding:8px 12px;border-radius:6px}
+.roger-line-lead{background:rgba(234,240,255,.04);border:1px solid var(--bd);color:rgba(234,240,255,.8)}
+.roger-line-bot{background:rgba(33,230,138,.06);border:1px solid var(--gb);color:rgba(234,240,255,.9)}
+.roger-bot-label{display:block;font-size:8px;color:var(--green);letter-spacing:.1em;margin-bottom:4px}
+.roger-call-footer{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bd);padding:10px 0}
+.roger-footer-stat{padding:8px 14px;border-right:1px solid var(--bd);text-align:center}
+.roger-footer-stat:last-child{border-right:none}
+.roger-footer-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--mu2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.roger-footer-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text)}
+/* CENTER WAVEFORM */
+.roger-ui-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px 0;border-right:1px solid var(--bd)}
+.roger-waveform-wrap{position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center}
+.roger-waveform-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(33,230,138,.35);animation:pulse-ring 1.8s ease-out infinite}
+.roger-waveform-mic{font-size:24px;position:relative;z-index:1}
+.roger-speaking-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.1em;animation:blink 1.4s infinite}
+/* RIGHT PANEL - TASKS */
+.roger-tasks-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--bd);background:rgba(0,0,0,.3)}
+.roger-tasks-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700}
+.roger-tasks-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:3px 9px;letter-spacing:.06em}
+.roger-tasks-list{flex:1;padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.roger-task{display:flex;align-items:flex-start;padding:10px 12px;background:rgba(0,0,0,.25);border:1px solid var(--bd);border-radius:7px}
+.roger-task-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.roger-task-body{flex:1;min-width:0}
+.roger-task-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);font-weight:500;margin-bottom:3px}
+.roger-task-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);line-height:1.4}
+.roger-task-time{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0}
+.roger-task-check{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--green);letter-spacing:.06em;white-space:nowrap}
+.roger-task-ms{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2)}
+.roger-tasks-footer{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--bd);padding:10px 0}
+.roger-tasks-kpi{padding:8px 12px;border-right:1px solid var(--bd);text-align:center}
+.roger-tasks-kpi:last-child{border-right:none}
+.roger-tasks-kpi-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:rgba(234,240,255,.9);line-height:1;margin-bottom:3px}
+.roger-tasks-kpi-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--mu2);letter-spacing:.08em;text-transform:uppercase}
+/* BOTTOM: FLOW + BEFORE/AFTER */
+.roger-bottom{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.roger-flow{display:flex;flex-direction:column;gap:0}
+.roger-flow-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:8px}
+.roger-flow-label::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
+.roger-steps{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--bd);padding-left:28px;margin-left:12px}
+.roger-step{display:flex;gap:18px;padding-bottom:28px;position:relative}
+.roger-step::before{content:'';position:absolute;left:-35px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:1px solid var(--gb)}
+.roger-step-num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.1em;flex-shrink:0;margin-top:3px;min-width:20px}
+.roger-step-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:7px}
+.roger-step-text{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.75}
+.roger-ba{display:flex;flex-direction:column;gap:16px;padding:36px;background:rgba(7,10,15,.9);border:1px solid var(--bd);border-radius:14px;position:relative;overflow:hidden}
+.roger-ba::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+.roger-ba-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;font-weight:700}
+.roger-ba-col.before .roger-ba-label{color:var(--red)}
+.roger-ba-col.after .roger-ba-label{color:var(--green)}
+.roger-ba-items{display:flex;flex-direction:column;gap:8px}
+.roger-ba-item{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:300;color:var(--mu);line-height:1.6;padding:9px 12px;border-radius:6px}
+.roger-ba-col.before .roger-ba-item{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)}
+.roger-ba-col.after .roger-ba-item{background:rgba(33,230,138,.04);border:1px solid var(--gb);color:rgba(234,240,255,.82)}
+.roger-ba-arrow{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--mu2);letter-spacing:2px;text-align:center;padding:8px 0}
+@media(max-width:900px){
+  .roger-ui-panels{grid-template-columns:1fr;min-height:auto}
+  .roger-ui-center{flex-direction:row;justify-content:center;padding:16px;border-right:none;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+  .roger-ui-panel{border-right:none;border-bottom:1px solid var(--bd)}
+  .roger-bottom{grid-template-columns:1fr;gap:32px}
+}
+.eg-statsbar-root{width:100%;background:#070A0F;overflow:hidden}
+.eg-stats-strip{background:rgba(7,10,15,.96);border-top:1px solid rgba(234,240,255,.10);border-bottom:1px solid rgba(234,240,255,.10);width:100%;backdrop-filter:blur(12px)}
+.eg-stats-strip__inner{display:grid;grid-template-columns:repeat(3,1fr);max-width:1200px;margin:0 auto}
+.eg-stats-strip__cell{padding:20px 24px;border-right:1px solid rgba(234,240,255,.10);text-align:center}
+.eg-stats-strip__cell:last-child{border-right:none}
+.eg-stats-strip__num{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:#21E68A;display:block}
+.eg-stats-strip__label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#EAF0FF;margin-top:6px;display:block;font-weight:700}
+.eg-stats-strip__sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.45);margin-top:3px;display:block}
+.eg-ticker-wrap{border-top:1px solid rgba(234,240,255,.08);background:rgba(10,14,22,.90);backdrop-filter:blur(10px);overflow:hidden;padding:14px 0;width:100%}
+.eg-ticker{display:flex;animation:egTickerScroll 28s linear infinite;white-space:nowrap;width:max-content}
+.eg-ticker__item{display:inline-flex;align-items:center;gap:14px;padding:0 40px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2.5px;color:rgba(234,240,255,.4)}
+.eg-ticker__dot{width:5px;height:5px;border-radius:50%;background:#21E68A;flex-shrink:0}
+@keyframes egTickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(max-width:767px){
+  .eg-stats-strip__inner{grid-template-columns:1fr}
+  .eg-stats-strip__cell{border-right:none;border-bottom:1px solid rgba(234,240,255,.10);padding:14px 16px;text-align:left;display:flex;align-items:center;gap:16px}
+  .eg-stats-strip__cell:last-child{border-bottom:none}
+  .eg-stats-strip__num{font-size:28px;flex-shrink:0;width:52px;text-align:center}
+  .eg-stats-strip__label{font-size:11px;margin-top:0;letter-spacing:1px}
+  .eg-ticker__item{font-size:13px;padding:0 20px}
+}
+
+/* ═══ S2 SECTION ═══ */
+.s2-section{background:#070A0F;width:100%;position:relative;box-sizing:border-box;overflow:hidden;padding:48px 0 56px;color:#EAF0FF;border-bottom:1px solid rgba(234,240,255,.06)}
+.s2-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(33,230,138,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.018) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.s2-section *{box-sizing:border-box}
+.s2-inner{max-width:100%;margin:0;padding:0 48px;width:100%;position:relative;z-index:1;display:flex;flex-direction:column;gap:14px}
+.s2-desktop{display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start}
+.s2-left-col{display:flex;flex-direction:column;gap:18px;position:sticky;top:48px;padding-top:12px}
+.s2-left-top{display:flex;flex-direction:column;gap:16px}
+.s2-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2.5px;color:#21E68A;text-transform:uppercase}
+.s2-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,3.8vw,58px);line-height:.95;letter-spacing:1px;color:#EAF0FF;margin:0;max-width:700px}
+.s2-green-text{color:#21E68A!important}
+.s2-body-copy{font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.65;color:rgba(234,240,255,.6);margin:0;max-width:520px}
+.s2-body-copy strong{color:rgba(234,240,255,.9);font-weight:700}
+.s2-proof-lines{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.s2-proof-line{display:flex;align-items:flex-start;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.5);line-height:1.5}
+.s2-proof-dot{width:5px;height:5px;border-radius:50%;background:#21E68A;flex-shrink:0;margin-top:5px}
+.s2-left-cta{display:flex;flex-direction:column;gap:10px}
+.s2-cta-btns{display:flex;flex-direction:column;gap:10px}
+.s2-section .btn-green{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:15px 24px!important;border-radius:8px!important;background:#21E68A!important;color:#000!important;font-family:'Syne',sans-serif!important;font-weight:800!important;font-size:14px!important;line-height:1!important;white-space:nowrap!important;text-decoration:none!important;border:none!important;width:100%!important;transition:box-shadow .25s,transform .2s!important}
+.s2-section .btn-green:hover{box-shadow:0 0 40px rgba(33,230,138,.45)!important;transform:translateY(-2px)!important}
+.s2-section .btn-ghost{display:flex!important;align-items:center!important;justify-content:center!important;padding:14px 24px!important;border-radius:8px!important;border:1px solid rgba(234,240,255,.14)!important;background:rgba(255,255,255,.03)!important;color:#EAF0FF!important;font-family:'Syne',sans-serif!important;font-weight:700!important;font-size:13px!important;text-decoration:none!important;width:100%!important;transition:border-color .2s,background .2s!important}
+.s2-section .btn-ghost:hover{border-color:rgba(33,230,138,.4)!important;background:rgba(33,230,138,.06)!important}
+.s2-right-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.s2-live-badge-row{display:flex;justify-content:flex-end;margin-bottom:4px}
+.s2-record-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(9,13,20,.95);border:1px solid rgba(33,230,138,.2);border-radius:20px;padding:6px 14px 6px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(234,240,255,.7);text-transform:uppercase}
+.s2-record-dot{width:10px;height:10px;border-radius:50%;background:#21E68A;box-shadow:0 0 8px rgba(33,230,138,.8);animation:s2rec 1.2s ease-in-out infinite;flex-shrink:0}
+@keyframes s2rec{0%,100%{opacity:1;box-shadow:0 0 8px rgba(33,230,138,.8)}50%{opacity:.35;box-shadow:0 0 3px rgba(33,230,138,.3)}}
+.s2-panel{background:rgba(9,13,20,.9);border:1px solid rgba(234,240,255,.07);border-radius:8px;overflow:hidden;position:relative}
+.s2-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(33,230,138,.4),transparent)}
+.s2-panel-header{padding:10px 14px;border-bottom:1px solid rgba(234,240,255,.05);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3)}
+.s2-panel-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#21E68A;text-transform:uppercase}
+.s2-panel-dot{width:6px;height:6px;border-radius:50%;background:#21E68A;box-shadow:0 0 6px #21E68A;animation:s2blink 2s infinite}
+@keyframes s2blink{0%,100%{opacity:1}50%{opacity:.25}}
+.s2-crm-meta{display:flex;align-items:center;gap:12px}
+.s2-dp-src-pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.s2-dp-src-pill{font-family:'JetBrains Mono',monospace;font-size:8px;padding:3px 8px;border-radius:20px;border:1px solid rgba(234,240,255,.08);color:rgba(234,240,255,.25);background:transparent;letter-spacing:.5px;transition:all .3s ease;white-space:nowrap}
+.s2-dp-src-pill.dp-src-active{border-color:rgba(33,230,138,.5);color:#21E68A;background:rgba(33,230,138,.08);box-shadow:0 0 8px rgba(33,230,138,.15)}
+.s2-lead-viewport{padding:10px;overflow:hidden;height:calc(2*64px + 1*8px + 20px);position:relative}
+#lead-track{display:flex;flex-direction:column;gap:8px}
+.s2-lead-row{display:flex;align-items:center;gap:14px;padding:0 16px;border:1px solid rgba(234,240,255,.07);border-radius:8px;background:rgba(0,0,0,.2);height:64px;min-height:64px;max-height:64px;flex-shrink:0;overflow:hidden}
+@keyframes s2-lead-flash{0%{border-color:rgba(33,230,138,.8);background:rgba(33,230,138,.08)}100%{border-color:rgba(234,240,255,.07);background:rgba(0,0,0,.2)}}
+.s2-lead-row.fresh{animation:s2-lead-flash 1.8s ease-out forwards}
+.s2-lead-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1a9e6a,#21E68A);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#000;font-weight:700;flex-shrink:0}
+.s2-lead-info{min-width:0;flex:1}
+.s2-lead-name{font-size:13px;color:rgba(234,240,255,.95);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.s2-lead-source{font-size:11px;color:rgba(234,240,255,.4);font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s2-lead-badge{font-size:10px;font-family:'JetBrains Mono',monospace;padding:4px 10px;border-radius:20px;white-space:nowrap;letter-spacing:.5px;flex-shrink:0}
+.s2-badge-new{background:rgba(33,230,138,.12);color:#21E68A;border:1px solid rgba(33,230,138,.25)}
+.s2-badge-qual{background:rgba(33,230,138,.08);color:#1a9e6a;border:1px solid rgba(33,230,138,.18)}
+.s2-badge-pres{background:rgba(245,166,35,.12);color:#f5a623;border:1px solid rgba(245,166,35,.25)}
+.s2-badge-close{background:rgba(33,230,138,.18);color:#21E68A;border:1px solid rgba(33,230,138,.35)}
+.s2-lead-value{font-family:'JetBrains Mono',monospace;font-size:13px;color:#21E68A;white-space:nowrap;font-weight:700;flex-shrink:0;margin-left:auto}
+.s2-auto-panel{}
+.s2-auto-row{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.s2-auto-viewport{padding:10px;overflow:hidden;height:168px;position:relative;border-right:1px solid rgba(234,240,255,.05)}
+#auto-track{display:flex;flex-direction:column;gap:0}
+.s2-auto-item{display:flex;align-items:center;padding:0 10px;border-radius:5px;background:rgba(0,0,0,.3);border-left:2px solid transparent;font-size:11px;overflow:hidden;flex-shrink:0;height:46px;margin-bottom:5px;opacity:1;transition:height .45s cubic-bezier(.4,0,.2,1),margin-bottom .45s,opacity .35s ease}
+.s2-auto-item.entering{height:0;margin-bottom:0;padding-top:0;padding-bottom:0;opacity:0}
+.s2-auto-item.exiting{height:0!important;margin-bottom:0!important;opacity:0}
+.s2-auto-sms{border-left-color:#21E68A}
+.s2-auto-email{border-left-color:#1a9e6a}
+.s2-auto-deal{border-left-color:rgba(245,166,35,.6)}
+.s2-auto-task{border-left-color:rgba(234,240,255,.2)}
+.s2-auto-icon{font-size:14px;flex-shrink:0}
+.s2-auto-text{flex:1;font-size:11px;color:rgba(234,240,255,.7);font-family:'JetBrains Mono',monospace;line-height:1.4;min-width:0}
+.s2-auto-text strong{color:rgba(234,240,255,.95)}
+.s2-auto-time{font-size:9px;color:rgba(234,240,255,.25);font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.s2-sms-block{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.s2-sms-header{display:flex;align-items:center;justify-content:space-between}
+.s2-msg-from{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:rgba(234,240,255,.3)}
+.s2-msg-preview{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.65);line-height:1.55;min-height:90px}
+.s2-ticker{padding:8px 14px;border-top:1px solid rgba(234,240,255,.05);display:flex;align-items:center;overflow:hidden}
+.s2-ticker-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:#21E68A;letter-spacing:2px;flex-shrink:0}
+.s2-ticker-track{overflow:hidden;flex:1}
+.s2-ticker-content{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(234,240,255,.3);letter-spacing:1px;white-space:nowrap;display:inline-block;animation:s2tick 28s linear infinite}
+@keyframes s2tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.s2-pipeline-row{border:1px solid rgba(234,240,255,.07);border-radius:8px;overflow:hidden;background:rgba(9,13,20,.9);position:relative}
+.s2-pipeline-row::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(33,230,138,.4),transparent)}
+.s2-pipeline-row-header{padding:10px 16px;border-bottom:1px solid rgba(234,240,255,.05);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3)}
+.s2-pipeline-kpis{display:flex;align-items:center;gap:16px}
+.s2-pipe-kpi{display:flex;align-items:baseline;gap:8px}
+.s2-pipe-kpi-val{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:rgba(234,240,255,.9)}
+.s2-pipe-kpi-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:rgba(234,240,255,.3);text-transform:uppercase}
+.s2-pipe-kpi-divider{width:1px;height:20px;background:rgba(234,240,255,.1)}
+.s2-pipeline-stages-h{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr;align-items:stretch}
+.s2-stage-h{padding:12px 12px 10px;position:relative;transition:background .3s}
+.s2-stage-h.active{background:rgba(33,230,138,.06)}
+.s2-stage-h.active::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#21E68A;box-shadow:0 0 8px rgba(33,230,138,.6);animation:s2blink 2s infinite}
+.s2-stage-h-bar{height:2px;background:rgba(234,240,255,.07);border-radius:1px;margin-bottom:10px;overflow:hidden}
+.s2-stage-h-fill{height:100%;background:#21E68A;border-radius:1px;transition:width 1s ease}
+.s2-stage-h-name{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(234,240,255,.35);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.s2-stage-h-count{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:rgba(234,240,255,.9);margin-bottom:2px;transition:color .3s}
+.s2-stage-h-count.bump{color:#21E68A}
+.s2-stage-h-val{font-family:'JetBrains Mono',monospace;font-size:9px;color:#21E68A}
+.s2-stage-arrow{display:flex;align-items:center;justify-content:center;color:rgba(234,240,255,.15);font-size:14px;padding:0 2px;margin-top:24px}
+.s2-mobile-header{display:none}
+.s2-intercept{display:none}
+@media(max-width:1100px){
+  .s2-desktop{grid-template-columns:1fr}
+  .s2-left-col{position:static}
+  .s2-cta-btns{flex-direction:row}
+  .s2-pipeline-stages-h{grid-template-columns:1fr 1fr 1fr}
+  .s2-stage-arrow{display:none}
+}
+@media(max-width:900px){
+  .s2-section .s2-desktop,.s2-section .s2-pipeline-row{display:none!important}
+  .s2-mobile-header{display:flex!important;flex-direction:column;gap:16px}
+  .s2-intercept{display:flex!important;flex-direction:column;gap:20px;margin-top:4px}
+  .s2-src-row{display:flex;flex-direction:column;gap:10px}
+  .s2-src-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(234,240,255,.3);text-transform:uppercase}
+  .s2-src-logos{display:flex;gap:8px;flex-wrap:wrap}
+  .s2-src-pill{font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 12px;border-radius:20px;border:1px solid rgba(234,240,255,.1);color:rgba(234,240,255,.35);background:rgba(234,240,255,.03);transition:all .4s ease;white-space:nowrap}
+  .s2-src-pill.active{border-color:rgba(33,230,138,.5);color:#21E68A;background:rgba(33,230,138,.08);box-shadow:0 0 12px rgba(33,230,138,.15)}
+  .s2-phone-wrap{display:flex;justify-content:center}
+  .s2-phone{width:100%;max-width:380px;height:460px;display:flex;flex-direction:column;background:rgba(9,13,20,.97);border:1px solid rgba(234,240,255,.1);border-radius:20px;overflow:hidden;box-shadow:0 0 40px rgba(33,230,138,.08),0 20px 60px rgba(0,0,0,.5);position:relative}
+  .s2-phone::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(33,230,138,.5),transparent)}
+  .s2-phone-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px 6px;border-bottom:1px solid rgba(234,240,255,.04);flex-shrink:0}
+  .s2-phone-clock{display:flex;flex-direction:column;gap:1px}
+  .s2-phone-time{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(234,240,255,.75);font-weight:600;line-height:1}
+  .s2-phone-date{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(234,240,255,.3);line-height:1}
+  .s2-phone-sig{font-size:8px;color:rgba(234,240,255,.3);letter-spacing:1px}
+  .s2-notif{margin:8px 10px;padding:10px 12px;background:rgba(33,230,138,.06);border:1px solid rgba(33,230,138,.2);border-radius:12px;display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(-12px)}
+  .s2-notif-icon{font-size:20px;flex-shrink:0}
+  .s2-notif-body{flex:1;min-width:0}
+  .s2-notif-app{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:#21E68A;text-transform:uppercase;margin-bottom:3px}
+  .s2-notif-text{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .s2-notif-badge{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(234,240,255,.3);flex-shrink:0}
+  .s2-steps{padding:2px 10px 2px;display:flex;flex-direction:column;gap:5px;flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+  .s2-step{display:none;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:8px;border-left:2px solid rgba(234,240,255,.1);background:rgba(0,0,0,.25);opacity:0}
+  .s2-step-system{border-left-color:#21E68A!important}
+  .s2-step-sms{border-left-color:#21E68A}
+  .s2-step-reply{border-left-color:rgba(234,240,255,.2)}
+  .s2-step-booked{border-left-color:#21E68A;background:rgba(33,230,138,.05)!important}
+  .s2-step-pipeline{border-left-color:#21E68A}
+  .s2-step-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .s2-step-body{flex:1;min-width:0}
+  .s2-step-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:rgba(234,240,255,.35);text-transform:uppercase;margin-bottom:4px}
+  .s2-step-text{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(234,240,255,.85);line-height:1.45}
+  .s2-step-timer{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#21E68A;flex-shrink:0;line-height:1}
+  .s2-replay{display:flex;justify-content:center;padding:6px 12px 12px;visibility:hidden;opacity:0;transition:opacity .4s ease;flex-shrink:0}
+  .s2-replay.visible{visibility:visible;opacity:1}
+  .s2-replay-btn{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(234,240,255,.4);background:transparent;border:1px solid rgba(234,240,255,.1);border-radius:20px;padding:8px 20px;cursor:pointer;transition:all .3s ease}
+  .s2-replay-btn:hover{color:#21E68A;border-color:rgba(33,230,138,.3)}
+  .s2-ic-stats{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;background:rgba(9,13,20,.9);border:1px solid rgba(234,240,255,.07);border-radius:12px;overflow:hidden}
+  .s2-ic-stat{padding:16px 12px;display:flex;flex-direction:column;gap:3px;text-align:center}
+  .s2-ic-divider{width:1px;background:rgba(234,240,255,.07);margin:12px 0}
+  .s2-ic-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:rgba(234,240,255,.9)}
+  .s2-ic-val.s2-green{color:#21E68A}
+  .s2-ic-label{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:1px;color:rgba(234,240,255,.3);text-transform:uppercase;line-height:1.3}
+  .s2-ic-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(234,240,255,.25);line-height:1.3}
+  .s2-ic-cta{display:flex;flex-direction:column;align-items:center;padding-bottom:8px;text-align:center}
+  .s2-ic-cta-btn{width:100%!important;padding:16px 24px!important;font-size:14px!important;border-radius:8px!important;justify-content:center!important}
+  .s2-ic-cta-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.3);margin:0;line-height:1.5;letter-spacing:.5px}
+  .s2-inner{padding:0 24px!important}
+  .s2-title{font-size:clamp(34px,10vw,52px)!important}
+}
+
+/* ═══ FAQ ═══ */
+.faq-sec{padding:120px 0;background:var(--bg2);border-top:1px solid var(--bd)}
+.faq-inner{max-width:860px;margin:0 auto;padding:0 52px}
+.faq-list{display:flex;flex-direction:column;gap:3px;margin-top:60px}
+.faq-item{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:var(--gb)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;cursor:pointer;gap:20px;-webkit-tap-highlight-color:transparent}
+.faq-q:hover{background:rgba(33,230,138,.02)}
+.faq-q-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);line-height:1.4}
+.faq-icon{width:28px;height:28px;border-radius:6px;background:var(--gd);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--green);transition:transform .3s;font-weight:300;line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a-inner{padding:0 28px 22px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;color:var(--mu);line-height:1.85;border-top:1px solid var(--bd)}
+.faq-a-inner p{padding-top:18px}
+.faq-a-inner strong{color:var(--text);font-weight:500}
+@media(max-width:900px){.faq-inner{padding:0 24px}}
+
+
+/* ═══ MOBILE NAV ═══ */
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(234,240,255,.12);background:rgba(234,240,255,.04);color:var(--text);cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.nav-toggle:hover{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.22)}
+.nav-toggle:focus-visible{outline:2px solid rgba(33,230,138,.55);outline-offset:3px}
+.nav-toggle-bars,.nav-toggle-bars::before,.nav-toggle-bars::after{display:block;position:relative;width:18px;height:2px;border-radius:999px;background:currentColor;transition:transform .25s ease,opacity .2s ease,top .25s ease}
+.nav-toggle-bars::before,.nav-toggle-bars::after{content:'';position:absolute;left:0}
+.nav-toggle-bars::before{top:-6px}
+.nav-toggle-bars::after{top:6px}
+.body-menu-open .nav-toggle-bars{background:transparent}
+.body-menu-open .nav-toggle-bars::before{top:0;transform:rotate(45deg)}
+.body-menu-open .nav-toggle-bars::after{top:0;transform:rotate(-45deg)}
+.mobile-menu-overlay{position:fixed;inset:0;background:rgba(4,7,12,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:540}
+.mobile-menu{position:fixed;top:0;right:-340px;width:min(88vw,320px);height:100vh;height:100dvh;padding:88px 22px 28px;background:rgba(7,10,15,.98);border-left:1px solid rgba(234,240,255,.08);box-shadow:-24px 0 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px;transition:right .3s ease;z-index:550}
+.mobile-menu-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.mobile-menu-links{display:flex;flex-direction:column;gap:8px}
+.mobile-menu-links a{display:block;padding:13px 14px;border-radius:10px;background:rgba(234,240,255,.03);border:1px solid rgba(234,240,255,.06);color:var(--text);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s,color .2s}
+.mobile-menu-links a:hover,.mobile-menu-links a.active{background:rgba(33,230,138,.08);border-color:rgba(33,230,138,.2);color:var(--green)}
+.mobile-menu-links .nav-cta,.mobile-menu-cta{margin-top:10px;display:block;width:100%;text-align:center;padding:14px 18px;font-size:14px;border-radius:10px}
+.body-menu-open{overflow:hidden}
+.body-menu-open .mobile-menu-overlay{opacity:1;pointer-events:auto}
+.body-menu-open .mobile-menu{right:0}
+@media(max-width:900px){.nav{padding:0 20px}.nav-links,.nav-actions .nav-cta{display:none}.nav-toggle{display:inline-flex}}
+
+</style>
 </head>
 <body>
-    <script>
-        // Redirect to the main homepage file
-        window.location.href = '/econ-growth-final-sales-1.html';
-    </script>
-    <noscript>
-        <a href="/econ-growth-final-sales-1.html">Click here to continue</a>
-    </noscript>
+
+<div id="cur"></div>
+<div id="ring"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+  <ul class="nav-links">
+    <li><a href="command-os.html" >Model</a></li>
+    <li><a href="sales.html" >Sales</a></li>
+    <li><a href="secondbrain.html" >Meet Roger</a></li>
+    <li><a href="about.html" >About</a></li>
+    <li><a href="visibility.html" >Visibility</a></li>
+  </ul>
+  <div class="nav-actions">
+  <a href="book.html" class="nav-cta">Book Your Growth Call</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span class="nav-toggle-bars"></span>
+  </button>
+</div>
+</nav>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-title">Navigation</div>
+  <nav class="mobile-menu-links" id="mobileMenuLinks" aria-label="Mobile navigation"></nav>
+</aside>
+
+<!-- ═══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
+    <div class="orb-3"></div>
+    <div class="scanline"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge" id="hero-badge"><div class="badge-dot"></div><span id="geo-label">AI Operating System · Built for HVAC Contractors</span></div>
+
+    <h1 class="hero-h1">
+      YOU STARTED THIS
+      <span class="green">FOR FREEDOM.</span>
+      <span class="sub-line ghost">WHERE IS IT?</span>
+    </h1>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-body">
+      Most HVAC business owners work harder than anyone on their team — and still feel like they're losing.<br>
+      <strong>Not because they're doing something wrong. Because they don't have a system running the business.</strong><br>
+      That's exactly what we install.
+    </p>
+
+    <div class="hero-btns">
+      <a href="book.html" class="btn-primary">Book Your Growth Call →</a>
+      <a href="#story" class="btn-ghost">See the Story ↓</a>
+    </div>
+    <div class="hero-note">30-minute call · No pitch deck · No contract required · Built exclusively for HVAC business owners</div>
+
+    <div class="proof-strip">
+      <div class="proof-item">
+        <div class="proof-number">24/7</div>
+        <div class="proof-label">AI Answers Every Call</div>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <div class="proof-number">$0</div>
+        <div class="proof-label">Revenue Lost After Hours</div>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <div class="proof-number">Day 1</div>
+        <div class="proof-label">Dispatch Goes Systematic</div>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <div class="proof-number">1</div>
+        <div class="proof-label">Industry. HVAC. Only.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 / 24-7 / 0 STATS BAR + TICKER -->
+<div class="eg-statsbar-root">
+  <div class="eg-stats-strip" role="complementary" aria-label="eCon Growth Core Promises">
+    <div class="eg-stats-strip__inner">
+      <div class="eg-stats-strip__cell">
+        <span class="eg-stats-strip__num">S3</span>
+        <span class="eg-stats-strip__label">Structure. Systems. Scale.</span>
+        <span class="eg-stats-strip__sub">Built to compound.</span>
+      </div>
+      <div class="eg-stats-strip__cell">
+        <span class="eg-stats-strip__num">24/7</span>
+        <span class="eg-stats-strip__label">AI Execution.</span>
+        <span class="eg-stats-strip__sub">Voice. Chat. Workflows.</span>
+      </div>
+      <div class="eg-stats-strip__cell">
+        <span class="eg-stats-strip__num">0</span>
+        <span class="eg-stats-strip__label">Chaos Tolerated.</span>
+        <span class="eg-stats-strip__sub">No guessing. No leakage.</span>
+      </div>
+    </div>
+  </div>
+  <div class="eg-ticker-wrap" role="marquee" aria-label="eCon Growth capabilities">
+    <div class="eg-ticker" aria-hidden="true">
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>AI Voice Dispatch</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>SecondBrain Field Intelligence</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>24/7 Lead Capture</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Automated Follow-Up</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Real-Time Pipeline</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Weekly AI Reports</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Dispatch Command Center</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Exit-Ready Infrastructure</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Intelligent Operations</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Local Market Domination</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Revenue Systems</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>AI Voice Dispatch</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>SecondBrain Field Intelligence</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>24/7 Lead Capture</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Automated Follow-Up</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Real-Time Pipeline</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Weekly AI Reports</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Dispatch Command Center</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Exit-Ready Infrastructure</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Intelligent Operations</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Local Market Domination</span>
+      <span class="eg-ticker__item"><span class="eg-ticker__dot"></span>Revenue Systems</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAIN — THE OWNER'S DAY
+════════════════════════════════════ -->
+<section class="section pain-sec" id="story">
+  <div class="section-inner">
+    <div class="pain-intro rv">
+      <div class="section-label">Sound Familiar?</div>
+      <h2 class="section-h2">THIS IS WHAT RUNNING<br>AN HVAC BUSINESS <span class="green">ACTUALLY FEELS LIKE.</span></h2>
+      <p class="section-sub">Not the version you tell people at the shop. The version you think about at 11pm when everything's quiet.</p>
+    </div>
+
+    <div class="pain-grid rv">
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">4:47 AM</div>
+        <div class="pain-quote">Your on-call tech just texted. <span class="green">Emergency call. No cooling. Family of five.</span></div>
+        <div class="pain-body">You're the one coordinating it because nobody else has the full picture. Who's on call, what they drive, whether they've been to this address before, what equipment is there — it all lives in your head. You handle it half-asleep because that's just how it works at your company.</div>
+        <div class="pain-tag">Owner Never Off</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">6:47 AM</div>
+        <div class="pain-quote">You check your phone before you're even out of bed. <span class="green">Three more missed calls from last night.</span></div>
+        <div class="pain-body">One of them was a $9,000 AC replacement. He called the next guy at 9:05pm. Booked same night. You found out when you saw his Google review — for the other company. This happens every week. You just don't see most of it.</div>
+        <div class="pain-tag">Revenue Leakage</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">8:22 AM</div>
+        <div class="pain-quote">Your dispatcher calls. <span class="green">She's sick. Now dispatch is you — again.</span></div>
+        <div class="pain-body">Dispatch isn't a system at your company — it's a person. And when that person is out, everything that lived in her head walks out the door with her. Jobs get assigned wrong. Customers don't get confirmed. You spend the morning putting out fires that shouldn't exist.</div>
+        <div class="pain-tag">Operational Fragility</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">2:15 PM</div>
+        <div class="pain-quote">A tech calls from the job. Customer's upset. <span class="green">They want to talk to someone in charge.</span></div>
+        <div class="pain-body">Every escalation ends up with you. You hired a team so you could step back — but you're more in the middle of it than ever. You can't take a full day off. You can't fully unplug. The business only runs smoothly when you're standing in the center of it.</div>
+        <div class="pain-tag">Owner Bottleneck</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">5:30 PM</div>
+        <div class="pain-quote">One of your techs had a bad week. <span class="green">You have no idea why — or how to fix it.</span></div>
+        <div class="pain-body">His numbers are down. Was it the jobs he got, his close rate, his attitude, his skills? You don't have the data to know. So you have a gut-feel conversation that doesn't actually change anything. Good managers need information. Right now you don't have it.</div>
+        <div class="pain-tag">No Coaching Data</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-line"></div>
+        <div class="pain-number">9:58 PM</div>
+        <div class="pain-quote">You're trying to figure out <span class="green">if this month was actually good.</span></div>
+        <div class="pain-body">Revenue came in — but you don't know close rate, average ticket, which tech is actually profitable, or what next month looks like. You're making six-figure decisions with a gut feeling and a bank balance. Real data is 30 days behind. By then it's too late to do anything about it.</div>
+        <div class="pain-tag">Blind Operations</div>
+      </div>
+    </div>
+
+    <div class="pain-truth rv">
+      <div class="pain-truth-text">THIS ISN'T A YOU PROBLEM. IT'S A SYSTEMS PROBLEM.<br><span class="green">THE BUSINESS RUNS YOU BECAUSE YOU DON'T HAVE A SYSTEM RUNNING IT. THAT'S EXACTLY WHAT WE INSTALL.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     LIVE HVAC DASHBOARD — COMMAND OS
+════════════════════════════════════ -->
+<section class="section s2-section" id="environment" style="padding:0">
+  <div style="max-width:100%;padding:80px 0 0">
+    <div style="max-width:1200px;margin:0 auto;padding:0 48px 48px">
+      <div class="rv" style="text-align:center;margin-bottom:48px">
+        <div class="section-label">The Command OS System</div>
+        <h2 class="section-h2" style="text-align:center">THIS IS WHAT A REAL HVAC<br>OPERATING SYSTEM <span class="green">LOOKS LIKE.</span></h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center">Most HVAC companies run on phone calls, sticky notes, and gut feeling. The ones pulling ahead run on this.</p>
+      </div>
+    </div>
+  <div class="s2-inner" style="padding:0 24px 56px;max-width:100%">
+
+    <!-- DESKTOP LAYOUT -->
+    <div class="s2-desktop">
+
+      <!-- LEFT COLUMN -->
+      <div class="s2-left-col">
+        <div class="s2-left-top">
+          <span class="s2-eyebrow">— The Command OS System</span>
+          <h2 class="s2-title">This is what a real HVAC operating system <span class="s2-green-text">looks like.</span></h2>
+          <p class="s2-body-copy">Most HVAC companies run on phone calls, sticky notes, and gut feeling. The ones <strong>pulling ahead</strong> run on this.</p>
+        </div>
+        <div class="s2-left-cta">
+          <div class="s2-cta-btns">
+            <a href="book.html" class="btn-green">Book Your Growth Call →</a>
+            <a href="#outcomes" class="btn-ghost">See What Changes ↓</a>
+          </div>
+        </div>
+      </div><!-- /left-col -->
+
+      <!-- RIGHT COLUMN -->
+      <div class="s2-right-col">
+        <div class="s2-live-badge-row">
+          <div class="s2-record-badge">
+            <div class="s2-record-dot"></div>
+            Live System — Simulated View
+          </div>
+        </div>
+
+        <!-- LIVE CRM -->
+        <div class="s2-panel s2-crm-hero">
+          <div class="s2-panel-header">
+            <span class="s2-panel-title">Live CRM — Active Contacts</span>
+            <div class="s2-crm-meta">
+              <div class="s2-dp-src-pills">
+                <span class="s2-dp-src-pill" id="dp-src-missed">📞 Missed Call</span>
+                <span class="s2-dp-src-pill" id="dp-src-google">🔍 Google LSA</span>
+                <span class="s2-dp-src-pill" id="dp-src-instagram">📸 Instagram</span>
+                <span class="s2-dp-src-pill" id="dp-src-website">🌐 Website</span>
+                <span class="s2-dp-src-pill" id="dp-src-facebook">📘 Facebook</span>
+                <span class="s2-dp-src-pill" id="dp-src-referral">🤝 Referral</span>
+              </div>
+              <div class="s2-panel-dot"></div>
+            </div>
+          </div>
+          <div class="s2-lead-viewport">
+            <div id="lead-track">
+              <div class="s2-lead-row">
+                <div class="s2-lead-avatar">JM</div>
+                <div class="s2-lead-info">
+                  <div class="s2-lead-name">John Martinez — Furnace Repair</div>
+                  <div class="s2-lead-source">Google Local Services → Missed Call Text Back</div>
+                </div>
+                <span class="s2-lead-badge s2-badge-close">Install Booked</span>
+                <span class="s2-lead-value">$8,400</span>
+              </div>
+              <div class="s2-lead-row">
+                <div class="s2-lead-avatar">DC</div>
+                <div class="s2-lead-info">
+                  <div class="s2-lead-name">David Cole — Emergency No Cooling</div>
+                  <div class="s2-lead-source">Missed Call → AI Text Back → Booked</div>
+                </div>
+                <span class="s2-lead-badge s2-badge-qual">Assess. Scheduled</span>
+                <span class="s2-lead-value">$6,800</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATION FEED + SMS + TICKER -->
+        <div class="s2-panel s2-auto-panel">
+          <div class="s2-panel-header">
+            <span class="s2-panel-title">Automation Feed</span>
+            <div class="s2-panel-dot"></div>
+          </div>
+          <div class="s2-auto-row">
+            <div class="s2-auto-viewport">
+              <div id="auto-track">
+                <div class="s2-auto-item s2-auto-sms">
+                  <span class="s2-auto-icon">💬</span>
+                  <div class="s2-auto-text"><strong>Missed call text back fired</strong> → John: "Hi! Your Comfort Advisor is on it."</div>
+                  <div class="s2-auto-time">just now</div>
+                </div>
+                <div class="s2-auto-item s2-auto-email">
+                  <span class="s2-auto-icon">📧</span>
+                  <div class="s2-auto-text"><strong>Assessment confirmation sent</strong> → Sarah: Appt confirmed Thu 10AM</div>
+                  <div class="s2-auto-time">2 min ago</div>
+                </div>
+                <div class="s2-auto-item s2-auto-deal">
+                  <span class="s2-auto-icon">🏆</span>
+                  <div class="s2-auto-text"><strong>Pipeline updated</strong> → David moved to Assessment Scheduled</div>
+                  <div class="s2-auto-time">4 min ago</div>
+                </div>
+              </div>
+            </div>
+            <div class="s2-sms-block">
+              <div class="s2-sms-header">
+                <span class="s2-panel-title">Latest Auto-SMS</span>
+                <div class="s2-msg-from" id="sms-from">COMFORT AIR → JOHN MARTINEZ</div>
+              </div>
+              <div class="s2-msg-preview">
+                <span id="sms-preview">Hi John — your Comfort Advisor here. We were just at your home and want to make sure you didn't have any questions before moving forward. We're ready to get your system installed the moment you're ready. Just say the word.</span>
+              </div>
+            </div>
+          </div>
+          <div class="s2-ticker">
+            <span class="s2-ticker-label">SYS:</span>
+            <div class="s2-ticker-track">
+              <span id="ticker-content" class="s2-ticker-content">
+                MISSED CALL TEXT BACK ACTIVE &nbsp;·&nbsp; 34 FOLLOW-UP SEQUENCES RUNNING &nbsp;·&nbsp; PIPELINE: $248K &nbsp;·&nbsp; ZERO MISSED LEADS &nbsp;·&nbsp; CLOSE RATE: 42% &nbsp;·&nbsp; INDUSTRY AVG: 31% &nbsp;·&nbsp;
+                MISSED CALL TEXT BACK ACTIVE &nbsp;·&nbsp; 34 FOLLOW-UP SEQUENCES RUNNING &nbsp;·&nbsp; PIPELINE: $248K &nbsp;·&nbsp; ZERO MISSED LEADS &nbsp;·&nbsp; CLOSE RATE: 42% &nbsp;·&nbsp; INDUSTRY AVG: 31% &nbsp;·&nbsp;
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIPELINE STAGES -->
+        <div class="s2-pipeline-row">
+          <div class="s2-pipeline-row-header">
+            <span class="s2-panel-title">HVAC Pipeline</span>
+            <div class="s2-pipeline-kpis">
+              <div class="s2-pipe-kpi">
+                <span class="s2-pipe-kpi-val s2-green-text" id="pipeline-val">$248K</span>
+                <span class="s2-pipe-kpi-label">Active Pipeline</span>
+              </div>
+              <div class="s2-pipe-kpi-divider"></div>
+              <div class="s2-pipe-kpi">
+                <span class="s2-pipe-kpi-val s2-green-text" id="close-rate">42%</span>
+                <span class="s2-pipe-kpi-label">Close Rate · Industry avg 31%</span>
+              </div>
+            </div>
+            <div class="s2-panel-dot"></div>
+          </div>
+          <div class="s2-pipeline-stages-h">
+            <div class="s2-stage-h active" id="stage-new">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:100%"></div></div>
+              <div class="s2-stage-h-name">New Service Requests</div>
+              <div class="s2-stage-h-count" id="cnt-new">18</div>
+              <div class="s2-stage-h-val" id="val-new">$54,000</div>
+            </div>
+            <div class="s2-stage-arrow">→</div>
+            <div class="s2-stage-h" id="stage-qual">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:61%"></div></div>
+              <div class="s2-stage-h-name">Assessment Scheduled</div>
+              <div class="s2-stage-h-count" id="cnt-qual">11</div>
+              <div class="s2-stage-h-val" id="val-qual">$87,500</div>
+            </div>
+            <div class="s2-stage-arrow">→</div>
+            <div class="s2-stage-h" id="stage-visit">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:44%"></div></div>
+              <div class="s2-stage-h-name">Advisor Visit Complete</div>
+              <div class="s2-stage-h-count" id="cnt-visit">8</div>
+              <div class="s2-stage-h-val" id="val-visit">$72,000</div>
+            </div>
+            <div class="s2-stage-arrow">→</div>
+            <div class="s2-stage-h" id="stage-pres">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:39%"></div></div>
+              <div class="s2-stage-h-name">Service Agreement Sent</div>
+              <div class="s2-stage-h-count" id="cnt-pres">7</div>
+              <div class="s2-stage-h-val" id="val-pres">$63,400</div>
+            </div>
+            <div class="s2-stage-arrow">→</div>
+            <div class="s2-stage-h" id="stage-close">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:28%"></div></div>
+              <div class="s2-stage-h-name">Install Scheduled</div>
+              <div class="s2-stage-h-count" id="cnt-close">5</div>
+              <div class="s2-stage-h-val" id="val-close">$43,500</div>
+            </div>
+            <div class="s2-stage-arrow">→</div>
+            <div class="s2-stage-h s2-stage-h-auto" id="stage-follow">
+              <div class="s2-stage-h-bar"><div class="s2-stage-h-fill" style="width:85%"></div></div>
+              <div class="s2-stage-h-name">Follow-Up Sequences</div>
+              <div class="s2-stage-h-count" id="cnt-follow">34</div>
+              <div class="s2-stage-h-val" id="val-follow">Auto-running</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /right-col -->
+    </div><!-- /s2-desktop -->
+
+    <!-- MOBILE HEADER -->
+    <div class="s2-mobile-header">
+      <span class="s2-eyebrow">— The Command OS System</span>
+      <h2 class="s2-title">This is what a real HVAC operating system <span class="s2-green-text">looks like.</span></h2>
+      <p class="s2-body-copy">Most HVAC companies run on phone calls, sticky notes, and gut feeling. The ones <strong>pulling ahead</strong> run on this.</p>
+      <div class="s2-proof-lines">
+        <div class="s2-proof-line"><span class="s2-proof-dot"></span>Every missed call, DM, and form fill caught automatically</div>
+        <div class="s2-proof-line"><span class="s2-proof-dot"></span>Follow-up sequences run until the deal closes or they say stop</div>
+        <div class="s2-proof-line"><span class="s2-proof-dot"></span>Pipeline, installs, reviews — all tracked, all automated</div>
+      </div>
+    </div>
+
+    <!-- MOBILE: THE INTERCEPT -->
+    <div class="s2-intercept">
+      <div class="s2-src-row">
+        <span class="s2-src-label">CATCHING LEADS FROM</span>
+        <div class="s2-src-logos">
+          <div class="s2-src-pill active" id="src-0">📞 Missed Call</div>
+          <div class="s2-src-pill" id="src-1">🔍 Google LSA</div>
+          <div class="s2-src-pill" id="src-2">📸 Instagram DM</div>
+          <div class="s2-src-pill" id="src-3">🌐 Website Form</div>
+          <div class="s2-src-pill" id="src-4">📘 Facebook</div>
+          <div class="s2-src-pill" id="src-5">🤝 Referral</div>
+        </div>
+      </div>
+
+      <div class="s2-phone-wrap">
+        <div class="s2-phone">
+          <div class="s2-phone-bar">
+            <div class="s2-phone-clock">
+              <span class="s2-phone-time" id="ic-clock-time"></span>
+              <span class="s2-phone-date" id="ic-clock-date"></span>
+            </div>
+            <span class="s2-phone-sig">●●●</span>
+          </div>
+          <div class="s2-notif" id="ic-notif">
+            <div class="s2-notif-icon">📞</div>
+            <div class="s2-notif-body">
+              <div class="s2-notif-app">MISSED CALL</div>
+              <div class="s2-notif-text" id="ic-notif-text">John Martinez · (615) 664-9178</div>
+            </div>
+            <div class="s2-notif-badge">now</div>
+          </div>
+          <div class="s2-steps" id="ic-steps">
+            <div class="s2-step" id="ic-step-1">
+              <div class="s2-step-icon s2-step-system">⚡</div>
+              <div class="s2-step-body">
+                <div class="s2-step-label">COMMAND OS SYSTEM</div>
+                <div class="s2-step-text">Missed call detected — auto text-back firing</div>
+              </div>
+              <div class="s2-step-timer" id="ic-timer">0s</div>
+            </div>
+            <div class="s2-step s2-step-sms" id="ic-step-2">
+              <div class="s2-step-icon">💬</div>
+              <div class="s2-step-body">
+                <div class="s2-step-label">AUTO-SMS SENT</div>
+                <div class="s2-step-text" id="ic-sms-text"></div>
+              </div>
+            </div>
+            <div class="s2-step s2-step-reply" id="ic-step-3">
+              <div class="s2-step-icon">👤</div>
+              <div class="s2-step-body">
+                <div class="s2-step-label">JOHN REPLIED</div>
+                <div class="s2-step-text">"YES — what times work?"</div>
+              </div>
+            </div>
+            <div class="s2-step s2-step-booked" id="ic-step-4">
+              <div class="s2-step-icon">✅</div>
+              <div class="s2-step-body">
+                <div class="s2-step-label">BOOKED AUTOMATICALLY</div>
+                <div class="s2-step-text">Comfort Advisor · Thu 10AM · $8,400 est.</div>
+              </div>
+            </div>
+            <div class="s2-step s2-step-pipeline" id="ic-step-5">
+              <div class="s2-step-icon">📈</div>
+              <div class="s2-step-body">
+                <div class="s2-step-label">PIPELINE UPDATED</div>
+                <div class="s2-step-text">Assessment Scheduled · <span class="s2-green" id="ic-pipe-val">$249K</span> active</div>
+              </div>
+            </div>
+          </div>
+          <div class="s2-replay" id="ic-replay">
+            <button class="s2-replay-btn" id="ic-replay-btn">↺ Watch again</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="s2-ic-stats">
+        <div class="s2-ic-stat">
+          <div class="s2-ic-val s2-green" id="ic-pipeline">$248K</div>
+          <div class="s2-ic-label">Active Pipeline</div>
+          <div class="s2-ic-sub">↑ 22% this week</div>
+        </div>
+        <div class="s2-ic-divider"></div>
+        <div class="s2-ic-stat">
+          <div class="s2-ic-val s2-green" id="ic-closerate">42%</div>
+          <div class="s2-ic-label">Close Rate</div>
+          <div class="s2-ic-sub">Industry avg: 31%</div>
+        </div>
+        <div class="s2-ic-divider"></div>
+        <div class="s2-ic-stat">
+          <div class="s2-ic-val">94%</div>
+          <div class="s2-ic-label">Missed Calls Saved</div>
+          <div class="s2-ic-sub">Auto text-back active</div>
+        </div>
+      </div>
+
+      <div class="s2-ic-cta">
+        <a href="book.html" class="btn-green s2-ic-cta-btn">Book Your Growth Call →</a>
+        <p class="s2-ic-cta-sub">See how this system runs inside your HVAC company.</p>
+      </div>
+    </div><!-- /s2-intercept -->
+
+  </div><!-- /s2-inner -->
+  </div><!-- /full-width wrap -->
+</section>
+════════════════════════════════════ -->
+<section class="section outcomes-sec" id="outcomes">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center">
+      <div class="section-label">What Actually Changes</div>
+      <h2 class="section-h2" style="text-align:center;max-width:700px;margin:0 auto 16px">STOP COUNTING FEATURES.<br>COUNT <span class="green">WHAT MATTERS.</span></h2>
+      <p class="section-sub" style="margin:0 auto">These are the outcomes HVAC business owners actually get when Command OS is running. Not promises. Not demos. What changes on day one and every day after.</p>
+    </div>
+    <div class="outcomes-grid rv">
+
+      <!-- ROW 1: Monday · Day 1 · 6 AM -->
+      <div class="outcome-card">
+        <span class="outcome-number">Monday</span>
+        <span class="outcome-sub">Weekly AI Report in Your Inbox</span>
+        <div class="outcome-title">Revenue. Close rate. Top tech. Biggest opportunities. Every week.</div>
+        <div class="outcome-text">SecondBrain writes your full weekly business report before your week starts. Where you stand, what slipped, what's trending, what needs action. No spreadsheets. No manually pulling numbers. No guessing.</div>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-number">Day 1</span>
+        <span class="outcome-sub">Dispatch Goes Systematic</span>
+        <div class="outcome-title">Structured. Consistent. No longer one person's memory.</div>
+        <div class="outcome-text">7-step AI-guided intake for every call. Smart job assignment based on certifications, location, and workload. On-call rotation tracked automatically. Your dispatcher works smarter — and your operation doesn't collapse when they're out sick.</div>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-number">6 AM</span>
+        <span class="outcome-sub">Daily Morning Intelligence Brief</span>
+        <div class="outcome-title">Before your feet hit the floor, you already know everything.</div>
+        <div class="outcome-text">Every morning — a full overnight summary. Revenue captured while you slept, emergency calls that came in, which on-call tech was assigned, leads queued for follow-up, what needs your attention today. You never start the day blind again.</div>
+      </div>
+
+      <!-- ROW 2: COACHING INSIGHTS — FULL WIDTH -->
+      <div class="outcome-card outcome-card-featured">
+        <div class="outcome-featured-badge">🧠 Manager Intelligence</div>
+        <span class="outcome-number" style="font-size:clamp(36px,5vw,72px)">Coaching Insights</span>
+        <span class="outcome-sub" style="font-size:12px;letter-spacing:.08em;margin-bottom:12px;display:block">Turn Your Managers Into Leaders. Your Techs Into Top Performers.</span>
+        <div class="outcome-title" style="font-size:clamp(17px,2vw,22px);margin-bottom:14px">Command OS gives every manager the data to coach, not just supervise.</div>
+        <div class="outcome-text" style="font-size:13px;line-height:1.85">Most managers in HVAC run on gut feeling — they know a tech is underperforming but can't tell you why or what to do about it. Manager Coaching Insights changes that entirely. You get a clear picture of every tech's patterns — not just close rate, but where they're strong, where they consistently leave money, what type of jobs they struggle on, and exactly what kind of coaching conversation will actually move the needle. Your managers stop having generic "you need to step it up" talks and start having specific, data-backed ones that change behavior. Your team gets better fast. Your managers become real leaders. And the whole operation compounds.</div>
+      </div>
+
+      <!-- ROW 3: $0 · More · 100% -->
+      <div class="outcome-card">
+        <span class="outcome-number">$0</span>
+        <span class="outcome-sub">Revenue Lost After Hours</span>
+        <div class="outcome-title">Every call answered. Every lead captured. While you sleep.</div>
+        <div class="outcome-text">AI Voice Dispatch handles every inbound call 24/7 — qualifies the lead, captures job details, and enters them straight into your pipeline automatically. The $9,000 job that used to go to the other guy at 9pm? That's yours now.</div>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-number">More</span>
+        <span class="outcome-sub">Revenue Per Tech Per Job</span>
+        <div class="outcome-title">Techs close more because they show up prepared.</div>
+        <div class="outcome-text">Full customer history, equipment records, AI diagnostic support, and repair vs replace analysis — all on the tech's phone before they knock on the door. Better prepared techs close bigger tickets. Every single time.</div>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-number">100%</span>
+        <span class="outcome-sub">Visibility Into Your Operation</span>
+        <div class="outcome-title">You know what's happening right now without calling anyone.</div>
+        <div class="outcome-text">Live dashboard. Real-time dispatch. Tech locations. Pipeline value. Every job, every dollar, every status — visible from your phone at any moment. No more guessing. No more calling your dispatcher to find out.</div>
+      </div>
+
+      <!-- ROW 4: EXIT READY — FULL WIDTH -->
+      <div class="outcome-card outcome-card-featured outcome-card-exit">
+        <div class="outcome-featured-badge">🏆 Long-Term Value</div>
+        <span class="outcome-number" style="font-size:clamp(36px,5vw,72px)">Exit Ready</span>
+        <span class="outcome-sub" style="font-size:12px;letter-spacing:.08em;margin-bottom:12px;display:block">Build Something Worth Selling. Not Just a Busy Job.</span>
+        <div class="outcome-title" style="font-size:clamp(17px,2vw,22px);margin-bottom:14px">The most valuable thing Command OS builds isn't your pipeline. It's your business itself.</div>
+        <div class="outcome-text" style="font-size:13px;line-height:1.85">A business that runs on documented systems, structured dispatch, clean data, and consistent processes is worth multiples more at exit than one that runs on the owner. Most HVAC companies sell for 1–2x. The ones with real operational infrastructure — documented workflows, automated follow-up, clear reporting, systemized dispatch — command 5–8x. Watson helps structure that from day one. Every workflow we build, every automation we run, every report we generate is equity. You're not just running a better business. You're building something worth owning — and eventually, worth selling at what it's actually worth.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     MEET ROGER — AI VOICE AGENT
+════════════════════════════════════ -->
+<section class="section roger-sec" id="roger">
+  <div class="section-inner wide">
+    <div class="rv" style="text-align:center;margin-bottom:48px">
+      <div class="section-label">AI Voice Dispatch</div>
+      <h2 class="section-h2" style="text-align:center">MEET <span class="green">ROGER.</span><br>HE WORKS 24/7<br><span class="ghost">AND NEVER MISSES A CALL.</span></h2>
+      <p class="section-sub" style="margin:16px auto 0">Roger is Command OS's built-in AI Voice Agent. He answers every call, qualifies every lead, handles objections, and books the job — automatically, while you sleep.</p>
+    </div>
+
+    <!-- LIVE DEMO UI — matches Image 2 -->
+    <div class="roger-ui rv">
+      <!-- TOP BAR -->
+      <div class="roger-ui-topbar">
+        <div class="roger-ui-live-pill">
+          <div class="roger-ui-live-dot"></div>
+          AI Voice Bot — Live
+        </div>
+        <div class="roger-ui-version">econ-ai-v1</div>
+      </div>
+
+      <!-- ACTIONS COUNTER -->
+      <div class="roger-ui-counter">
+        <div class="roger-ui-counter-dot"></div>
+        ACTIONS EXECUTED TODAY&nbsp;&nbsp;<span class="roger-ui-counter-num" id="roger-actions">1,924</span>
+      </div>
+
+      <!-- TWO PANELS -->
+      <div class="roger-ui-panels">
+
+        <!-- LEFT: LIVE CALL TRANSCRIPT -->
+        <div class="roger-ui-panel">
+          <div class="roger-call-header">
+            <div class="roger-caller-info">
+              <div class="roger-caller-name" id="roger-caller-name">Marcus Webb</div>
+              <div class="roger-caller-phone">+1 (702) 555-0194</div>
+            </div>
+            <div class="roger-rec-badge">● REC</div>
+          </div>
+          <div class="roger-call-stats">
+            <div class="roger-call-stat"><div class="roger-call-stat-label">DURATION</div><div class="roger-call-stat-val" id="roger-duration">0:42</div></div>
+            <div class="roger-call-stat"><div class="roger-call-stat-label">INTENT</div><div class="roger-call-stat-val" id="roger-intent" style="color:var(--green)">94%</div></div>
+            <div class="roger-call-stat"><div class="roger-call-stat-label">SENTIMENT</div><div class="roger-call-stat-val" id="roger-sentiment" style="color:var(--green)">Positive</div></div>
+          </div>
+          <div class="roger-transcript-scroll" id="roger-transcript">
+            <div class="roger-line roger-line-lead">Alright, I'm open to it.</div>
+            <div class="roger-line roger-line-bot"><span class="roger-bot-label">AI BOT</span>Perfect. Thursday at 2PM work for you?</div>
+            <div class="roger-line roger-line-lead">Yeah, Thursday's good.</div>
+            <div class="roger-line roger-line-bot"><span class="roger-bot-label">AI BOT</span>Locked in. Sending the details to your email right now. We'll see you Thursday, Marcus.</div>
+          </div>
+          <div class="roger-call-footer">
+            <div class="roger-footer-stat"><div class="roger-footer-label">LEAD SCORE</div><div class="roger-footer-val" style="color:var(--green)">87 / 100</div></div>
+            <div class="roger-footer-stat"><div class="roger-footer-label">NEXT ACTION</div><div class="roger-footer-val"><span style="background:rgba(33,230,138,.15);color:var(--green);padding:2px 10px;border-radius:4px;font-size:10px">Booked ✓</span></div></div>
+            <div class="roger-footer-stat"><div class="roger-footer-label">STATUS</div><div class="roger-footer-val" style="color:var(--green)">● Active</div></div>
+          </div>
+        </div>
+
+        <!-- CENTER: WAVEFORM + SPEAKING INDICATOR -->
+        <div class="roger-ui-center">
+          <div class="roger-waveform-wrap">
+            <div class="roger-waveform-ring"></div>
+            <div class="roger-waveform-mic">🎙</div>
+          </div>
+          <div class="roger-speaking-label">● SPEAKING</div>
+        </div>
+
+        <!-- RIGHT: BOT EXECUTING TASKS -->
+        <div class="roger-ui-panel">
+          <div class="roger-tasks-header">
+            <div class="roger-tasks-title">Bot Executing Tasks</div>
+            <div class="roger-tasks-count" id="roger-tasks-count">4 tasks</div>
+          </div>
+          <div class="roger-tasks-list">
+            <div class="roger-task">
+              <div class="roger-task-icon">📅</div>
+              <div class="roger-task-body">
+                <div class="roger-task-title">Demo booked · Thu 2PM</div>
+                <div class="roger-task-sub">Calendar invite sent · Zoom generated · Reminder set</div>
+              </div>
+              <div class="roger-task-time"><div class="roger-task-check">✓ BOOKED</div><div class="roger-task-ms">0.2s</div></div>
+            </div>
+            <div class="roger-task">
+              <div class="roger-task-icon">📄</div>
+              <div class="roger-task-body">
+                <div class="roger-task-title">Proposal queued & sent</div>
+                <div class="roger-task-sub">Growth Plan · $497/mo · PDF attached</div>
+              </div>
+              <div class="roger-task-time"><div class="roger-task-check">✓ SENT</div><div class="roger-task-ms">0.3s</div></div>
+            </div>
+            <div class="roger-task">
+              <div class="roger-task-icon">⚡</div>
+              <div class="roger-task-body">
+                <div class="roger-task-title">Lead scored & sequenced</div>
+                <div class="roger-task-sub">Intent: 94% · High Value · Sequence A4 triggered</div>
+              </div>
+              <div class="roger-task-time"><div class="roger-task-check">✓ SCORED</div><div class="roger-task-ms">0.2s</div></div>
+            </div>
+            <div class="roger-task">
+              <div class="roger-task-icon">👤</div>
+              <div class="roger-task-body">
+                <div class="roger-task-title">Contact record created</div>
+                <div class="roger-task-sub">Marcus Webb · +1 (702) 555-0194 · Added to pipeline</div>
+              </div>
+              <div class="roger-task-time"><div class="roger-task-check">✓ LOGGED</div><div class="roger-task-ms">0.1s</div></div>
+            </div>
+          </div>
+          <div class="roger-tasks-footer">
+            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" id="roger-tasks-today">1,947</div><div class="roger-tasks-kpi-label">TASKS TODAY</div></div>
+            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" style="color:var(--green)">98.2%</div><div class="roger-tasks-kpi-label">SUCCESS RATE</div></div>
+            <div class="roger-tasks-kpi"><div class="roger-tasks-kpi-val" style="color:var(--green)">0.3s</div><div class="roger-tasks-kpi-label">AVG SPEED</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS + BEFORE/AFTER -->
+    <div class="roger-bottom rv">
+      <div class="roger-flow">
+        <div class="roger-flow-label">How every call works</div>
+        <div class="roger-steps">
+          <div class="roger-step"><div class="roger-step-num">01</div><div class="roger-step-body"><div class="roger-step-title">Phone Rings — Roger Answers</div><div class="roger-step-text">Before it rings twice. Warm, professional, HVAC-knowledgeable. The homeowner has no idea it's AI.</div></div></div>
+          <div class="roger-step"><div class="roger-step-num">02</div><div class="roger-step-body"><div class="roger-step-title">Qualifies & Books the Job</div><div class="roger-step-text">System type, urgency, address, best time. He books the visit, confirms the slot, sends a confirmation text.</div></div></div>
+          <div class="roger-step"><div class="roger-step-num">03</div><div class="roger-step-body"><div class="roger-step-title">Pipeline Updated Automatically</div><div class="roger-step-text">Job drops into dispatch. Lead scored. Sequence triggered. Contact logged. Zero human involvement.</div></div></div>
+          <div class="roger-step"><div class="roger-step-num">04</div><div class="roger-step-body"><div class="roger-step-title">You Wake Up to a Full Pipeline</div><div class="roger-step-text">Morning brief shows every call Roger handled, every lead captured, every job booked. You didn't miss a thing.</div></div></div>
+        </div>
+        <a href="book.html" class="btn-primary" style="margin-top:32px;align-self:flex-start">Book Your Growth Call →</a>
+      </div>
+      <div class="roger-ba">
+        <div class="roger-ba-col before">
+          <div class="roger-ba-label">📵 Without Roger</div>
+          <div class="roger-ba-items">
+            <div class="roger-ba-item">Phone rings at 9:47pm. Nobody answers.</div>
+            <div class="roger-ba-item">Homeowner calls your competitor. Gets booked.</div>
+            <div class="roger-ba-item">You find out Monday when you check missed calls.</div>
+            <div class="roger-ba-item">$9,000 job — gone. You never even knew it called.</div>
+          </div>
+        </div>
+        <div class="roger-ba-arrow">VS</div>
+        <div class="roger-ba-col after">
+          <div class="roger-ba-label">✅ With Roger</div>
+          <div class="roger-ba-items">
+            <div class="roger-ba-item">Roger answers in under 2 rings. Every time.</div>
+            <div class="roger-ba-item">Lead qualified, job booked, customer confirmed.</div>
+            <div class="roger-ba-item">You wake up to a full overnight pipeline report.</div>
+            <div class="roger-ba-item">$9,000 job — yours. You slept through the whole thing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     BRIDGE — BEFORE & AFTER
+════════════════════════════════════ -->
+<section class="section bridge-sec" id="bridge">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center;margin-bottom:56px">
+      <div class="section-label">Before & After</div>
+      <h2 class="section-h2" style="text-align:center">THE SAME BUSINESS.<br><span class="green">COMPLETELY DIFFERENT</span> OPERATION.</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Command OS doesn't replace your team. It makes every person on it better — and runs the parts of your business that shouldn't depend on any one person.</p>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="ba-table rv">
+      <div class="ba-col-header ba-header-before">
+        <div class="ba-header-dot ba-dot-red"></div>
+        <div class="ba-header-label">Without Command OS</div>
+      </div>
+      <div class="ba-col-header ba-header-after">
+        <div class="ba-header-dot ba-dot-green"></div>
+        <div class="ba-header-label">With Command OS</div>
+      </div>
+
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>Phone rings at 9pm. Nobody answers. Lead calls your competitor.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Roger answers 24/7. Lead qualified, job booked, pipeline updated automatically.</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>Dispatch lives in your dispatcher's head. When she's out, everything breaks.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Dispatch is a system. Right tech, right job, every time — automatically.</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>Techs show up blind. Customers call you when things go sideways on the job.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Techs show up briefed — full history, equipment, AI diagnostics before they knock.</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>You find out your numbers 30 days too late. Can't change what already happened.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Daily brief every morning. Weekly AI report every Monday. Real data, real time.</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>More trucks means more chaos landing on your plate. Growth breaks the operation.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Adding a truck means more revenue — not more problems. The system scales. You don't.</div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-cell ba-cell-before"><span class="ba-x">✗</span>The business is worth what someone will pay for chaos. Which isn't much.</div>
+        <div class="ba-cell ba-cell-after"><span class="ba-check">✓</span>Documented systems + clean data = 5–8x at exit. We build that infrastructure from day one.</div>
+      </div>
+    </div>
+
+    <!-- CALLOUT -->
+    <div class="ba-callout rv">
+      <div class="ba-callout-icon">💡</div>
+      <div class="ba-callout-text">
+        <div class="ba-callout-title">Same people. Completely different operation.</div>
+        <div class="ba-callout-body">Your dispatcher doesn't get replaced — she gets better tools and stops drowning. Your techs don't get replaced — they show up prepared and close bigger tickets. Your managers don't get replaced — they get coaching data and become real leaders. That's the difference between a tool and a system.</div>
+      </div>
+      <a href="book.html" class="btn-primary" style="flex-shrink:0">Book Your Growth Call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOUNDERS
+════════════════════════════════════ -->
+<section class="section founders-sec" id="founders">
+  <div class="section-inner">
+
+    <!-- ORIGIN STATEMENT -->
+    <div class="founders-origin rv">
+      <div class="section-label left">Who We Are</div>
+      <h2 class="founders-origin-h">10 YEARS IN THE INDUSTRY.<br><span class="green">BUILT WHAT DIDN'T EXIST.</span></h2>
+      <p class="founders-origin-p">This wasn't built by a tech company that discovered HVAC. This was built by someone who lived every inch of it — service calls, installs, sales, dispatch, running entire companies solo while owners were gone for weeks. Ten years. Every role. Every problem. And then the decision to finally build the system everyone kept wishing existed.</p>
+    </div>
+
+    <!-- FOUNDER CARDS — SIDE BY SIDE, FULL SPACE -->
+    <div class="founders-duo rv">
+      <div class="founder-full">
+        <div class="founder-full-top">
+          <div class="founder-full-avatar">KC</div>
+          <div>
+            <div class="founder-full-name">Kristopher Cravens</div>
+            <div class="founder-full-role">Co-Founder · Vision, Product & Revenue</div>
+          </div>
+        </div>
+        <div class="founder-full-divider"></div>
+        <p class="founder-full-bio">Ten years in HVAC — every role, every seat. Service tech. Installer. Comfort advisor. Dispatcher. Ran entire companies solo while owners were on vacation for weeks at a time. Every decision. Every escalation. Every 9pm emergency call handled from a personal cell phone because the system didn't exist to handle it automatically.</p>
+        <p class="founder-full-bio">Command OS came from his brain — not from a whiteboard or a boardroom. <strong>Built from a decade of knowing exactly what HVAC business owners need and don't have.</strong> Every module, every workflow, every automation exists because Kristopher has been in the exact situation it solves. He drives the vision, the product direction, and every piece of revenue strategy you're reading right now.</p>
+        <div class="founder-full-tags">
+          <span class="founder-tag">10 Years HVAC</span>
+          <span class="founder-tag">Service · Install · Sales</span>
+          <span class="founder-tag">Dispatch</span>
+          <span class="founder-tag">Company Ops</span>
+          <span class="founder-tag">Product Vision</span>
+        </div>
+      </div>
+
+      <div class="founder-full">
+        <div class="founder-full-top">
+          <div class="founder-full-avatar">WW</div>
+          <div>
+            <div class="founder-full-name">Watson Wheeler</div>
+            <div class="founder-full-role">Co-Founder · Scale & Exit Strategy</div>
+          </div>
+        </div>
+        <div class="founder-full-divider"></div>
+        <p class="founder-full-bio">Watson brings the strategic half of what makes eCon Growth dangerous. His background is in scaling businesses and structuring them for exits that actually reflect what the company is worth — not what a buyer can negotiate you down to. He knows what a 7–8x multiple looks like. He knows what separates the companies that get it from the ones that don't.</p>
+        <p class="founder-full-bio">They met. Recognized the fit immediately. <strong>Kristopher has the decade of HVAC depth. Watson has the scaling and exit playbook.</strong> Together they're not building a software company. They're building the operating infrastructure that dominates the trades industry — starting with HVAC and not stopping there.</p>
+        <div class="founder-full-tags">
+          <span class="founder-tag">Business Scaling</span>
+          <span class="founder-tag">Exit Strategy</span>
+          <span class="founder-tag">7–8x Valuations</span>
+          <span class="founder-tag">Enterprise Infrastructure</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="founders-cta rv">
+      <div class="founders-cta-text">
+        <div class="founders-cta-title">READY TO TALK TO THE PEOPLE WHO BUILT THIS?</div>
+        <div class="founders-cta-sub">Kristopher will look at your operation and tell you exactly how Command OS fits. Real conversation. No pitch deck.</div>
+      </div>
+      <a href="book.html" class="btn-primary">Book Your Growth Call →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     QUALIFY
+════════════════════════════════════ -->
+<section class="section qualify-sec" id="qualify">
+  <div class="section-inner">
+    <div class="rv" style="margin-bottom:0">
+      <div class="section-label">Who This Is For</div>
+      <h2 class="section-h2">WE'RE SPECIFIC ABOUT<br>WHO <span class="green">WE WORK WITH.</span></h2>
+      <p class="section-sub" style="margin:0 0 56px">eCon Growth isn't for everyone. It's for HVAC business owners who are done winging it and ready to run a real company.</p>
+    </div>
+    <div class="qualify-layout rv">
+      <div class="qualify-list">
+        <div class="qualify-item">
+          <div class="qualify-check yes">✓</div>
+          <div class="qualify-text"><strong>You have 2–15 trucks running</strong> and real revenue coming in — but the operation still feels like organized chaos most days.</div>
+        </div>
+        <div class="qualify-item">
+          <div class="qualify-check yes">✓</div>
+          <div class="qualify-text"><strong>You're still the bottleneck.</strong> Every escalation, every decision, every problem ends up coming back to you — no matter how many people you hire.</div>
+        </div>
+        <div class="qualify-item">
+          <div class="qualify-check yes">✓</div>
+          <div class="qualify-text"><strong>You want visibility you don't have right now</strong> — close rate, average ticket, which tech is actually profitable, what's in your pipeline next month.</div>
+        </div>
+        <div class="qualify-item">
+          <div class="qualify-check yes">✓</div>
+          <div class="qualify-text"><strong>You want to scale without breaking.</strong> More trucks should mean more money — not just more chaos landing on your plate every morning.</div>
+        </div>
+        <div class="qualify-item">
+          <div class="qualify-check yes">✓</div>
+          <div class="qualify-text"><strong>You're thinking about the long game.</strong> Stepping back, selling, or just building something that doesn't fall apart when you're not there.</div>
+        </div>
+        <div class="qualify-item no">
+          <div class="qualify-check no">✗</div>
+          <div class="qualify-text" style="color:var(--mu)"><strong style="color:rgba(234,240,255,.4)">Not for you</strong> if you want a magic button. This is a real system — it takes real implementation. If you want something you can set up in an afternoon and forget, this isn't it.</div>
+        </div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-tag">The Next Step</div>
+        <h3 class="cta-card-h">BOOK A<br><span class="green">GROWTH CALL.</span></h3>
+        <p class="cta-card-p">30 minutes. We look at your operation. We show you exactly where the system fits and what changes when it's running. No pressure. No pitch deck. No pushy sales tactics. Just two people who know the HVAC business inside and out, having an honest conversation about what's possible for your company.</p>
+        <a href="book.html" class="btn-primary" style="width:100%;justify-content:center">Book Your Growth Call →</a>
+        <div class="cta-card-note">No contract required · Full onboarding included<br>Built for one industry: HVAC · (615) 664-9178</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     INTEL
+════════════════════════════════════ -->
+<section class="section intel-sec" id="intel">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center;margin-bottom:0">
+      <div class="section-label">Market Intelligence</div>
+      <h2 class="section-h2" style="text-align:center">THE INDUSTRY IS<br><span class="green">ALREADY MOVING.</span><br><span class="ghost">ARE YOU?</span></h2>
+    </div>
+    <div class="intel-layout rv">
+      <div class="intel-quote-box">
+        <div class="intel-eyebrow">Industry Signal — 2026</div>
+        <div class="intel-quote-text">The largest companies in the HVAC software space are now racing to implement AI-driven operating systems across trade services — following the exact model eCon Growth was built on from day one.</div>
+        <div class="intel-source">Confirmed by <strong>ServiceTitan leadership</strong>, publicly announced early 2026. We've been building this for HVAC business owners specifically — before it became the industry standard.</div>
+      </div>
+      <div class="intel-points">
+        <div class="intel-point">
+          <div class="intel-point-num">01</div>
+          <div>
+            <div class="intel-point-title">This Isn't Where the Industry Is Going. It's Where It Already Is.</div>
+            <div class="intel-point-text">The HVAC business owners implementing AI operating systems right now will own their markets in 18 months. The ones waiting will be competing against owners who have 24/7 AI working for them around the clock.</div>
+          </div>
+        </div>
+        <div class="intel-point">
+          <div class="intel-point-num">02</div>
+          <div>
+            <div class="intel-point-title">One Industry Only. That's Not a Limitation — That's the Point.</div>
+            <div class="intel-point-text">ServiceTitan serves plumbers, roofers, electricians. We serve one industry: HVAC. Every workflow, automation, and report is built around how HVAC businesses actually run — not adapted from something else.</div>
+          </div>
+        </div>
+        <div class="intel-point">
+          <div class="intel-point-num">03</div>
+          <div>
+            <div class="intel-point-title">The Cost of Staying the Same Is Higher Than the Cost of Changing.</div>
+            <div class="intel-point-text">Every month without a system is a month of missed calls, disorganized dispatch, techs showing up unprepared, and an owner buried in operations. The question isn't whether to change. It's how much longer you can afford not to.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FINAL CTA
+════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════
+  SECTION: FAQ
+════════════════════════════════════ -->
+<section class="faq-sec" id="faq">
+  <div class="faq-inner">
+    <div class="rv" style="text-align:center">
+      <div class="section-label">Questions We Get Every Time</div>
+      <h2 class="section-h2" style="text-align:center">BEFORE YOU ASK —<br><span class="green">WE'LL ANSWER IT.</span></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">The same questions come up on every growth call. Here are the honest answers.</p>
+    </div>
+    <div class="faq-list rv">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">Is this like GoHighLevel or a CRM?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p><strong>No.</strong> Command OS is a fully custom-built AI Operating System — not a CRM, not GoHighLevel, not any off-the-shelf tool. Every workflow, every automation, every layer was purpose-built for HVAC. A CRM stores your contacts. Command OS runs your operation. The difference is the difference between a filing cabinet and an engine.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">How long does it take to set up?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p>We go live <strong>Day One.</strong> Not day 30 after a slow onboarding. When you're in, we configure your instance, set up Roger, wire in your workflows, and get the system running. By morning of Day Two, you have a brief in your inbox, Roger handled your overnight calls, and dispatch has a structure it didn't have the day before. Full system depth builds over the first 30 days — but it's working from hour one.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">What if my techs and dispatcher won't use it?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Adoption is built into how the system works. <strong>Roger answers the phones — your team doesn't have to change for that to happen.</strong> The AI briefs, job prep notes, and diagnostics show up where they already work. We're not asking your dispatcher to learn a new platform. We're giving them a system that does the hard parts automatically. Resistance usually disappears after the first week when the team sees it working.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">What does it actually cost?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Pricing starts at <strong>$1,499/month</strong> with a one-time $1,500 setup fee. The Growth tier is $2,499.99/month and Scale is $4,499.99/month. Every tier includes full onboarding. The real question isn't what it costs — it's what one missed call, one unbookable lead, one untracked tech costs you per month. For most 5-truck operations, one recovered job covers the monthly investment.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">Is there a contract?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p><strong>No long-term contract required to get started.</strong> We're not interested in holding anyone in. If the system is running well, you stay because it's working — not because you're locked in. We do ask for 30 days notice before cancellation so we can properly offboard you. That's it.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">Will AI replace my dispatcher or my techs?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p><strong>No — and that's not what we're building.</strong> Command OS enhances your team, it doesn't replace them. Roger handles the phones so your dispatcher can focus on dispatch, not answering calls at 2am. The AI prep notes make your techs faster and more confident on the job. Your dispatcher becomes more strategic. Your techs close more. Your whole team levels up — nobody gets replaced.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">We're already using ServiceTitan. Will this work?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. Command OS is a layer that sits on top of and around your existing tools. <strong>ServiceTitan announced in early 2026 that they are now moving in the AI direction eCon Growth was already building.</strong> The market is validating exactly what we've built. If you're on ServiceTitan, that's fine — Command OS fills the gaps ServiceTitan doesn't touch: AI voice, overnight lead capture, dispatch intelligence, and owner-level visibility.</p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <div class="faq-q-text">How do I know this actually works?</div>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Book the growth call. Kristopher will walk you through the system live — not a slide deck, not a pre-recorded demo. You'll see Roger answer a call in real time. You'll see the dashboard. You'll see what your operation looks like inside Command OS. <strong>We don't ask you to believe it. We show you.</strong> If it doesn't make sense for your business, we'll tell you that too.</p></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="contact">
+  <div class="final-cta-inner rv">
+    <h2 class="final-cta-h">
+      YOUR COMPETITION<br>
+      IS <span class="green">ALREADY MOVING.</span><br>
+      <span class="ghost">ARE YOU?</span>
+    </h2>
+    <p class="final-cta-p">Book a Growth Call. We'll look at your operation, identify exactly where you're leaving money on the table, and show you what changes when the system is running. No pitch. No pressure. Real talk from people who've been in your shoes.</p>
+    <div class="final-cta-btns">
+      <a href="book.html" class="btn-primary">Book Your Growth Call →</a>
+      <a href="tel:6156649178" class="btn-ghost">Call (615) 664-9178</a>
+    </div>
+    <div class="final-cta-note">No contract · Full onboarding included · Built exclusively for HVAC business owners · (615) 664-9178</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-e">e</span><span class="logo-c">C</span><span class="logo-rest">on Growth</span></a>
+        <p>The AI Operating System built exclusively for HVAC business owners. More revenue. More control. Less chaos.</p>
+        <div class="footer-phone">(615) 664-9178</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <ul class="footer-links">
+          <li><a href="command-os.html">Command OS</a></li>
+          <li><a href="secondbrain.html">Roger &amp; SecondBrain AI</a></li>
+          <li><a href="visibility.html">Visibility Dashboard</a></li>
+          <li><a href="book.html">Book a Call</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sales.html">Sales Process</a></li>
+          <li><a href="investors.html">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="blog.html">HVAC Growth Blog</a></li>
+          <li><a href="roi-calculator.html">ROI Calculator</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social-row">
+      <div class="footer-social-label">Follow Along</div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/61588379971211/" class="footer-si" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.tiktok.com/@econgrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        <a href="https://www.youtube.com/@eConGrowthofficial" class="footer-si" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-legal-row">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
+      <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> · POWERED BY <span>SECONDBRAIN AI</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══ CURSOR ═══ */
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+});
+
+/* ═══ GEO TARGETING ═══ */
+(function(){
+  try {
+    fetch('https://ipapi.co/json/')
+      .then(r=>r.json())
+      .then(d=>{
+        const city = d.city || '';
+        const region = d.region_code || d.region || '';
+        const label = document.getElementById('geo-label');
+        if(label && city) {
+          label.textContent = 'AI Operating System · Built for HVAC Contractors in ' + city + (region ? ', ' + region : '');
+        }
+      }).catch(()=>{});
+  } catch(e){}
+})();
+
+/* ═══ NAV SCROLL ═══ */
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40)});
+
+/* ═══ ROGER LIVE TRANSCRIPT ANIMATION ═══ */
+(function(){
+  var conversations = [
+    {
+      caller:'Marcus Webb', phone:'+1 (702) 555-0194', duration:'0:42', intent:'94%', sentiment:'Positive', score:'87 / 100',
+      lines:[
+        {type:'lead', text:"Alright, I'm open to it."},
+        {type:'bot', text:"Perfect. Thursday at 2PM work for you?"},
+        {type:'lead', text:"Yeah, Thursday's good."},
+        {type:'bot', text:"Locked in. Sending the details to your email right now. We'll see you Thursday, Marcus."},
+      ],
+      tasks:[
+        {icon:'📅',title:'Demo booked · Thu 2PM',sub:'Calendar invite sent · Zoom generated · Reminder set',check:'✓ BOOKED',ms:'0.2s'},
+        {icon:'📄',title:'Proposal queued & sent',sub:'Growth Plan · $497/mo · PDF attached',check:'✓ SENT',ms:'0.3s'},
+        {icon:'⚡',title:'Lead scored & sequenced',sub:'Intent: 94% · High Value · Sequence A4 triggered',check:'✓ SCORED',ms:'0.2s'},
+        {icon:'👤',title:'Contact record created',sub:'Marcus Webb · +1 (702) 555-0194 · Added to pipeline',check:'✓ LOGGED',ms:'0.1s'},
+      ]
+    },
+    {
+      caller:'Lisa Rodriguez', phone:'+1 (801) 555-0271', duration:'1:14', intent:'88%', sentiment:'Positive', score:'82 / 100',
+      lines:[
+        {type:'lead', text:"My AC's been making a loud noise and it stopped cooling yesterday."},
+        {type:'bot', text:"Sorry to hear that — let's get someone out to you today. What's the make and model if you know it?"},
+        {type:'lead', text:"It's a Carrier. About 8 years old I think."},
+        {type:'bot', text:"Got it. I've got a tech available this afternoon around 3PM. Does that work for you, Lisa?"},
+        {type:'lead', text:"Yes, perfect."},
+        {type:'bot', text:"Booked. You'll get a confirmation text with your tech's name and a 30-minute heads up before arrival."},
+      ],
+      tasks:[
+        {icon:'🗓',title:'Service call booked · Today 3PM',sub:'Tech: Marcus T. · Equipment: Carrier 8yr · Diagnostic queued',check:'✓ BOOKED',ms:'0.2s'},
+        {icon:'💬',title:'Confirmation SMS sent',sub:'Lisa · Tech info included · ETA notification set',check:'✓ SENT',ms:'0.3s'},
+        {icon:'🔧',title:'Tech briefing generated',sub:'Carrier history pulled · Common issues flagged',check:'✓ BRIEFED',ms:'0.2s'},
+        {icon:'👤',title:'Lead logged to pipeline',sub:'Lisa Rodriguez · Emergency · $2,400 est.',check:'✓ LOGGED',ms:'0.1s'},
+      ]
+    },
+    {
+      caller:'Tom Hargrove', phone:'+1 (615) 555-0388', duration:'0:58', intent:'91%', sentiment:'Positive', score:'79 / 100',
+      lines:[
+        {type:'lead', text:"I've been wanting to get a new system installed. Mine's ancient."},
+        {type:'bot', text:"Great timing — we can walk through your options. What size home and what system do you have now?"},
+        {type:'lead', text:"About 2200 square feet. It's an old Goodman, probably 15 years."},
+        {type:'bot', text:"Understood. I'd recommend a Comfort Advisor visit — they'll assess and give you exact pricing. When are you available this week?"},
+        {type:'lead', text:"Thursday morning works."},
+        {type:'bot', text:"Perfect. Thursday at 10AM — I'll have a Comfort Advisor there. You'll get a full proposal same day."},
+      ],
+      tasks:[
+        {icon:'📋',title:'Advisor visit booked · Thu 10AM',sub:'Tom Hargrove · 2200sqft · Goodman 15yr replacement',check:'✓ BOOKED',ms:'0.2s'},
+        {icon:'📄',title:'Pre-visit brief created',sub:'Home size · System age · Replacement quote ready',check:'✓ READY',ms:'0.3s'},
+        {icon:'⚡',title:'High-value lead flagged',sub:'Intent: 91% · Full replacement · Seq B2 triggered',check:'✓ SCORED',ms:'0.2s'},
+        {icon:'👤',title:'Contact added to pipeline',sub:'Tom Hargrove · $11,400 est. · Advisor assigned',check:'✓ LOGGED',ms:'0.1s'},
+      ]
+    }
+  ];
+
+  var currentConvo = 0;
+  var animating = false;
+  var observer;
+
+  function clearTranscript() {
+    var t = document.getElementById('roger-transcript');
+    if(t) t.innerHTML = '';
+    var tl = document.getElementById('roger-tasks-list');
+    if(tl) {
+      tl.querySelectorAll('.roger-task').forEach(function(el){el.style.opacity='0';el.style.transform='translateX(8px)';});
+    }
+  }
+
+  function runConvo(idx) {
+    if(animating) return;
+    animating = true;
+    var c = conversations[idx % conversations.length];
+    var t = document.getElementById('roger-transcript');
+    var nameEl = document.getElementById('roger-caller-name');
+    var durEl = document.getElementById('roger-duration');
+    var intentEl = document.getElementById('roger-intent');
+    var sentEl = document.getElementById('roger-sentiment');
+    if(!t) return;
+
+    // Update header
+    if(nameEl) nameEl.textContent = c.caller;
+    if(durEl) durEl.textContent = c.duration;
+    if(intentEl) intentEl.textContent = c.intent;
+    if(sentEl) sentEl.textContent = c.sentiment;
+
+    clearTranscript();
+    var delay = 600;
+
+    c.lines.forEach(function(line, i) {
+      setTimeout(function(){
+        var div = document.createElement('div');
+        div.className = 'roger-line roger-line-' + line.type + ' animating';
+        if(line.type === 'bot') {
+          var label = document.createElement('span');
+          label.className = 'roger-bot-label';
+          label.textContent = 'AI BOT';
+          div.appendChild(label);
+          div.appendChild(document.createTextNode(line.text));
+        } else {
+          div.textContent = line.text;
+        }
+        t.appendChild(div);
+        t.scrollTop = t.scrollHeight;
+        setTimeout(function(){ div.classList.remove('animating'); }, 400);
+
+        // After last line, animate tasks
+        if(i === c.lines.length - 1) {
+          setTimeout(function(){
+            animateTasks(c.tasks);
+          }, 800);
+        }
+      }, delay);
+      delay += (line.type === 'bot' ? 1400 : 900);
+    });
+  }
+
+  function animateTasks(tasks) {
+    var tl = document.getElementById('roger-tasks-list');
+    if(!tl) return;
+    tl.innerHTML = '';
+    tasks.forEach(function(task, i){
+      setTimeout(function(){
+        var div = document.createElement('div');
+        div.className = 'roger-task';
+        div.style.opacity = '0';
+        div.style.transform = 'translateX(10px)';
+        div.style.transition = 'opacity .35s ease, transform .35s ease';
+        div.innerHTML = '<div class="roger-task-icon">'+task.icon+'</div><div class="roger-task-body"><div class="roger-task-title">'+task.title+'</div><div class="roger-task-sub">'+task.sub+'</div></div><div class="roger-task-time"><div class="roger-task-check" style="color:var(--green)">'+task.check+'</div><div class="roger-task-ms">'+task.ms+'</div></div>';
+        tl.appendChild(div);
+        requestAnimationFrame(function(){
+          div.style.opacity = '1';
+          div.style.transform = 'translateX(0)';
+        });
+
+        if(i === tasks.length - 1) {
+          // Loop to next conversation
+          setTimeout(function(){
+            currentConvo = (currentConvo + 1) % conversations.length;
+            animating = false;
+            runConvo(currentConvo);
+          }, 5000);
+        }
+      }, i * 400);
+    });
+  }
+
+  // Start immediately when Roger section comes into view
+  var rogerSection = document.getElementById('roger');
+  if(rogerSection) {
+    observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !animating) {
+          observer.unobserve(rogerSection);
+          setTimeout(function(){ runConvo(currentConvo); }, 300);
+        }
+      });
+    }, {threshold:0.1, rootMargin:'0px 0px -60px 0px'});
+    observer.observe(rogerSection);
+  }
+})();
+(function(){
+  var actions = 1924, tasks = 1947;
+  function bump() {
+    actions += Math.floor(Math.random()*3+1);
+    tasks += Math.floor(Math.random()*2+1);
+    var a = document.getElementById('roger-actions');
+    var t = document.getElementById('roger-tasks-today');
+    if(a) a.textContent = actions.toLocaleString();
+    if(t) t.textContent = tasks.toLocaleString();
+    setTimeout(bump, Math.random()*4000+2000);
+  }
+  setTimeout(bump, 2500);
+})();
+
+/* ═══ REVEAL ═══ */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+/* ═══ S2 LIVE DASHBOARD ENGINE ═══ */
+(function() {
+  function s2Init() {
+    var section = document.querySelector('.s2-section');
+    if (!section) return;
+    function el(id) { return document.getElementById(id); }
+    function fmtK(n) { return n >= 1000 ? '$' + Math.round(n/1000) + 'K' : '$' + n; }
+
+    var leadPool = [
+      { init:'LR', name:'Linda Reyes — Heat Pump Install', src:'Referral → SMS Opt-In → Confirmed', badge:'s2-badge-new', label:'New Request', val:'$14,800', srcKey:'referral' },
+      { init:'TR', name:'Tom Russell — Duct Leak Repair', src:'Google Local Services → Missed Call Text Back', badge:'s2-badge-qual', label:'Assess. Scheduled', val:'$9,200', srcKey:'google' },
+      { init:'AW', name:'Amy Walsh — Annual Maintenance', src:'Referral → Auto SMS Opt-In', badge:'s2-badge-new', label:'New Request', val:'$189', srcKey:'referral' },
+      { init:'CB', name:'Carlos Bruno — Furnace Replacement', src:'Google Local Services → Called In', badge:'s2-badge-close', label:'Install Booked', val:'$9,800', srcKey:'google' },
+      { init:'KH', name:'Kim Harper — Ductwork Inspection', src:'Website Form → Auto-SMS Sent', badge:'s2-badge-qual', label:'Assess. Scheduled', val:'$3,400', srcKey:'website' },
+      { init:'RN', name:'Ray Nguyen — No Heat Emergency', src:'Missed Call → AI Text Back → Booked', badge:'s2-badge-pres', label:'Svc Agreement Sent', val:'$8,600', srcKey:'missed' },
+      { init:'BT', name:'Brenda Torres — AC Not Cooling', src:'Instagram DM → AI Qualified', badge:'s2-badge-new', label:'New Request', val:'$299', srcKey:'instagram' },
+      { init:'MJ', name:'Mark Jensen — Full System Replacement', src:'Google Ads → Form Fill → Auto-Booked', badge:'s2-badge-close', label:'Install Booked', val:'$16,400', srcKey:'google' },
+      { init:'PW', name:'Paula Wright — Thermostat Upgrade', src:'Facebook Message → AI Qualified', badge:'s2-badge-qual', label:'Assess. Scheduled', val:'$1,200', srcKey:'facebook' },
+      { init:'DH', name:'Derek Hall — Commercial HVAC Service', src:'Referral → Direct Call → Booked', badge:'s2-badge-close', label:'Install Booked', val:'$22,000', srcKey:'referral' },
+    ];
+    var leadIdx = 0, lastLead = leadPool[0];
+    var track = el('lead-track');
+    var isMobile = window.innerWidth <= 900;
+    var LEAD_MAX = isMobile ? 5 : 2;
+    var ROW_H = 64, ROW_GAP = 8, STEP = ROW_H + ROW_GAP;
+
+    function pushLead() {
+      var d = leadPool[leadIdx % leadPool.length]; leadIdx++;
+      lastLead = d;
+      if (!track) return;
+      var rows = track.querySelectorAll('.s2-lead-row');
+      for (var r = 0; r < rows.length; r++) {
+        rows[r].style.transition = 'transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease';
+        rows[r].style.transform = 'translateY(' + STEP + 'px)';
+      }
+      if (rows.length >= LEAD_MAX) {
+        (function(oldRow) {
+          setTimeout(function() { oldRow.style.transition='opacity 0.2s ease'; oldRow.style.opacity='0'; setTimeout(function(){if(oldRow.parentNode)oldRow.parentNode.removeChild(oldRow);},220); },380);
+        })(rows[rows.length-1]);
+      }
+      var row = document.createElement('div');
+      row.className = 's2-lead-row fresh';
+      row.style.transform = 'translateY(-' + STEP + 'px)';
+      row.style.opacity = '0';
+      row.innerHTML = '<div class="s2-lead-avatar">'+d.init+'</div><div class="s2-lead-info"><div class="s2-lead-name">'+d.name+'</div><div class="s2-lead-source">'+d.src+'</div></div><span class="s2-lead-badge '+d.badge+'">'+d.label+'</span><span class="s2-lead-value">'+d.val+'</span>';
+      track.insertBefore(row, track.firstChild);
+      row.getBoundingClientRect();
+      row.style.transition = 'transform 0.38s cubic-bezier(.4,0,.2,1), opacity 0.38s ease';
+      row.style.transform = 'translateY(0)';
+      row.style.opacity = '1';
+      setTimeout(function() { var allRows=track.querySelectorAll('.s2-lead-row'); for(var i=0;i<allRows.length;i++){allRows[i].style.transition='none';allRows[i].style.transform='translateY(0)';} },420);
+      flashSrcPill(d.srcKey);
+    }
+
+    var srcPillMap = { missed:'dp-src-missed', google:'dp-src-google', instagram:'dp-src-instagram', website:'dp-src-website', facebook:'dp-src-facebook', referral:'dp-src-referral' };
+    function flashSrcPill(key) {
+      if (!key) return;
+      Object.values(srcPillMap).forEach(function(id) { var p=el(id); if(p)p.classList.remove('dp-src-active'); });
+      var pill = el(srcPillMap[key]); if (!pill) return;
+      pill.classList.add('dp-src-active');
+      setTimeout(function(){pill.classList.remove('dp-src-active');}, 4000);
+    }
+
+    var autoMsgs = [
+      { type:'s2-auto-sms', icon:'💬', text:'<strong>Missed call text back fired</strong> → {n}: "Hi! Your Comfort Advisor is on it — reply YES to confirm."' },
+      { type:'s2-auto-email', icon:'📧', text:'<strong>Assessment confirmation sent</strong> → {n}: Appt confirmed {t} + advisor profile attached' },
+      { type:'s2-auto-deal', icon:'🏆', text:'<strong>Pipeline updated</strong> → {n} moved to Assessment Scheduled automatically' },
+      { type:'s2-auto-task', icon:'📅', text:'<strong>24hr reminder queued</strong> → {n}: appointment reminder firing tomorrow 8AM' },
+      { type:'s2-auto-sms', icon:'💬', text:'<strong>Service agreement follow-up sent</strong> → {n}: "We\'re holding your install slot — ready when you are."' },
+      { type:'s2-auto-email', icon:'📧', text:'<strong>Post-job review request fired</strong> → {n}: Google review link sent 10 min after job close' },
+      { type:'s2-auto-deal', icon:'🔄', text:'<strong>Re-engagement triggered</strong> → {n} hasn\'t responded in 48hrs — sequence activated' },
+      { type:'s2-auto-task', icon:'🔧', text:'<strong>Install booked</strong> → {n} moved to Install Scheduled. Revenue logged automatically.' },
+      { type:'s2-auto-sms', icon:'💬', text:'<strong>Seasonal campaign triggered</strong> → {n}: added to spring maintenance sequence' },
+      { type:'s2-auto-email', icon:'📅', text:'<strong>No-show recovery fired</strong> → {n}: reschedule link sent after missed window' },
+    ];
+    var autoIdx = 0;
+    var times = ['Thu 10AM','Fri 9AM','Mon 2PM','Wed 11AM','Tue 3PM'];
+
+    var installRaw = 156000, serviceRaw = 92000;
+    var seqCnt = 34, presCnt = 7, closeCnt = 5;
+    var PRES_MAX = 12, CLOSE_MAX = 9;
+
+    function totalPipeline() { return installRaw + serviceRaw; }
+
+    function syncAllStats() {
+      var total = totalPipeline();
+      var pv = el('pipeline-val'); if(pv) pv.textContent = fmtK(total);
+    }
+
+    function pushAuto() {
+      var msg = autoMsgs[autoIdx % autoMsgs.length]; autoIdx++;
+      var t = times[Math.floor(Math.random()*times.length)];
+      var first = lastLead.name.split(' — ')[0].split(' ')[0];
+      var text = msg.text.replace(/{n}/g, first).replace(/{t}/g, t);
+      var at = el('auto-track'); if (!at) return;
+      var items = at.querySelectorAll('.s2-auto-item');
+      if (items.length >= 6) {
+        var last = items[items.length-1];
+        last.classList.add('exiting');
+        setTimeout(function(){if(last.parentNode)last.parentNode.removeChild(last);},460);
+      }
+      var item = document.createElement('div');
+      item.className = 's2-auto-item entering ' + msg.type;
+      item.innerHTML = '<span class="s2-auto-icon">'+msg.icon+'</span><div class="s2-auto-text">'+text+'</div><div class="s2-auto-time">just now</div>';
+      at.insertBefore(item, at.firstChild);
+      item.getBoundingClientRect();
+      item.classList.remove('entering');
+      setTimeout(function() {
+        var stamps = at.querySelectorAll('.s2-auto-time');
+        for(var i=0;i<stamps.length;i++) stamps[i].textContent = i===0?'just now':(i*2)+' min ago';
+      },50);
+    }
+
+    function updateClose() {
+      var r = 38 + Math.floor(Math.random()*8);
+      var cr = el('close-rate'); if(cr) cr.textContent = r+'%';
+    }
+
+    var smsMessages = [
+      { contact:'John Martinez', msg:"Hey John! It's Jake over at Comfort Air — just wanted to give you a heads up, your tech is about 20 minutes out. He's got everything he needs. See you shortly!" },
+      { contact:'Sarah Peterson', msg:"Hey Sarah, it's Mike from Comfort Air. Just wrapped up looking at your info — your tech is locked in for tomorrow morning. He'll text when he's on the way. Sound good?" },
+      { contact:'Linda Reyes', msg:"Morning Linda! It's Jake — wanted to personally make sure you're set for today. Your tech has your address and will have a full write-up ready before he leaves. Any questions, just reply here." },
+      { contact:'David Cole', msg:"Hey David, it's Jake — your Comfort Advisor. Talked to your tech about what he found today. Honestly, I think we've got the right fix lined up. Whenever you're ready to talk it through, just say the word." },
+      { contact:'Carlos Bruno', msg:"Carlos, it's Jake. Your tech confirmed the scope this morning — we're good to go on our end. Just need your signature and we'll get you on the schedule. I'll make it easy, promise." },
+      { contact:'Kim Harper', msg:"Kim! Just wanted to say — it was genuinely a great day at your place. Really appreciate you trusting us. Anything comes up with the system, just text here. Direct line is (615) 664-9178." },
+      { contact:'Ray Nguyen', msg:"Ray! New system is up and your home's in good hands now. I'll check in again in a few days but seriously — reach out anytime. Really glad we could take care of this for you." },
+    ];
+    var smsIdx = 0;
+
+    function typeSMS() {
+      var preview = el('sms-preview'), fromLine = el('sms-from');
+      if (!preview) return;
+      var current = preview.textContent;
+      var nextIdx = (smsIdx + 1) % smsMessages.length;
+      var next = smsMessages[nextIdx]; smsIdx = nextIdx;
+      var i = current.length;
+      function deleteChar() {
+        if (i > 0) { preview.textContent = current.substring(0, --i); setTimeout(deleteChar, 14); }
+        else {
+          if (fromLine) fromLine.textContent = 'COMFORT AIR → ' + next.contact.toUpperCase();
+          setTimeout(function() { typeChar(next.msg, 0); }, 350);
+        }
+      }
+      function typeChar(msg, j) {
+        if (j <= msg.length) { preview.textContent = msg.substring(0, j); setTimeout(function(){ typeChar(msg, j+1); }, 28); }
+      }
+      deleteChar();
+    }
+    setTimeout(function() { typeSMS(); setInterval(typeSMS, 22000); }, 8000);
+
+    function syncTicker() {
+      var cr = el('close-rate');
+      var msg = 'MISSED CALL TEXT BACK ACTIVE &nbsp;·&nbsp; '+seqCnt+' FOLLOW-UP SEQUENCES RUNNING &nbsp;·&nbsp; PIPELINE: '+fmtK(totalPipeline())+' &nbsp;·&nbsp; ZERO MISSED LEADS &nbsp;·&nbsp; CLOSE RATE: '+(cr?cr.textContent:'42%')+' &nbsp;·&nbsp; INDUSTRY AVG: 31% &nbsp;·&nbsp; ';
+      var tc = el('ticker-content'); if(tc) tc.innerHTML = msg + msg;
+    }
+
+    var stageIds = ['stage-new','stage-qual','stage-visit','stage-pres','stage-close','stage-follow'];
+    var activeStage = 0;
+    setInterval(function() {
+      document.querySelectorAll('.s2-stage-h').forEach(function(s){ s.classList.remove('active'); });
+      var s = el(stageIds[activeStage]); if(s) s.classList.add('active');
+      activeStage = (activeStage + 1) % stageIds.length;
+    }, 3000);
+
+    syncAllStats();
+    function pushLeadAndUpdate() {
+      pushLead();
+      seqCnt += Math.floor(Math.random()*2);
+      installRaw += Math.floor(Math.random()*3000+1000);
+      serviceRaw += Math.floor(Math.random()*1200+300);
+      presCnt = presCnt >= PRES_MAX ? 7 : presCnt + 1;
+      closeCnt = closeCnt >= CLOSE_MAX ? 5 : closeCnt + 1;
+      var cp=el('cnt-pres'),cc=el('cnt-close'),vp=el('val-pres'),vc=el('val-close');
+      if(cp) cp.textContent = presCnt;
+      if(cc) cc.textContent = closeCnt;
+      if(vp) vp.textContent = fmtK(presCnt*9057);
+      if(vc) vc.textContent = fmtK(closeCnt*8700);
+      syncAllStats(); syncTicker();
+    }
+
+    setTimeout(function() { pushLeadAndUpdate(); }, 2000);
+    setInterval(function() { pushLeadAndUpdate(); }, 5000);
+    setTimeout(function() { pushAuto(); }, 1000);
+    setInterval(function() { pushAuto(); }, 3500);
+    setInterval(function() { updateClose(); }, 9000);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', s2Init);
+  else setTimeout(s2Init, 100);
+})();
+
+/* ═══ THE INTERCEPT — MOBILE ═══ */
+(function() {
+  function icInit() {
+    if (window.innerWidth > 900) return;
+    function updateClock() {
+      var now = new Date();
+      var h = now.getHours(), m = now.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12; if (h === 0) h = 12;
+      var mStr = m < 10 ? '0' + m : m;
+      var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var timeEl = document.getElementById('ic-clock-time');
+      var dateEl = document.getElementById('ic-clock-date');
+      if (timeEl) timeEl.textContent = h + ':' + mStr + ' ' + ampm;
+      if (dateEl) dateEl.textContent = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate();
+    }
+    updateClock(); setInterval(updateClock, 1000);
+
+    var scenarios = [
+      { src:0, notifIcon:'📞', notifApp:'MISSED CALL', notif:'John Martinez · (615) 664-9178', systemText:'Missed call detected — auto text-back to customer firing', smsLabel:'AUTO-SMS SENT', sms:"Hey John — it's Jake over at Comfort Air. We just missed your call. Reply YES and I'll get your tech scheduled right now.", replyLabel:'JOHN REPLIED', reply:'"YES — what times work?"', bookedText:'Service Tech · Thu 10AM · $8,400 est.', pipeAdd:8400 },
+      { src:1, notifIcon:'🔍', notifApp:'GOOGLE LOCAL SERVICES', notif:'New lead: Sarah Peterson — AC Replacement', systemText:'New Google LSA lead — qualifying and booking service tech visit', smsLabel:'AUTO-SMS SENT', sms:"Hey Sarah! Jake here from Comfort Air — saw your request come through. I've got a tech available Thursday morning. Does that work for you?", replyLabel:'SARAH REPLIED', reply:'"Thursday works, morning if possible"', bookedText:'Service Tech · Thu 9AM · $11,200 est.', pipeAdd:11200 },
+      { src:2, notifIcon:'📸', notifApp:'INSTAGRAM DM', notif:'New DM: "Hey, my AC stopped working last night"', systemText:'Instagram DM captured — AI responding, qualifying for service tech', smsLabel:'AI RESPONSE SENT', sms:"Hey! It's Jake from Comfort Air. Really sorry to hear that — let's get this fixed today. Can you shoot me your address? I can have a tech out this afternoon.", replyLabel:'CUSTOMER REPLIED', reply:'"Yes please, 4821 Maple Dr — asap!"', bookedText:'Service Tech · Emergency · Today 2PM', pipeAdd:6800 },
+      { src:3, notifIcon:'🌐', notifApp:'WEBSITE FORM', notif:'Form submitted: Mark Jensen — Furnace Repair', systemText:'Website form captured — service tech scheduling sequence firing', smsLabel:'AUTO-SMS SENT', sms:"Hi Mark! Got your furnace request. Your Comfort Advisor is ready — want to lock in a morning slot?", replyLabel:'MARK REPLIED', reply:'"Morning works great, thanks!"', bookedText:'Service Tech · Fri 8AM · $16,400 est.', pipeAdd:16400 },
+      { src:4, notifIcon:'📘', notifApp:'FACEBOOK MESSAGE', notif:'Message: "Do you service heat pumps?"', systemText:'Facebook message captured — AI qualifying for service tech dispatch', smsLabel:'AI RESPONSE SENT', sms:"Hey! Jake from Comfort Air — yes, heat pumps are our thing. What's going on with yours? I can probably get a tech out to you this week.", replyLabel:'CUSTOMER REPLIED', reply:'"It\'s not heating — been out two days"', bookedText:'Service Tech · Emergency · Tomorrow 9AM', pipeAdd:14800 },
+      { src:5, notifIcon:'🤝', notifApp:'REFERRAL', notif:'Referred by: Kim Harper — "Call Derek, needs full system"', systemText:'Referral captured — Comfort Advisor outreach sequence firing', smsLabel:'AUTO-SMS SENT', sms:"Hey Derek — Jake here, Kim mentioned you might need some help. I appreciate the referral. Want to get a tech out to take a look this week?", replyLabel:'DEREK REPLIED', reply:'"Yeah Kim told me about you guys — Thursday?"', bookedText:'Comfort Advisor Intro · Thu 1PM · $18,600 est.', pipeAdd:18600 }
+    ];
+
+    var pipeRaw = 248000, idx = 0, running = false;
+    function el(id) { return document.getElementById(id); }
+    function show(id, delay) {
+      setTimeout(function() {
+        var s = el(id); if (!s) return;
+        s.style.opacity='0'; s.style.transform='translateY(10px)'; s.style.display='flex';
+        s.getBoundingClientRect();
+        s.style.transition='opacity 0.4s ease, transform 0.4s ease';
+        s.style.opacity='1'; s.style.transform='translateY(0)';
+      }, delay);
+    }
+    function hideAll() {
+      ['ic-step-1','ic-step-2','ic-step-3','ic-step-4','ic-step-5'].forEach(function(id) { var s=el(id); if(s){s.style.display='none';s.style.opacity='0';} });
+      var r=el('ic-replay'); if(r) r.classList.remove('visible');
+    }
+    function typeText(id, text, speed, cb) {
+      var t=el(id); if(!t){if(cb)cb();return;} t.textContent=''; var i=0;
+      function next() { if(i<=text.length){t.textContent=text.substring(0,i++);setTimeout(next,speed);}else{if(cb)cb();} }
+      next();
+    }
+    function rotateSrc(srcIdx) {
+      for(var i=0;i<6;i++){var p=el('src-'+i);if(p){p.classList.remove('active');if(i===srcIdx)p.classList.add('active');}}
+    }
+    function runTimer(duration, tick, cb) {
+      var elapsed=0, te=el('ic-timer');
+      function t() { elapsed+=tick; if(te) te.textContent=Math.round(elapsed/1000)+'s'; if(elapsed>=duration){if(cb)cb();}else{setTimeout(t,tick);} }
+      setTimeout(t,tick);
+    }
+    function fadeOutAndRun(sc, cb) {
+      var phone=document.querySelector('.s2-phone');
+      if(!phone){run(sc,cb);return;}
+      phone.style.transition='opacity 0.5s ease'; phone.style.opacity='0';
+      setTimeout(function() { hideAll(); var notif=el('ic-notif'); if(notif){notif.style.opacity='0';notif.style.transform='translateY(-12px)';notif.style.transition='none';} phone.style.transition='opacity 0.5s ease'; phone.style.opacity='1'; run(sc,cb); },520);
+    }
+    function run(sc, onComplete) {
+      if(running)return; running=true;
+      rotateSrc(sc.src);
+      var notif=el('ic-notif');
+      if(notif){
+        notif.style.opacity='0';notif.style.transform='translateY(-12px)';notif.style.display='flex';
+        var icon=notif.querySelector('.s2-notif-icon');if(icon)icon.textContent=sc.notifIcon;
+        var app=notif.querySelector('.s2-notif-app');if(app)app.textContent=sc.notifApp;
+        var nt=el('ic-notif-text');if(nt)nt.textContent=sc.notif;
+        var timer=el('ic-timer');if(timer)timer.textContent='0s';
+      }
+      function setText(stepId,sel,text){var s=el(stepId);if(!s)return;var e=s.querySelector(sel);if(e)e.textContent=text;}
+      setText('ic-step-1','.s2-step-text',sc.systemText);
+      setText('ic-step-2','.s2-step-label',sc.smsLabel);
+      setText('ic-step-3','.s2-step-label',sc.replyLabel);
+      setText('ic-step-3','.s2-step-text',sc.reply);
+      setText('ic-step-4','.s2-step-text',sc.bookedText);
+      setTimeout(function(){if(!notif)return;notif.style.transition='opacity 0.4s ease, transform 0.4s ease';notif.style.opacity='1';notif.style.transform='translateY(0)';},400);
+      show('ic-step-1',1000);
+      setTimeout(function(){runTimer(2000,200,function(){});},1100);
+      var smsDelay=3200;
+      show('ic-step-2',smsDelay-200);
+      setTimeout(function(){typeText('ic-sms-text',sc.sms,16,null);},smsDelay);
+      var replyDelay=smsDelay+sc.sms.length*16+1000;
+      show('ic-step-3',replyDelay);
+      var bookedDelay=replyDelay+1400;
+      show('ic-step-4',bookedDelay);
+      var pipeDelay=bookedDelay+1400;
+      show('ic-step-5',pipeDelay);
+      setTimeout(function(){
+        pipeRaw+=sc.pipeAdd;
+        var pv=el('ic-pipe-val');if(pv)pv.textContent='$'+Math.round(pipeRaw/1000)+'K';
+        var ip=el('ic-pipeline');if(ip)ip.textContent='$'+Math.round(pipeRaw/1000)+'K';
+        var dpv=el('pipeline-val');if(dpv)dpv.textContent='$'+Math.round(pipeRaw/1000)+'K';
+      },pipeDelay+150);
+      setTimeout(function(){
+        var r=el('ic-replay');if(r)r.classList.add('visible');
+        setTimeout(function(){running=false;if(onComplete)onComplete();},2500);
+      },pipeDelay+1200);
+    }
+    function next() { idx=(idx+1)%scenarios.length; fadeOutAndRun(scenarios[idx],scheduleNext); }
+    var replayBtn=el('ic-replay-btn');
+    if(replayBtn) replayBtn.addEventListener('click',function(){if(!running){idx=(idx+1)%scenarios.length;fadeOutAndRun(scenarios[idx],scheduleNext);}});
+    function scheduleNext() { setTimeout(function(){next();},3000); }
+    setTimeout(function(){run(scenarios[0],scheduleNext);},900);
+    setInterval(function(){
+      var r=38+Math.floor(Math.random()*8);
+      var cr=el('ic-closerate');if(cr)cr.textContent=r+'%';
+      var ip=el('ic-pipeline');if(ip)ip.textContent='$'+Math.round(pipeRaw/1000)+'K';
+    },9000);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',icInit);
+  else setTimeout(icInit,150);
+})();
+</script>
 
 <script>
 (function(){

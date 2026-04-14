@@ -372,7 +372,6 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 @media(max-width:900px){
   .nav{padding:0 20px}
   .nav-links,.nav-actions .nav-cta{display:none}
-  .nav-toggle{display:inline-flex}
   .hero-inner{padding:60px 20px 48px!important}
   .hero-btns{flex-direction:column;align-items:stretch}
   .section{padding:60px 0}
@@ -693,6 +692,9 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .outcomes-grid{grid-template-columns:1fr!important}
 .s2-auto-row{grid-template-columns:1fr!important}
 .outcome-card{padding:24px!important}
+
+.nav{padding:0 20px}
+.nav-links,.nav-actions .nav-cta{display:none}
 @media(max-width:900px){.faq-inner{padding:0 24px}}
 
 
@@ -720,6 +722,7 @@ body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 .body-menu-open .mobile-menu{right:0}
 /* nav mobile rules in main @media block */
 
+@media(max-width:900px){.nav-toggle{display:inline-flex!important}.nav-links,.nav-actions .nav-cta{display:none!important}}
 </style>
 </head>
 <body>

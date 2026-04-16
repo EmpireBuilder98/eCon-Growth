@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eCon Growth · Command OS Cold Call System</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#21E68A;--g2:#0D3D26;--g3:rgba(33,230,138,.08);
+  --bg:#000;--bg2:#050505;--bg3:#0A0A0A;--bg4:#0F0F0F;
+  --w:#EAF0FF;--w2:rgba(234,240,255,.7);--w3:rgba(234,240,255,.35);--w4:rgba(234,240,255,.12);
+  --border:rgba(234,240,255,.06);--border2:rgba(33,230,138,.2);
+  --y:#F59E0B;--r:#EF4444;--b:#3B82F6;--p:#8B5CF6;
+  --font-head:'Bebas Neue',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --font-title:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:var(--font-body);overflow-x:hidden;line-height:1.6}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:var(--g);border-radius:2px}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:58px;display:flex;align-items:center;padding:0 32px;gap:32px}
+.nav-logo{font-family:var(--font-head);font-size:22px;color:var(--w);white-space:nowrap;letter-spacing:.04em}
+.nav-logo span{color:var(--g)}
+.nav-tabs{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--w3);padding:6px 12px;border-radius:5px;cursor:pointer;white-space:nowrap;border:1px solid transparent;transition:all .2s;text-transform:uppercase}
+.nav-tab:hover{color:var(--w);background:var(--w4)}
+.nav-tab.active{color:var(--g);background:var(--g3);border-color:var(--border2)}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding:80px 0 60px}
+.page.active{display:block}
+.container{max-width:960px;margin:0 auto;padding:0 32px}
+
+/* ── HERO ELEMENTS ── */
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--g);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--g)}
+.page-title{font-family:var(--font-head);font-size:clamp(48px,7vw,88px);line-height:.95;color:var(--w);text-transform:uppercase;letter-spacing:.02em;margin-bottom:16px}
+.page-title span{color:var(--g)}
+.page-sub{font-size:17px;color:var(--w2);max-width:640px;line-height:1.7;margin-bottom:40px}
+
+/* ── CARDS ── */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .2s}
+.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--g)}
+.card:hover{border-color:rgba(33,230,138,.15)}
+.card-green{border-color:var(--border2);background:rgba(33,230,138,.04)}
+.card-yellow{border-left:3px solid var(--y);background:rgba(245,158,11,.04)}
+.card-red{border-left:3px solid var(--r);background:rgba(239,68,68,.04)}
+.card-purple{border-left:3px solid var(--p);background:rgba(139,92,246,.04)}
+
+/* ── SCRIPT LINES ── */
+.script-block{margin:20px 0}
+.script-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;font-weight:700;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.label-you{color:var(--g)}
+.label-them{color:var(--y)}
+.label-note{color:var(--w3)}
+.script-text{font-size:15px;line-height:1.7;padding:16px 20px;border-radius:0 8px 8px 8px;border:1px solid var(--border)}
+.text-you{background:#030A04;border-color:rgba(33,230,138,.12);color:var(--w)}
+.text-them{background:#0A0800;border-color:rgba(245,158,11,.12);color:rgba(234,240,255,.65);font-style:italic}
+.text-note{background:var(--bg3);border-color:var(--border);color:var(--w3);font-size:13px;font-style:italic;padding:12px 20px}
+
+/* ── PHRASE CARDS ── */
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:24px 0}
+.phrase-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.phrase-card::after{content:'';position:absolute;inset:0;background:var(--g3);opacity:0;transition:opacity .2s}
+.phrase-card:hover::after{opacity:1}
+.phrase-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.phrase-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;color:var(--g);text-transform:uppercase;margin-bottom:8px}
+.phrase-text{font-family:var(--font-title);font-size:15px;font-weight:700;color:var(--w);line-height:1.4}
+.phrase-why{font-size:12px;color:var(--w3);margin-top:6px;line-height:1.5}
+
+/* ── QUOTE BLOCKS ── */
+.quote-block{padding:32px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;margin:16px 0;position:relative}
+.quote-mark{font-size:80px;line-height:.6;color:var(--g);opacity:.2;font-family:Georgia,serif;position:absolute;top:20px;left:24px}
+.quote-text{font-family:var(--font-title);font-size:20px;font-weight:600;color:var(--w);line-height:1.5;margin-bottom:12px;padding-left:8px}
+.quote-attr{font-family:var(--font-mono);font-size:11px;color:var(--g);letter-spacing:.12em}
+
+/* ── OBJECTION TABLE ── */
+.obj-table{width:100%;border-collapse:collapse;margin:20px 0}
+.obj-table th{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--g);padding:12px 16px;border-bottom:1px solid var(--border2);text-align:left}
+.obj-table td{padding:16px;border-bottom:1px solid var(--border);vertical-align:top;font-size:14px;line-height:1.6}
+.obj-table tr:hover td{background:var(--bg4)}
+.obj-q{color:var(--y);font-weight:600;width:32%}
+.obj-a{color:var(--w2)}
+.obj-why{color:var(--g);font-size:12px;font-family:var(--font-mono);width:20%}
+
+/* ── STEPS ── */
+.step-list{display:flex;flex-direction:column;gap:3px;margin:20px 0}
+.step-item{display:grid;grid-template-columns:48px 1fr;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.step-item:hover{border-color:var(--border2)}
+.step-num{background:var(--g3);border-right:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:28px;color:var(--g);padding:16px 0}
+.step-content{padding:16px 20px}
+.step-head{font-size:13px;font-weight:700;color:var(--w);margin-bottom:4px}
+.step-body{font-size:13px;color:var(--w3);line-height:1.6}
+
+/* ── MINDSET ROWS ── */
+.mindset-item{display:grid;grid-template-columns:40px 1fr;gap:0;margin-bottom:4px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg3)}
+.mindset-icon{background:var(--g3);display:flex;align-items:center;justify-content:center;color:var(--g);font-size:18px;font-weight:900}
+.mindset-body{padding:16px 18px}
+.mindset-point{font-size:14px;font-weight:700;color:var(--w);margin-bottom:4px}
+.mindset-detail{font-size:13px;color:var(--w3);line-height:1.5}
+
+/* ── TIP BOX ── */
+.tip-box{background:linear-gradient(135deg,rgba(33,230,138,.06),rgba(33,230,138,.02));border:1px solid rgba(33,230,138,.18);border-radius:10px;padding:20px 24px;margin:16px 0}
+.tip-header{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;color:var(--g);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tip-header::before{content:'▸';font-size:12px}
+.tip-text{font-size:14px;color:var(--w2);line-height:1.65}
+
+/* ── SECTION DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:32px 0}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-num{font-family:var(--font-mono);font-size:11px;color:var(--g);letter-spacing:.2em;background:var(--g3);border:1px solid var(--border2);padding:4px 10px;border-radius:4px}
+.section-title{font-family:var(--font-head);font-size:32px;color:var(--w);text-transform:uppercase;letter-spacing:.04em}
+
+/* ── PEP TALK SPECIAL ── */
+.pep-hero{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:48px;text-align:center;margin-bottom:32px;position:relative;overflow:hidden}
+.pep-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(33,230,138,.08),transparent 70%)}
+.pep-title{font-family:var(--font-head);font-size:clamp(56px,8vw,100px);line-height:.9;color:var(--w);text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;position:relative}
+.pep-title span{color:var(--g)}
+.pep-sub{font-size:16px;color:var(--w3);font-style:italic;position:relative}
+
+/* ── STAT STRIP ── */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:24px 0}
+.stat-box{background:var(--bg3);border:1px solid var(--border);padding:20px;text-align:center;transition:border-color .2s}
+.stat-box:hover{border-color:var(--border2)}
+.stat-box:first-child{border-radius:8px 0 0 8px}
+.stat-box:last-child{border-radius:0 8px 8px 0}
+.stat-num{font-family:var(--font-head);font-size:42px;color:var(--g);line-height:1}
+.stat-label{font-family:var(--font-mono);font-size:10px;color:var(--w3);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+/* ── CLOSER BAR ── */
+.closer-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.97);border-top:1px solid var(--border);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;z-index:999;backdrop-filter:blur(20px)}
+.closer-phrase{font-family:var(--font-mono);font-size:11px;color:var(--g);letter-spacing:.1em;transition:opacity .5s}
+.closer-btn{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;color:#000;background:var(--g);border:none;padding:8px 20px;border-radius:5px;cursor:pointer;text-transform:uppercase;font-weight:700;transition:all .2s}
+.closer-btn:hover{background:#fff;transform:scale(1.03)}
+
+/* ── BRAND PILL ── */
+.brand-pill{display:inline-flex;align-items:center;gap:8px;background:var(--g3);border:1px solid var(--border2);border-radius:100px;padding:6px 14px;font-family:var(--font-mono);font-size:11px;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin:4px}
+.brand-pill::before{content:'';width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+
+/* ── GRID 2COL ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}.stat-strip{grid-template-columns:1fr 1fr}}
+
+/* ── COVER PAGE ── */
+.cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:40px 0}
+.cover-meta{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:20px}
+.cover-meta-label{font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}
+.cover-meta-val{font-size:14px;color:var(--w2);line-height:1.5}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page.active .container>*{animation:fadeUp .35s ease both}
+.page.active .container>*:nth-child(2){animation-delay:.05s}
+.page.active .container>*:nth-child(3){animation-delay:.1s}
+.page.active .container>*:nth-child(4){animation-delay:.15s}
+.page.active .container>*:nth-child(5){animation-delay:.2s}
+
+/* ── PHONE DISPLAY ── */
+.phone-num{font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--g);letter-spacing:.08em;background:var(--g3);border:1px solid var(--border2);border-radius:8px;padding:16px 24px;display:inline-block;margin:8px 0;cursor:pointer;transition:all .2s}
+.phone-num:hover{background:rgba(33,230,138,.12);transform:scale(1.02)}
+
+/* ── PROGRESS DOT NAV ── */
+.dot-nav{display:flex;gap:6px;align-items:center}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--w4);cursor:pointer;transition:all .2s}
+.dot.active{background:var(--g);width:20px;border-radius:3px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">e<span>C</span>on Growth</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="goTo(0)">Cover</div>
+    <div class="nav-tab" onclick="goTo(1)">Pep Talk</div>
+    <div class="nav-tab" onclick="goTo(2)">Mindset</div>
+    <div class="nav-tab" onclick="goTo(3)">Phrases</div>
+    <div class="nav-tab" onclick="goTo(4)">Gatekeeper</div>
+    <div class="nav-tab" onclick="goTo(5)">Owner Call</div>
+    <div class="nav-tab" onclick="goTo(6)">In-Person</div>
+    <div class="nav-tab" onclick="goTo(7)">Objections</div>
+    <div class="nav-tab" onclick="goTo(8)">⚡ Roger Live</div>
+    <div class="nav-tab" onclick="goTo(9)">Follow-Up</div>
+    <div class="nav-tab" onclick="goTo(10)">Close</div>
+    <div class="nav-tab" onclick="goTo(11)">Visionaries</div>
+    <div class="nav-tab" onclick="goTo(12)">Kris Tips</div>
+  </div>
+  <div class="dot-nav" id="dotNav"></div>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  00 · COVER                               -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page active" id="p0">
+<div class="container">
+  <div class="eyebrow">Command OS · Cold Call System · 2026</div>
+  <div class="page-title">The<br><span>Playbook.</span></div>
+  <div class="page-sub">Every word you need to get past the gatekeeper, into the owner's world, and walk out with a yes. Built from 10 years in the HVAC trenches. Powered by Roger.</div>
+
+  <div class="stat-strip">
+    <div class="stat-box"><div class="stat-num">8</div><div class="stat-label">Sections</div></div>
+    <div class="stat-box"><div class="stat-num">15</div><div class="stat-label">Min Ask</div></div>
+    <div class="stat-box"><div class="stat-num">7</div><div class="stat-label">Objection Kills</div></div>
+    <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Goal: YES</div></div>
+  </div>
+
+  <div class="cover-grid">
+    <div class="cover-meta"><div class="cover-meta-label">Objective</div><div class="cover-meta-val">Get 15 minutes face-to-face with the owner — coffee & donuts for the crew, live Roger demo for the owner.</div></div>
+    <div class="cover-meta"><div class="cover-meta-label">The Ask</div><div class="cover-meta-val">Not a sale. Not a pitch. A 15-minute real demo at their location. Breakfast is on us.</div></div>
+    <div class="cover-meta"><div class="cover-meta-label">Target</div><div class="cover-meta-val">HVAC owner running 2–15 trucks. Owner-operated. Feeling the chaos. Ready to scale or drowning trying.</div></div>
+    <div class="cover-meta"><div class="cover-meta-label">Roger Live</div><div class="cover-meta-val"><div class="phone-num" onclick="copyPhone()">(385) 349-4337</div><br><span style="font-size:12px;color:var(--w3)">Tap to copy · Call this live in front of every owner</span></div></div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-header">How to use this system</div>
+    <div class="tip-text">Navigate using the tabs above. Read Pep Talk before every dial session. Memorize the Phrases page until they feel like your own words. The scripts are a guide — not a script. Stay human. Stay direct. Stay Kristopher.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  01 · PEP TALK                            -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p1">
+<div class="container">
+  <div class="pep-hero">
+    <div class="pep-title">They<br><span>Need</span><br>This.</div>
+    <div class="pep-sub">Every HVAC owner you're calling right now is losing money they don't even know is gone.</div>
+  </div>
+
+  <div class="eyebrow">Before every dial session</div>
+  <div class="page-title" style="font-size:clamp(36px,5vw,60px)">Read This<br><span>Out Loud.</span></div>
+
+  <div class="card card-green" style="padding:32px;margin-bottom:24px">
+    <div style="font-family:var(--font-title);font-size:18px;color:var(--w);line-height:1.8;font-weight:500">
+      Right now — somewhere in this city — an HVAC owner just missed a call at 9pm. A homeowner called, nobody picked up, they Googled the next company, and that company just booked a $4,000 AC install. That money was supposed to go to the guy we're about to call. He just doesn't know it yet.<br><br>
+      <span style="color:var(--g);font-weight:700">That's what we fix. That's why we're calling. Not to sell something. To show them what's already broken.</span><br><br>
+      I'm not interrupting their day. I'm the most important call they're going to get today. Because I'm the one person who can show them where the money's going.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-header"><div class="section-num">TEAM</div><div class="section-title">You Are Built For This</div></div>
+
+  <div class="grid-2">
+    <div class="card" style="padding:24px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px">Every rejection is data</div>
+      <div style="font-size:14px;color:var(--w2);line-height:1.6">Every "not interested" is one call closer to the owner who's been waiting for exactly what we built. You're not failing. You're filtering. The right ones will feel it.</div>
+    </div>
+    <div class="card" style="padding:24px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px">You have the unfair advantage</div>
+      <div style="font-size:14px;color:var(--w2);line-height:1.6">You're not selling air. You're selling Roger — an AI that answers every call, books every job, and follows up at midnight. You have a demo that sells itself. Use it.</div>
+    </div>
+    <div class="card" style="padding:24px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px">Their chaos is your opening</div>
+      <div style="font-size:14px;color:var(--w2);line-height:1.6">Every HVAC company running on disconnected tools, a dispatcher who's spread thin, and an owner stuck in the business — that's your prospect. Chaos is everywhere. You have the cure.</div>
+    </div>
+    <div class="card" style="padding:24px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px">15 minutes changes everything</div>
+      <div style="font-size:14px;color:var(--w2);line-height:1.6">You're not asking for a big commitment. Coffee and donuts. 15 minutes. A live demo. When they hear Roger answer that call — the conversation shifts. That moment is yours. Own it.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card card-green" style="padding:28px;text-align:center">
+    <div style="font-family:var(--font-head);font-size:36px;color:var(--g);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Lock In. Dial Up. Get The Yes.</div>
+    <div style="font-size:15px;color:var(--w3)">Every call is a chance to change a business owner's life. Don't take that lightly. Don't rush it. Be present. Be real. Be Kristopher.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  02 · MINDSET                             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p2">
+<div class="container">
+  <div class="eyebrow">Before you say a word</div>
+  <div class="page-title">The<br><span>Mindset.</span></div>
+  <div class="page-sub">The words don't matter if the energy is wrong. Lock these in first.</div>
+
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">You are not chasing them. You are selecting them.</div><div class="mindset-detail">Approach every call from abundance. You work with a small number of operators. Not everyone qualifies. When they feel you don't need them — they want you more.</div></div></div>
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">Pain is the only product.</div><div class="mindset-detail">Features don't close deals. Pain does. Every question you ask should expose where money is leaking. Recruiting chaos. Missed calls. No follow-up. Find the wound. That's your leverage.</div></div></div>
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">The ask is impossibly small.</div><div class="mindset-detail">Coffee, donuts, 15 minutes. That's all. Nobody says no to breakfast for their crew. Lower the bar so far it would be embarrassing to say no.</div></div></div>
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">You built this from the inside.</div><div class="mindset-detail">10 years on the trucks, in dispatch, running companies for owners. You are not an outsider pitching tech. You are one of them, showing them what you wish you'd had.</div></div></div>
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">Rejection is redirection.</div><div class="mindset-detail">Every no is a filter. Wrong size. Wrong timing. Wrong mindset. You don't have time for companies that aren't ready to grow. Next call. Always next call.</div></div></div>
+  <div class="mindset-item"><div class="mindset-icon">▸</div><div class="mindset-body"><div class="mindset-point">Roger sells himself. Your job is the room.</div><div class="mindset-detail">You don't close the sale. Roger does. Your only job is getting in front of the owner with a phone in hand. Once they hear Roger answer live — the conversation changes completely.</div></div></div>
+
+  <div class="divider"></div>
+
+  <div class="tip-box">
+    <div class="tip-header">Before every call — say this to yourself</div>
+    <div class="tip-text" style="font-family:var(--font-title);font-size:17px;font-weight:600;color:var(--w)">"I'm not interrupting their day. I'm the most important call they're going to get today. Because I'm the one person who knows where the money's going."</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  03 · PHRASES                             -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p3">
+<div class="container">
+  <div class="eyebrow">Brand these into your brain</div>
+  <div class="page-title">The<br><span>Phrases.</span></div>
+  <div class="page-sub">These aren't lines to memorize. They're ideas to own. Say them enough until they sound like you — because they should.</div>
+
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-tag">Opening Power</div><div class="phrase-text">"I know you're busy so I'll be straight with you."</div><div class="phrase-why">Disarms instantly. Shows respect for their time. Separates you from every other caller who dances around it.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">The Real Offer</div><div class="phrase-text">"I want to swing by with coffee and donuts for the crew — 15 minutes while everyone grabs a bite."</div><div class="phrase-why">Impossible to say no to. Generous without being weird. Gets you in the door before a single objection.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Pain Finder</div><div class="phrase-text">"When a call comes in and your dispatcher's tied up — what actually happens?"</div><div class="phrase-why">Open-ended. Exposes the gap they've learned to live with. Their answer becomes your entire pitch.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">The Shift</div><div class="phrase-text">"Most of those unanswered calls don't call back — they just Google the next guy."</div><div class="phrase-why">This sentence changes the conversation. It makes the problem real and urgent. It costs them money every day.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Roger Intro</div><div class="phrase-text">"His name is Roger. He picks up every call, qualifies the lead, and books the job — at 2am if he has to."</div><div class="phrase-why">Name him. Humanize him. The specificity of "2am" makes it concrete and shocking. It gets a reaction every time.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Selectivity Close</div><div class="phrase-text">"We're selective about who we work with. No rush on my end."</div><div class="phrase-why">Reverse psychology at its finest. The moment you stop chasing is the moment they start. Use it when they hesitate.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Direct Honesty</div><div class="phrase-text">"Can I be upfront with you? Most guys who say 'send me something' never look at it."</div><div class="phrase-why">Raw honesty earns more trust than any polished pitch line. Owners respect people who say what others won't.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Tech Reframe</div><div class="phrase-text">"This doesn't replace your dispatcher. It handles what she physically can't."</div><div class="phrase-why">Kills the biggest fear in one sentence. Nobody wants to fire their people. Roger fills gaps — he doesn't take jobs.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">The Challenge</div><div class="phrase-text">"If it doesn't blow your mind, I'll buy the coffee. Deal?"</div><div class="phrase-why">Confident, playful, and locks them in. You only say this when you know Roger will deliver. He always delivers.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Peer to Peer</div><div class="phrase-text">"I spent 10 years in HVAC — on the trucks, in dispatch, running companies for owners. I built what I wish I'd had."</div><div class="phrase-why">Instant credibility. You are not a tech bro. You are one of them. This line changes the power dynamic completely.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">The Close</div><div class="phrase-text">"What does your Tuesday or Wednesday morning look like?"</div><div class="phrase-why">Two options. Forces a real answer. Never say "when are you free?" — that opens the door to never. Own the calendar.</div></div>
+    <div class="phrase-card"><div class="phrase-tag">Missed Revenue</div><div class="phrase-text">"What does one missed call actually cost you? Not in feelings — in dollars."</div><div class="phrase-why">Makes the invisible visible. They've never calculated it. Walk them through it and the price of Roger becomes obvious.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  04 · GATEKEEPER                          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p4">
+<div class="container">
+  <div class="eyebrow">Section 02</div>
+  <div class="page-title">Get Past<br><span>The Gate.</span></div>
+  <div class="page-sub">CSRs and dispatchers are not the enemy. They're the door. And every door opens with the right key.</div>
+
+  <div class="tip-box"><div class="tip-header">The rule</div><div class="tip-text">Sound like you belong. Be warm. Be brief. Be confident. Do NOT sound like a salesperson — sound like someone who already has a relationship and is just following up.</div></div>
+
+  <div class="section-header" style="margin-top:32px"><div class="section-num">OPEN</div><div class="section-title">First Contact</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Hey, good morning — is [owner name] around? This is Kristopher with eCon Growth."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Use their name if you researched it. If not, say "the owner" — not "the manager." Owners respond to being addressed as owners.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">IF</div><div class="section-title">"What's this regarding?"</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Yeah, totally. I work with HVAC companies in [city] — we put in AI systems that handle incoming calls and booking automatically. I just want to see if it makes sense for them. It'll be quick."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Do NOT say "software," "CRM," "platform," or "sales call." Keep it conversational. "AI system that handles calls" sounds interesting, not threatening. Curiosity is your friend.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">IF</div><div class="section-title">"He's busy / unavailable"</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"No problem at all. What's usually the best time to catch them — morning or afternoon?"</div>
+    <div class="script-label label-them" style="margin-top:8px">◆ Them</div>
+    <div class="script-text text-them">"Probably mornings before 9."</div>
+    <div class="script-label label-you" style="margin-top:8px">▸ You say</div>
+    <div class="script-text text-you">"Perfect. I'll call back then. And hey — what's your name? I'll ask for you directly so I'm not a complete stranger next time."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Getting the CSR's name is gold. Use it every single callback. "Hey Sarah, it's Kristopher again" changes the dynamic from cold call to familiar relationship instantly.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">PIVOT</div><div class="section-title">"We're slammed right now"</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Absolutely. Actually — I was thinking about swinging by with coffee and donuts for the crew one morning anyway. Would [owner name] have 15 minutes to chat while everyone grabs a bite? I just want to show them something real quick in person."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">This is the coffee pivot. Use it whenever they put you off. It's generous, disarming, and nearly impossible to say no to. If they say yes — lock the date immediately. Do not leave without a day.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">REFRAME</div><div class="section-title">"We already have software"</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"That's actually fine — most of the guys we work with do. This isn't really a software thing. It's more about — are your phones getting answered when nobody's available? And is someone following up on leads at midnight? That's where Roger comes in. Worth 15 minutes to show [owner name] what it actually does."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Never argue about their software. Never compete with it. Reframe to the gap their software leaves — phones unanswered, no overnight follow-up. Every HVAC company has this problem regardless of their stack.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">TRANSFER</div><div class="section-title">When they connect you</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Thank you so much — I really appreciate it. Can I get your name? I want to make sure I tell [owner] you took care of me."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Edifying the gatekeeper to the owner creates instant credibility before you say hello. The owner hears "Sarah took care of him" and you're already a different kind of caller.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  05 · OWNER CALL                          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p5">
+<div class="container">
+  <div class="eyebrow">Section 03</div>
+  <div class="page-title">Owner<br><span>Script.</span></div>
+  <div class="page-sub">30 seconds before they check out. Start strong. Start real. Start like you already know their world — because you do.</div>
+
+  <div class="section-header"><div class="section-num">OPEN</div><div class="section-title">The 20-Second Cold Open</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Hey [first name] — this is Kristopher with eCon Growth. I know you're busy so I'll be straight with you. We install AI systems in HVAC companies that handle incoming calls, qualify leads, book jobs, and follow up overnight — automatically. I'm not here to sell you anything today. I actually want to swing by with coffee and donuts for your crew, and while everyone grabs a bite I'd love just 15 minutes to show you what it does in real time. When's a good morning for that?"</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Lead with value AND the ask in one breath. "Coffee and donuts for the crew" is the disarming element — it's generous, low-pressure, and hard to say no to. You're asking for 15 minutes, not a sale. That's the difference.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">DEEPER</div><div class="section-title">If they want to know more</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"So — right now, when one of your techs is on a call and a new customer rings in, what actually happens? Does it go to someone, hit voicemail, or kind of depend on the day?"</div>
+    <div class="script-label label-them" style="margin-top:8px">◆ Them</div>
+    <div class="script-text text-them">"Honestly, it depends. Sometimes it gets picked up, sometimes not."</div>
+    <div class="script-label label-you" style="margin-top:8px">▸ You say</div>
+    <div class="script-text text-you">"That's exactly it. And the ones that go unanswered — most of them don't call back. They just Google the next guy. Our system — his name is Roger — he picks up every single call, qualifies the lead, handles objections, and books the job. While your techs are on the road. While you're in a meeting. At 2 in the morning. He never misses a call."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Let them tell you the problem. Then mirror it back with Roger as the exact solution. Never list features. The moment you say "it also has..." you've lost them. One problem. One solution. One call.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">LOCK IT</div><div class="section-title">Closing the visit</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Look, I don't want to waste your time on the phone trying to explain something you need to see. That's why I want to come to you. Donuts for the crew, 15 minutes on your iPad or laptop, I'll show you Roger live. You'll either love it or you won't — but at least you'll have seen what the best operators in HVAC are already running. What does your Tuesday or Wednesday morning look like?"</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Two specific days. Not "when are you free?" — that opens the door to never. Own the calendar. Give them a choice between two yeses, not a yes and a no.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">HANDLE</div><div class="section-title">"Just send me something first"</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Totally. I'll send over a quick one-pager. And honestly — can I be upfront? Most guys who say that end up not looking at it, and I'd rather just show you in 15 minutes than have it sit in your inbox. But I'll send it. I just want to earn 15 minutes in person."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Acknowledge. Validate. Push back honestly. This is the Kristopher close — direct, no games, no manipulation. HVAC owners have been pitched by a hundred vendors. Raw honesty is your differentiator.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  06 · IN-PERSON                           -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p6">
+<div class="container">
+  <div class="eyebrow">Section 04</div>
+  <div class="page-title">The<br><span>15 Minutes.</span></div>
+  <div class="page-sub">You're in the door. Coffee in hand. Crew is happy. The owner has 15 minutes. This is where you change a business.</div>
+
+  <div class="tip-box"><div class="tip-header">The setup</div><div class="tip-text">Bring good coffee. Real donuts. Enough for everyone. Hand them off to the front desk with a smile. The crew loves you before you say a word. The owner sees generosity before he sees a pitch. Social capital, instantly earned.</div></div>
+
+  <div class="section-header" style="margin-top:32px"><div class="section-num">ARRIVE</div><div class="section-title">Walk-In Line</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Hey — I'm Kristopher, I told [CSR name] I'd bring breakfast. This is for the whole team. Is [owner name] around?"</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Warm. Generous. Zero pressure. The team sees you before the owner does. That introduction works for you the entire 15 minutes.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">EXECUTE</div><div class="section-title">The 15-Minute Sequence</div></div>
+
+  <div class="step-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-head">Ask the pain question first — don't demo yet</div><div class="step-body">"Before I show you anything — when a call comes in and your dispatcher's tied up, what happens?" Let them talk for 60 seconds. Their answer is your entire pitch. Listen harder than you talk.</div></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-head">Call Roger live — say absolutely nothing</div><div class="step-body">Dial (385) 349-4337. Put it on speaker. Watch their face. Do not narrate. Do not explain. Let Roger do his job. The silence after the demo is your most powerful sales moment.</div></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-head">Mirror their exact words back</div><div class="step-body">"Remember what you said about calls going to voicemail? Roger just handled that. Every time. Overnight. On weekends. He doesn't need a break, he doesn't have bad days, and he never puts a customer on hold."</div></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-head">Show the Command OS dashboard</div><div class="step-body">Pull up the live view. Show the pipeline, call log, dispatch queue, AI reports. "This is what your business looks like at 6am before you've had your coffee. Every call. Every lead. Every tech. One screen."</div></div></div>
+    <div class="step-item"><div class="step-num">5</div><div class="step-content"><div class="step-head">Close to the Growth Call — not the sale</div><div class="step-body">"Here's all I'm asking — let's get on a 30-minute call with me and my partner Watson. We'll map out what this looks like for your specific operation and tell you honestly if it's a fit. Can we get something on the calendar before I leave?"</div></div></div>
+  </div>
+
+  <div class="tip-box" style="margin-top:24px"><div class="tip-header">The most important moment</div><div class="tip-text" style="font-size:16px;font-family:var(--font-title);font-weight:600;color:var(--w)">After Roger answers that call live — don't speak for 4 seconds. Let it land. The silence is worth more than anything you could say.</div></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  07 · OBJECTIONS                          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p7">
+<div class="container">
+  <div class="eyebrow">Section 05</div>
+  <div class="page-title">Objection<br><span>Kills.</span></div>
+  <div class="page-sub">Every objection is a question in disguise. Answer the real question, not the surface one.</div>
+
+  <table class="obj-table">
+    <thead><tr><th>They say</th><th>The real fear</th><th>You say</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="obj-q">"I'm too busy right now"</td>
+        <td class="obj-why">No time</td>
+        <td class="obj-a">"I get it — that's exactly why I want to come to you. Coffee and donuts, 15 minutes, your shop. I'll fit into your world, not the other way around. What morning works — Tuesday or Wednesday?"</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"We already have ServiceTitan / Successware"</td>
+        <td class="obj-why">Switching risk</td>
+        <td class="obj-a">"Good. This doesn't replace that — Roger lives on top of your stack. He handles what no software does: answering calls at 2am, qualifying leads while your team's stretched, following up on the ones that went cold. It fills the gaps your software leaves open."</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"We can't afford it right now"</td>
+        <td class="obj-why">ROI unclear</td>
+        <td class="obj-a">"I hear you. Can I ask — what does one missed call actually cost you? One job that went to voicemail and called your competitor instead? Roger pays for himself in the first week for most companies. But let me show you first before we ever talk numbers."</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"I've heard the AI thing before"</td>
+        <td class="obj-why">Trust / hype</td>
+        <td class="obj-a">"Fair. Honestly, most of it is hype. That's exactly why I want 15 minutes in person — not to pitch you, but to dial Roger's number in front of you right now and let you hear it with your own ears. If it doesn't blow your mind, I'll buy the coffee. Deal?"</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"Send me something first"</td>
+        <td class="obj-why">Not ready</td>
+        <td class="obj-a">"Absolutely, I'll send it. But real talk — most guys who say that never look at it, and I'd rather earn 15 minutes in person than compete with 200 unread emails. Let me bring breakfast, show you Roger live, and if it's not for you I'll respect that immediately."</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"My dispatcher handles all that"</td>
+        <td class="obj-why">Fear of replacing staff</td>
+        <td class="obj-a">"Your dispatcher is the point. Roger doesn't replace her — he handles the overflow, the after-hours, the calls she physically cannot get to. She gets to focus on what only a human can do. Roger handles everything else. They work together."</td>
+      </tr>
+      <tr>
+        <td class="obj-q">"I need to think about it"</td>
+        <td class="obj-why">Something specific</td>
+        <td class="obj-a">"What part? The system, the timing, or the investment? Because each one has a completely different answer and I'd rather address it right now than leave you with an open question. What's the real hold-up?"</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  08 · ROGER DEMO                          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p8">
+<div style="padding:80px 0 80px">
+
+  <!-- HEADER -->
+  <div class="container">
+    <div class="eyebrow">Section 06 · Live</div>
+    <div class="page-title">Roger<br><span>Live Demo.</span></div>
+    <div class="page-sub">Enter the owner's company name and their phone number. Hit Call Me Now. Roger calls them right now. Live transcript appears on screen. Watch their face change in real time.</div>
+
+    <!-- PRE-DEMO BRIEF -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:28px">
+      <div class="card" style="padding:20px;border-color:rgba(33,230,138,.2)">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">Step 1</div>
+        <div style="font-size:14px;color:var(--w);font-weight:600;margin-bottom:4px">Enter their info</div>
+        <div style="font-size:13px;color:var(--w3)">Company name + owner's cell. Do this while they're watching.</div>
+      </div>
+      <div class="card" style="padding:20px;border-color:rgba(33,230,138,.2)">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">Step 2</div>
+        <div style="font-size:14px;color:var(--w);font-weight:600;margin-bottom:4px">Hit Call Me Now</div>
+        <div style="font-size:13px;color:var(--w3)">Roger calls their phone. They answer. You say nothing.</div>
+      </div>
+      <div class="card" style="padding:20px;border-color:rgba(33,230,138,.2)">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px">Step 3</div>
+        <div style="font-size:14px;color:var(--w);font-weight:600;margin-bottom:4px">Watch. Say nothing.</div>
+        <div style="font-size:13px;color:var(--w3)">Transcript goes live. 4-second rule after it ends. Then close.</div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-bottom:24px">
+      <div class="tip-header">The 4-second rule</div>
+      <div class="tip-text" style="font-family:var(--font-title);font-size:16px;font-weight:600;color:var(--w)">When the call ends — count to 4. Don't speak. Let it land. That silence is your close. The owner is processing what they just experienced. The first person who speaks loses.</div>
+    </div>
+  </div>
+
+  <!-- LIVE DEMO EMBED -->
+  <div style="position:relative;width:100%;margin:0 0 0 0">
+    <div style="background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:0">
+      <iframe
+        src="https://econ-growth.com/meet-roger.html"
+        style="width:100%;height:820px;border:none;display:block;background:#000"
+        title="Roger Live Demo"
+        allow="microphone; camera"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- POST-DEMO LINES -->
+  <div class="container" style="margin-top:28px">
+    <div class="section-header"><div class="section-num">AFTER</div><div class="section-title">Post-Demo Lines</div></div>
+
+    <div class="script-block">
+      <div class="script-label label-you">▸ Line 1 — after 4 seconds of silence</div>
+      <div class="script-text text-you">"That just happened automatically. No dispatcher. No delay. He answered on the first ring, qualified the lead, handled the objection, and offered to book a time. That's running inside your business right now if we install it."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label label-you">▸ Line 2 — address the escalation question</div>
+      <div class="script-text text-you">"Most owners ask me right here — 'what if Roger gets a call he can't handle?' He escalates it. Texts your dispatcher, flags it in the system, logs the full call. Nothing falls through."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label label-you">▸ Line 3 — the money line</div>
+      <div class="script-text text-you">"The guys running this — their close rate on inbound went up because leads are being captured at 11pm on Sundays when nobody's working. That's money that used to disappear. It doesn't disappear anymore."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label label-you">▸ Line 4 — if they're leaning in, close immediately</div>
+      <div class="script-text text-you">"So — what does Tuesday look like to get this started? I'll pull up the booking link right now."</div>
+      <div class="script-label label-note" style="margin-top:8px">⚡ Read the room</div>
+      <div class="script-text text-note">Leaning forward, asking questions, showing the transcript to someone else in the room = close NOW. Quiet, arms crossed, nodding slowly = ask one more pain question before you close. More pain = more urgency.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  09 · FOLLOW-UP                           -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p9">
+<div class="container">
+  <div class="eyebrow">Section 07</div>
+  <div class="page-title">Follow-Up<br><span>System.</span></div>
+  <div class="page-sub">The fortune is in the follow-up. Three touches minimum before they move to Nurture. Phone → Text → Phone. Never quit after one.</div>
+
+  <div class="stat-strip">
+    <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Touches Min</div></div>
+    <div class="stat-box"><div class="stat-num">72h</div><div class="stat-label">Max Gap</div></div>
+    <div class="stat-box"><div class="stat-num">25s</div><div class="stat-label">Voicemail Max</div></div>
+    <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Goal: Visit</div></div>
+  </div>
+
+  <div class="section-header" style="margin-top:8px"><div class="section-num">TOUCH 1</div><div class="section-title">Voicemail</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Hey [first name], this is Kristopher with eCon Growth. I work with HVAC companies in [city] — we install AI systems that answer every call and book jobs automatically. Not looking to sell you anything today. I actually want to swing by with coffee and donuts for the team and spend 15 minutes showing you what it does live. Shoot me a text back if that sounds interesting — (615) 664-9178. Talk soon."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Keep it under 25 seconds. The coffee and donuts line is the hook — it sounds completely different from every other voicemail they get. No price. No software. No "schedule a demo." Just breakfast and something interesting.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">TOUCH 2</div><div class="section-title">Text — same day</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You send</div>
+    <div class="script-text text-you">"Hey [first name], Kristopher from eCon Growth. Left you a voicemail — wanted to shoot a quick text too. Working with HVAC guys in [city] on AI call systems. Worth 15 min for me to swing by with coffee for the crew? No pitch, just want to show you something real. (615) 664-9178"</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Text is more likely to get read than a voicemail return. Keep it under 3 sentences. The phrase "show you something real" signals authenticity and triggers curiosity. "No pitch" is the most important two words in the text.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">TOUCH 3</div><div class="section-title">Second Call — 48 to 72 hours</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Hey [first name], Kristopher again from eCon Growth — left you a voicemail couple days ago. Not trying to bug you, just haven't given up yet. Honestly I'd rather come to you than talk on the phone — can I bring breakfast by one morning this week? 15 minutes, I'll show you something you haven't seen before, and I'll get out of your hair."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">"I haven't given up yet" is disarmingly honest. It humanizes you and earns a laugh. Owners respect persistence when it comes with self-awareness and respect for their time. That combination is rare. Use it.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  10 · CLOSE                               -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p10">
+<div class="container">
+  <div class="eyebrow">Section 08</div>
+  <div class="page-title">Close<br><span>The Room.</span></div>
+  <div class="page-sub">You are not closing a sale in 15 minutes. You are closing the next conversation — the Growth Call with both Kristopher and Watson.</div>
+
+  <div class="section-header"><div class="section-num">INTERESTED</div><div class="section-title">Book the Growth Call now</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"Here's what I want to do. My business partner Watson and I do a proper growth call — about 30 minutes — where we look at your specific operation and tell you honestly if this is the right fit and what it would actually look like for your company. No pressure. We've told guys it wasn't the right time for them and meant it. Can we get something on the calendar before I leave? I'll send you a link right now."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">Pull up your booking link and hand them your phone. Let them pick the time right there. Same-day booking is 10x more likely to show than a "I'll check my calendar" close. Do not leave without a date on the calendar.</div>
+  </div>
+
+  <div class="section-header" style="margin-top:28px"><div class="section-num">LUKEWARM</div><div class="section-title">Leave the door open the right way</div></div>
+  <div class="script-block">
+    <div class="script-label label-you">▸ You say</div>
+    <div class="script-text text-you">"I respect that. Here's what I'll do — I'll send you a one-pager and a short video of Roger in action. You can show it to your dispatcher or office manager if you want a second opinion. And if something changes, you've got my number. We're selective about who we work with — so there's no rush on my end."</div>
+    <div class="script-label label-note" style="margin-top:8px">⚡ Note</div>
+    <div class="script-text text-note">"We're selective" is your most powerful exit line. It flips the dynamic — you stop chasing, they start wondering. Owners often re-engage within days of hearing this. It signals that your product has standards. That is rare and attractive.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card card-green" style="padding:36px;text-align:center">
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px">The close — always come back to this</div>
+    <div style="font-family:var(--font-head);font-size:42px;color:var(--w);text-transform:uppercase;letter-spacing:.03em;line-height:1.1;margin-bottom:16px">"What does your<br><span style="color:var(--g)">Tuesday or Wednesday</span><br>morning look like?"</div>
+    <div style="font-size:14px;color:var(--w3);max-width:480px;margin:0 auto">Two options. No open-ended questions. No vague follow-ups. A choice between two yeses — not a yes and a no.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  11 · VISIONARIES                         -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p11">
+<div class="container">
+  <div class="eyebrow">Fuel for the grind</div>
+  <div class="page-title">Visionary<br><span>Fuel.</span></div>
+  <div class="page-sub">The people who built empires from scratch. Read these before the hard days. They earned the right to say it.</div>
+
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"The secret to getting ahead is getting started. The secret to getting started is breaking your complex, overwhelming tasks into small manageable tasks — and then starting on the first one."</div><div class="quote-attr">— Mark Twain</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"I never dreamed about success. I worked for it."</div><div class="quote-attr">— Estée Lauder</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"The best salespeople I've ever met don't sell anything — they just help people make decisions they would have eventually made anyway, but faster."</div><div class="quote-attr">— Alex Hormozi</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"Most people are so afraid of rejection that they never ask for anything. The ones who win are the ones who realize rejection is just a redirect."</div><div class="quote-attr">— Gary Vaynerchuk</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"You don't close a sale. You open a relationship if you want to build a long-term, successful enterprise."</div><div class="quote-attr">— Patricia Fripp</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"It's not about having the right opportunities. It's about handling the opportunities right."</div><div class="quote-attr">— Mark Hunter</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"Chase the vision, not the money. The money will end up following you."</div><div class="quote-attr">— Tony Hsieh</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"Your most unhappy customers are your greatest source of learning."</div><div class="quote-attr">— Bill Gates</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"The harder I work, the luckier I get."</div><div class="quote-attr">— Samuel Goldwyn</div></div>
+  <div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">"Opportunities don't happen. You create them."</div><div class="quote-attr">— Chris Grosser</div></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  12 · KRIS TIPS                           -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="p12">
+<div class="container">
+  <div class="eyebrow">From the founder</div>
+  <div class="page-title">Kris<br><span>Tips.</span></div>
+  <div class="page-sub">10 years in the industry. Every role. Every shift. These are the things I wish someone had told me before I picked up the phone.</div>
+
+  <div class="card card-green" style="padding:32px;margin-bottom:24px">
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--g);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">From Kristopher Cravens · Co-Founder, eCon Growth</div>
+    <div style="font-family:var(--font-title);font-size:17px;color:var(--w);line-height:1.75;font-weight:500">"I built Command OS from the inside. I know what it feels like to be the dispatcher who can't get to every call. I know what it feels like to be the owner watching leads go to voicemail and not knowing why the close rate is dropping. We built the exact system I wish I had. When you're on that phone — you're not pitching a product. You're introducing someone to the version of their business they always wanted."</div>
+  </div>
+
+  <div class="tip-box"><div class="tip-header">Tip 1 — Research before you dial</div><div class="tip-text">Look them up. Google their reviews. Check their website. Know how many trucks they're running, what neighborhoods they serve, what their Google rating is. Walk into every call knowing one specific thing about their business. "I saw you guys serve the Jordan Valley area — how competitive is it out there?" That one sentence separates you from every other cold caller they've ever heard.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 2 — Pain first. Always.</div><div class="tip-text">Do not start with what Roger does. Start with what they're losing. Ask about their phones. Ask about their dispatch when volume spikes. Ask about their close rate on inbound calls. Let them surface the wound. Once you know where it hurts — you're not selling anything. You're offering a cure.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 3 — The coffee and donuts play works every time</div><div class="tip-text">I mean it. Every time. It's impossible to be rude to someone who just fed your crew. It pre-loads generosity into the conversation before you've said a single word about the product. Use it as your pivot whenever they try to put you off. Not later — now. Lock a morning before you hang up.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 4 — Callback dates are non-negotiable</div><div class="tip-text">Every conversation that doesn't end in a booked visit MUST end with a callback date. "When's a good time to circle back?" and then you set the date right there. If they say "whenever" — you say "how about Thursday morning?" Don't leave the conversation open-ended. An open end is a dead lead.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 5 — Call Roger in front of everyone</div><div class="tip-text">Don't describe what Roger does. Don't show a slide. Dial (385) 349-4337, put it on speaker, and let them hear it. I've watched that call change a room in 90 seconds. Owners go quiet. Their dispatcher leans in. The conversation shifts from "what is this" to "how do we get this." That call IS the pitch. Use it every time.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 6 — "We're selective" is your most powerful exit</div><div class="tip-text">When they're lukewarm, don't chase. Say it with total confidence: "We're selective about who we work with — no rush on my end." Then mean it. Walk away clean. Half the time they call back within 48 hours. The moment you stop needing the sale is the moment they start wanting the product.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 7 — Three touches minimum before you give up</div><div class="tip-text">Phone, text, phone. That's the floor. Most HVAC owners are running on adrenaline — they missed your first two touches because they were under a crawlspace. The third touch is often the one that lands. Log every contact in the tracker. Set the callback date. Work the Follow-Up Engine every single morning before you dial new numbers.</div></div>
+  <div class="tip-box"><div class="tip-header">Tip 8 — Know your numbers and own them</div><div class="tip-text">If they push back on price, don't flinch. "Foundation is $1,499 a month. Let's figure out if we need to even have that conversation first — show me what one missed call is costing you and we'll do the math together." Confidence in your price signals confidence in your product. If you're unsure, they're unsure. Lock in.</div></div>
+
+  <div class="divider"></div>
+  <div class="card card-green" style="padding:32px;text-align:center;margin-top:0">
+    <div style="font-family:var(--font-head);font-size:48px;color:var(--w);text-transform:uppercase;letter-spacing:.04em;line-height:1;margin-bottom:12px">"You didn't start this<br>business to answer<br><span style="color:var(--g)">phones at midnight.</span>"</div>
+    <div style="font-size:14px;color:var(--w3);margin-top:12px">That's what we install — so they don't have to. · eCon Growth</div>
+  </div>
+</div>
+</div>
+
+<!-- CLOSER BAR -->
+<div class="closer-bar">
+  <div class="closer-phrase" id="closerPhrase">⚡ Loading...</div>
+  <button class="closer-btn" onclick="nextPhrase()">Next Phrase →</button>
+</div>
+
+<script>
+const PAGES = 13;
+let currentPage = 0;
+
+const PHRASES = [
+  "⚡  \"The goal is not the call. The goal is the room.\"",
+  "⚡  \"Pain is the only product. Find it. Mirror it. Solve it.\"",
+  "⚡  \"Coffee and donuts closes more deals than any pitch deck.\"",
+  "⚡  \"When Roger answers — shut up. Let the demo close.\"",
+  "⚡  \"We're selective. No rush on my end.\"",
+  "⚡  \"One missed call is one job that went to your competitor.\"",
+  "⚡  \"You are not interrupting their day. You are the most important call they'll get.\"",
+  "⚡  \"Give them Tuesday or Wednesday. Not 'when are you free.'\"",
+  "⚡  \"Ask the pain question before you show anything.\"",
+  "⚡  \"I built what I wish I had. That's the only pitch you need.\"",
+  "⚡  \"Three touches minimum. Phone. Text. Phone. Never quit after one.\"",
+  "⚡  \"Roger doesn't replace your dispatcher. He handles what she can't.\"",
+  "⚡  \"The silence after the demo is worth more than anything you could say.\"",
+  "⚡  \"Most of those unanswered calls don't call back. They Google the next guy.\"",
+];
+let phraseIdx = 0;
+
+function updatePhrase(){
+  document.getElementById('closerPhrase').style.opacity = '0';
+  setTimeout(()=>{
+    document.getElementById('closerPhrase').textContent = PHRASES[phraseIdx];
+    document.getElementById('closerPhrase').style.opacity = '1';
+  }, 300);
+}
+
+function nextPhrase(){
+  phraseIdx = (phraseIdx + 1) % PHRASES.length;
+  updatePhrase();
+}
+
+// Auto-rotate phrases
+setInterval(()=>{ phraseIdx = (phraseIdx + 1) % PHRASES.length; updatePhrase(); }, 8000);
+
+function goTo(i){
+  document.querySelectorAll('.page').forEach((p,n)=>p.classList.toggle('active', n===i));
+  document.querySelectorAll('.nav-tab').forEach((t,n)=>t.classList.toggle('active', n===i));
+  document.querySelectorAll('.dot').forEach((d,n)=>d.classList.toggle('active', n===i));
+  currentPage = i;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function copyPhone(){
+  navigator.clipboard.writeText('(385) 349-4337').then(()=>{
+    const el = event.target.closest('.phone-num');
+    const orig = el.textContent;
+    el.textContent = '✓ Copied!';
+    setTimeout(()=>{ el.textContent = orig; }, 2000);
+  }).catch(()=>{});
+}
+
+// Build dot nav
+const dn = document.getElementById('dotNav');
+for(let i=0;i<PAGES;i++){
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = ()=>goTo(i);
+  dn.appendChild(d);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight' && currentPage < PAGES-1) goTo(currentPage+1);
+  if(e.key==='ArrowLeft' && currentPage > 0) goTo(currentPage-1);
+});
+
+updatePhrase();
+</script>
+</body>
+</html>

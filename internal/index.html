@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command HVAC · Sales Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#21E68A;--bg:#000;--w:#EAF0FF;--m:rgba(234,240,255,.4);--border:rgba(234,240,255,.08);--err:#EF4444}
+body{background:var(--bg);color:var(--w);font-family:'Inter',system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+
+.wrap{width:100%;max-width:400px}
+
+/* Logo */
+.logo{text-align:center;margin-bottom:48px}
+.logo-text{font-family:'Bebas Neue',Georgia,sans-serif;font-size:32px;letter-spacing:.04em}
+.logo-text span{color:var(--g)}
+.logo-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--m);font-family:monospace;margin-top:4px}
+
+/* Card */
+.card{background:#050505;border:1px solid var(--border);border-radius:12px;padding:32px}
+.card-title{font-size:20px;font-weight:700;margin-bottom:6px}
+.card-sub{font-size:13px;color:var(--m);margin-bottom:28px;line-height:1.5}
+
+/* Tabs */
+.tabs{display:flex;gap:2px;background:rgba(234,240,255,.04);border-radius:8px;padding:3px;margin-bottom:24px}
+.tab-btn{flex:1;padding:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;transition:all .2s;font-family:inherit;color:var(--m);background:transparent}
+.tab-btn.active{background:#21E68A;color:#000}
+
+/* Form */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--m);margin-bottom:6px;font-family:monospace}
+.field input{width:100%;background:#000;border:1px solid var(--border);border-radius:8px;padding:13px 16px;font-size:14px;color:var(--w);outline:none;transition:border-color .2s;font-family:inherit}
+.field input:focus{border-color:rgba(33,230,138,.35)}
+.field input.error-field{border-color:var(--err)}
+
+/* Buttons */
+.btn{width:100%;padding:14px;border:none;border-radius:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:inherit;margin-top:4px}
+.btn-primary{background:var(--g);color:#000}
+.btn-primary:hover:not(:disabled){background:#fff}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--m);margin-top:8px}
+.btn-ghost:hover{border-color:rgba(33,230,138,.3);color:var(--w)}
+
+/* Magic link success */
+.magic-sent{display:none;text-align:center;padding:20px 0}
+.magic-icon{font-size:40px;margin-bottom:12px}
+.magic-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.magic-sub{font-size:13px;color:var(--m);line-height:1.6}
+
+/* Messages */
+.msg{font-size:12px;margin-top:10px;padding:10px 14px;border-radius:6px;font-family:monospace;display:none}
+.msg-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--err)}
+.msg-ok{background:rgba(33,230,138,.06);border:1px solid rgba(33,230,138,.15);color:var(--g)}
+
+/* Loading */
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Divider */
+.or{text-align:center;color:var(--m);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:monospace;margin:16px 0;position:relative}
+.or::before,.or::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border)}
+.or::before{left:0}.or::after{right:0}
+
+/* Footer */
+.footer{text-align:center;font-size:11px;color:rgba(234,240,255,.2);margin-top:24px;line-height:1.7}
+.footer a{color:rgba(234,240,255,.3);text-decoration:none}
+.footer a:hover{color:var(--g)}
+
+/* Access denied */
+.denied{display:none;text-align:center;padding:20px 0}
+.denied-icon{font-size:36px;margin-bottom:12px}
+.denied-title{font-size:16px;font-weight:700;color:var(--err);margin-bottom:8px}
+.denied-sub{font-size:13px;color:var(--m);line-height:1.6}
+
+.dot{display:inline-block;width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 2s infinite;margin-right:6px;vertical-align:middle}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="logo">
+    <div class="logo-text">Command <span>HVAC</span></div>
+    <div class="logo-tag"><span class="dot"></span>Sales Portal · Internal Access</div>
+  </div>
+
+  <div class="card">
+    <div id="formWrap">
+      <div class="card-title">Welcome back.</div>
+      <div class="card-sub">Sign in to access the Command HVAC sales playbook and Roger live demo.</div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="setTab('password')">Password</button>
+        <button class="tab-btn" onclick="setTab('magic')">Magic Link</button>
+      </div>
+
+      <!-- PASSWORD FORM -->
+      <div id="passwordForm">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <button class="btn btn-primary" id="signInBtn" onclick="signIn()">Sign In →</button>
+      </div>
+
+      <!-- MAGIC LINK FORM -->
+      <div id="magicForm" style="display:none">
+        <div class="card-sub" style="margin-bottom:16px;font-size:13px">Enter your email and we'll send you a one-click login link. No password needed.</div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="magicEmail" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <button class="btn btn-primary" id="magicBtn" onclick="sendMagic()">Send Login Link →</button>
+      </div>
+
+      <!-- MAGIC SENT -->
+      <div class="magic-sent" id="magicSent">
+        <div class="magic-icon">📬</div>
+        <div class="magic-title">Check your inbox.</div>
+        <div class="magic-sub">We sent a login link to your email. Click it to access the portal. Link expires in 1 hour.<br><br>Didn't get it? Check spam or <a href="#" onclick="showMagic()" style="color:var(--g)">resend it.</a></div>
+      </div>
+
+      <!-- ACCESS DENIED -->
+      <div class="denied" id="deniedMsg">
+        <div class="denied-icon">🔒</div>
+        <div class="denied-title">Access Denied</div>
+        <div class="denied-sub">Your account hasn't been added to the portal yet.<br><br>Contact Kristopher at <strong style="color:var(--w)">(615) 664-9178</strong> to get access.</div>
+        <button class="btn btn-ghost" onclick="resetDenied()" style="margin-top:16px">Try a different email</button>
+      </div>
+
+      <div class="msg msg-err" id="errMsg"></div>
+      <div class="msg msg-ok" id="okMsg"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Command HVAC · Powered by eCon Growth<br>
+    <a href="https://econ-growth.com">econ-growth.com</a> · (615) 664-9178
+  </div>
+
+</div>
+
+<script>
+// ── CONFIG ── replace with your actual Supabase values ──────────────────────
+const SUPABASE_URL  = 'https://egofvdwrletgiwzzqalo.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVnb2Z2ZHdybGV0Z2l3enpxYWxvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mzg3NTUsImV4cCI6MjA4OTUxNDc1NX0.8lJNcuhiR2-P9AT6XpMzslTBFGyMkIlWN0kQEldjeQg'; // paste from Supabase dashboard
+// ─────────────────────────────────────────────────────────────────────────────
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// If already logged in and authorized, redirect immediately
+sb.auth.getSession().then(async ({ data: { session } }) => {
+  if(session) await checkAccessAndRedirect(session.user.email);
+});
+
+// Also handle magic link redirect
+sb.auth.onAuthStateChange(async (event, session) => {
+  if(event === 'SIGNED_IN' && session) {
+    await checkAccessAndRedirect(session.user.email);
+  }
+});
+
+async function checkAccessAndRedirect(email) {
+  // Check portal_access table
+  const { data, error } = await sb
+    .from('portal_access')
+    .select('active, role')
+    .eq('email', email)
+    .single();
+
+  if(error || !data || !data.active) {
+    // Sign them back out — not authorized
+    await sb.auth.signOut();
+    document.getElementById('formWrap').innerHTML = '';
+    const d = document.getElementById('deniedMsg');
+    d.style.display = 'block';
+    document.getElementById('formWrap').appendChild(d);
+    return;
+  }
+
+  // Update last_login and login_count
+  await sb.from('portal_access').update({
+    last_login: new Date().toISOString(),
+    login_count: (data.login_count || 0) + 1
+  }).eq('email', email);
+
+  // Store role in session storage for the playbook to use
+  sessionStorage.setItem('portal_email', email);
+  sessionStorage.setItem('portal_role', data.role);
+
+  // Redirect to playbook
+  window.location.href = 'playbook.html';
+}
+
+function setTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', (i===0 && tab==='password') || (i===1 && tab==='magic'));
+  });
+  document.getElementById('passwordForm').style.display = tab === 'password' ? 'block' : 'none';
+  document.getElementById('magicForm').style.display    = tab === 'magic'    ? 'block' : 'none';
+  clearMsgs();
+}
+
+async function signIn() {
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const btn      = document.getElementById('signInBtn');
+
+  if(!email || !password) { showErr('Please enter your email and password.'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Signing in...';
+
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+
+  if(error) {
+    showErr(error.message === 'Invalid login credentials'
+      ? 'Incorrect email or password. Try again.'
+      : error.message);
+    btn.disabled = false;
+    btn.innerHTML = 'Sign In →';
+    return;
+  }
+  // onAuthStateChange handles redirect
+}
+
+async function sendMagic() {
+  const email = document.getElementById('magicEmail').value.trim();
+  const btn   = document.getElementById('magicBtn');
+
+  if(!email) { showErr('Please enter your email.'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Sending...';
+
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: "https://econ-growth.com/internal/index.html" }
+  });
+
+  if(error) {
+    showErr(error.message);
+    btn.disabled = false;
+    btn.innerHTML = 'Send Login Link →';
+    return;
+  }
+
+  document.getElementById('magicForm').style.display = 'none';
+  document.getElementById('magicSent').style.display = 'block';
+  document.querySelector('.tabs').style.display = 'none';
+}
+
+function showMagic() {
+  document.getElementById('magicSent').style.display = 'none';
+  document.getElementById('magicForm').style.display = 'block';
+  document.querySelector('.tabs').style.display = 'flex';
+  document.getElementById('magicBtn').disabled = false;
+  document.getElementById('magicBtn').innerHTML = 'Send Login Link →';
+}
+
+function showErr(msg) {
+  const el = document.getElementById('errMsg');
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+  document.getElementById('okMsg').style.display = 'none';
+}
+
+function clearMsgs() {
+  document.getElementById('errMsg').style.display = 'none';
+  document.getElementById('okMsg').style.display = 'none';
+}
+
+function resetDenied() {
+  location.reload();
+}
+
+// Enter key support
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter') {
+    if(document.getElementById('passwordForm').style.display !== 'none') signIn();
+    else sendMagic();
+  }
+});
+</script>
+</body>
+</html>

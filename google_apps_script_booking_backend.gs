@@ -23,6 +23,8 @@ function doGet(e) {
       payload = getAvailabilityResponse_(params);
     } else if (action === 'book') {
       payload = bookSlotResponse_(params);
+    } else if (action === 'contact') {
+      payload = contactResponse_(params);
     } else {
       payload = {
         ok: true,
@@ -199,6 +201,31 @@ function getCalendar_() {
     if (configuredCalendar) return configuredCalendar;
   }
   return CalendarApp.getDefaultCalendar();
+}
+
+function contactResponse_(params) {
+  const firstName = required_(params.firstName, 'First name is required.');
+  const email = required_(params.email, 'Email is required.');
+  const message = required_(params.message, 'Message is required.');
+  const lastName = String(params.lastName || '').trim();
+  const phone = String(params.phone || '').trim();
+  const company = String(params.company || '').trim();
+
+  const fullName = [firstName, lastName].filter(Boolean).join(' ');
+  const subject = 'New Contact Form Submission — ' + fullName;
+  const body = [
+    'Name: ' + fullName,
+    'Email: ' + email,
+    phone ? 'Phone: ' + phone : null,
+    company ? 'Company: ' + company : null,
+    '',
+    'Message:',
+    message
+  ].filter(function(s) { return s !== null; }).join('\n');
+
+  MailApp.sendEmail('hello@econ-growth.com', subject, body);
+
+  return { ok: true };
 }
 
 function required_(value, message) {

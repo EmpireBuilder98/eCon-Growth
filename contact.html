@@ -337,36 +337,45 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
 
 <script>
+var CONTACT_BACKEND = 'https://script.google.com/macros/s/AKfycby5pWyF_TawUei8-xqOJ4xG4S9sM0kX9n4Kbi2Sge6wF2GvS8oBHGnOtW3_J7eqa1AV/exec';
+
 document.getElementById('contact-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('contact-submit');
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
+  var errorEl = document.getElementById('contact-error');
+  if (errorEl) errorEl.remove();
+
   const formData = new FormData(this);
-  const data = {
-    firstName: formData.get('firstName'),
-    lastName: formData.get('lastName'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    company: formData.get('company'),
-    message: formData.get('message'),
-  };
+  const params = new URLSearchParams({
+    action: 'contact',
+    firstName: formData.get('firstName') || '',
+    lastName: formData.get('lastName') || '',
+    email: formData.get('email') || '',
+    phone: formData.get('phone') || '',
+    company: formData.get('company') || '',
+    message: formData.get('message') || ''
+  });
 
   try {
-    const response = await fetch('https://agrestal-birgit-inswept.ngrok-free.dev/booking/contact', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' }
-    });
-
-    // Show success regardless for now
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('contact-success').classList.add('show');
-  } catch (error) {
-    // Show success anyway (backend may not be wired yet)
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('contact-success').classList.add('show');
+    const response = await fetch(CONTACT_BACKEND + '?' + params.toString());
+    const result = await response.json();
+    if (result.ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('contact-success').classList.add('show');
+    } else {
+      throw new Error(result.message || 'Submission failed. Please try again.');
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+    var msg = document.createElement('p');
+    msg.id = 'contact-error';
+    msg.style.cssText = 'color:#ff6b6b;font-size:13px;margin-top:10px;font-family:JetBrains Mono,monospace';
+    msg.textContent = err.message || 'Something went wrong. Please try again or email hello@econ-growth.com.';
+    document.getElementById('contact-form').appendChild(msg);
   }
 });
 </script>

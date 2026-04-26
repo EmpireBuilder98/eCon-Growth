@@ -44,6 +44,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#070A0F;--bg2:#0A0E15;--bg3:#0D1219;--bg4:#060810;--green:#21E68A;--gd:rgba(33,230,138,.08);--gg:rgba(33,230,138,.25);--gb:rgba(33,230,138,.15);--text:#EAF0FF;--mu:rgba(234,240,255,.52);--mu2:rgba(234,240,255,.22);--mu3:rgba(234,240,255,.08);--bd:rgba(234,240,255,.06)}
 html{scroll-behavior:smooth}
+html{overflow-x:hidden}
+#cur{position:fixed;width:8px;height:8px;background:var(--green);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .12s,height .12s}
+#ring{position:fixed;width:26px;height:26px;border:1px solid rgba(33,230,138,.28);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .22s}
+body.hovering #cur{width:18px;height:18px}
+body.hovering #ring{width:46px;height:46px;border-color:rgba(33,230,138,.5)}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;line-height:1.5;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");opacity:.3;pointer-events:none;z-index:0}
 @keyframes pd{0%,100%{box-shadow:0 0 6px rgba(33,230,138,.25),0 0 0 0 rgba(33,230,138,.35)}50%{box-shadow:0 0 14px rgba(33,230,138,.25),0 0 0 6px rgba(33,230,138,0)}}
@@ -221,6 +226,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </style>
 </head>
 <body>
+<div id="cur"></div><div id="ring"></div>
 <div class="hero-bg"><div class="hero-grid"></div><div class="orb-1"></div></div>
 <nav class="nav" id="mainNav">
   <a href="index.html" class="logo"><div class="logo-dot"></div><span class="logo-text">e<span class="c">C</span>on Growth</span></a>
@@ -769,6 +775,10 @@ document.addEventListener('DOMContentLoaded',()=>{  });
   window.addEventListener('scroll',checkScroll,{passive:true});
   checkScroll();
 })();
+</script>
+<script>
+/* cursor */
+(function(){var cur=document.getElementById('cur'),ring=document.getElementById('ring');if(!cur||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf)})();document.querySelectorAll('a,button').forEach(function(el){el.addEventListener('mouseenter',function(){document.body.classList.add('hovering')});el.addEventListener('mouseleave',function(){document.body.classList.remove('hovering')})});})();
 </script>
 </body>
 </html>

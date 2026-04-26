@@ -200,6 +200,7 @@ a{color:#0a5c36}
 </style>
 </head>
 <body>
+<div id="cur"></div><div id="ring"></div>
 
 <article>
 <h1>Command OS: The AI Operating System Built Exclusively for HVAC Contractors</h1>
@@ -339,5 +340,9 @@ a{color:#0a5c36}
 
 </article>
 
+<script>
+/* cursor */
+(function(){var cur=document.getElementById('cur'),ring=document.getElementById('ring');if(!cur||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf)})();document.querySelectorAll('a,button').forEach(function(el){el.addEventListener('mouseenter',function(){document.body.classList.add('hovering')});el.addEventListener('mouseleave',function(){document.body.classList.remove('hovering')})});})();
+</script>
 </body>
 </html>

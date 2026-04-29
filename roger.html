@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 <script>
 if (window.location.protocol === 'http:' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
     window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
@@ -247,6 +247,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <li><a href="roger.html" class="active">Roger</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="visibility.html">Visibility</a></li>
+    <li><a href="investors.html">Investors</a></li>
   </ul>
   <div class="nav-actions">
   <a href="book.html" class="nav-cta">Book Your Growth Call</a>
@@ -295,13 +296,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
     <div class="rv" style="max-width:520px;margin:0 auto;background:var(--bg3);border:1px solid rgba(33,230,138,.2);border-radius:16px;padding:44px;box-shadow:0 0 80px rgba(33,230,138,.08)">
       <div style="font-size:40px;text-align:center;margin-bottom:12px">🎙️</div>
-      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;text-align:center;margin-bottom:6px">TRY ROGER — <span style="color:#21E68A">LIVE</span></h3>
-      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.55);text-align:center;line-height:1.7;margin-bottom:28px">Roger will call you as if he's a customer calling YOUR business.</p>
-      <input id="rogerCoName" type="text" placeholder="Your Company Name" value="eCon Growth" style="width:100%;background:rgba(234,240,255,.06);border:1px solid rgba(234,240,255,.12);border-radius:8px;padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:14px;color:#EAF0FF;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border-color .2s" onfocus="this.style.borderColor='rgba(33,230,138,.4)'" onblur="this.style.borderColor='rgba(234,240,255,.12)'">
-      <input id="rogerPhone" type="tel" placeholder="Your Phone Number" style="width:100%;background:rgba(234,240,255,.06);border:1px solid rgba(234,240,255,.12);border-radius:8px;padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:14px;color:#EAF0FF;outline:none;margin-bottom:16px;box-sizing:border-box;transition:border-color .2s" onfocus="this.style.borderColor='rgba(33,230,138,.4)'" onblur="this.style.borderColor='rgba(234,240,255,.12)'">
-      <button id="callMeBtn" onclick="callRogerDemo()" style="width:100%;background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;padding:18px;border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;box-shadow:0 0 28px rgba(33,230,138,.3)">📞 Call Me Now</button>
-      <div id="rogerCallStatus"></div>
-      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.3);text-align:center;margin-top:16px">Or call directly: <a href="tel:+18445419279" style="color:#21E68A">(844) 541-9279</a></p>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1px;text-align:center;margin-bottom:6px">TALK TO ROGER — <span style="color:#21E68A">LIVE</span></h3>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(234,240,255,.65);text-align:center;line-height:1.7;margin-bottom:28px">Tap below. Roger picks up in 3 seconds. He's a real AI — qualify a job, ask about pricing, push back on him. He'll handle it.</p>
+      <a href="tel:+18445419279" style="width:100%;background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:18px;padding:20px;border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;box-shadow:0 0 32px rgba(33,230,138,.35);text-decoration:none;letter-spacing:.5px">📞 Call Roger Now — (844) 541-9279</a>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(234,240,255,.4);text-align:center;margin-top:16px;letter-spacing:.06em">LIVE 24/7 · NOT A RECORDING · NOT A CHATBOT</p>
     </div>
   </div>
 </section>
@@ -347,9 +345,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </section>
 <script>
-function showRogerStatus(msg,ok){var el=document.getElementById('rogerCallStatus');if(!el)return;el.style.cssText='margin-top:14px;font-family:\'JetBrains Mono\',monospace;font-size:12px;padding:12px 16px;border-radius:8px;line-height:1.6;text-align:center;border:1px solid '+(ok?'rgba(33,230,138,.25)':'rgba(234,240,255,.08)');el.style.background=ok?'rgba(33,230,138,.1)':'rgba(234,240,255,.04)';el.style.color=ok?'#21E68A':'rgba(234,240,255,.7)';el.innerHTML=msg;}
-function callRogerDemo(){var co=document.getElementById('rogerCoName').value.trim()||'eCon Growth';var ph=document.getElementById('rogerPhone').value.trim();if(!ph){showRogerStatus('Please enter your phone number.',false);return;}var btn=document.getElementById('callMeBtn');btn.textContent='Calling...';btn.disabled=true;showRogerStatus('Connecting Roger...',true);var ws;try{ws=new WebSocket('wss://agrestal-birgit-inswept.ngrok-free.dev');ws.onopen=function(){ws.send(JSON.stringify({type:'call_request',phone:ph,company:co}));showRogerStatus('✅ Roger is calling you now. Answer your phone!',true);btn.textContent='📞 Call Me Now';btn.disabled=false;};ws.onerror=function(){doFetch(co,ph,btn);};ws.onclose=function(e){if(e.code!==1000)doFetch(co,ph,btn);};setTimeout(function(){if(ws.readyState!==1)doFetch(co,ph,btn);},3000);}catch(e){doFetch(co,ph,btn);}}
-function doFetch(co,ph,btn){fetch('/demo/call-me',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:ph,company:co})}).then(function(r){return r.json();}).then(function(){showRogerStatus('✅ Roger is calling you now!',true);}).catch(function(){showRogerStatus('Roger\'s demo line is offline. Call directly: <a href="tel:+18445419279" style="color:#21E68A">(844) 541-9279</a> or <a href="book.html" style="color:#21E68A">book a live demo</a>.',false);});if(btn){btn.textContent='📞 Call Me Now';btn.disabled=false;}}
+/* Roger demo is now a direct tel: link — no JS handler required */
 </script>
 
 <!-- WHAT ROGER DOES -->
@@ -375,7 +371,7 @@ function doFetch(co,ph,btn){fetch('/demo/call-me',{method:'POST',headers:{'Conte
     <div class="rv" style="text-align:center">
       <div class="section-label">The Intelligence Layer</div>
       <h2 class="section-h2" style="text-align:center">POWERED BY<br><span class="green">SECONDBRAIN AI.</span></h2>
-      <p class="section-sub" style="margin:0 auto;text-align:center">Roger is the voice. SecondBrain is the brain. It runs underneath every part of Command OS — learning, surfacing, and acting on patterns your team would never catch manually.</p>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Roger is the voice. SecondBrain is the brain. It runs underneath every part of Command HVAC — learning, surfacing, and acting on patterns your team would never catch manually.</p>
     </div>
     <div class="sb-grid rv">
       <div class="sb-card"><div class="sb-num">01</div><span class="sb-icon">🧠</span><div class="sb-title">Knows Your Operation</div><div class="sb-text">SecondBrain learns your pricing, your common job types, your service area, your tech availability — and feeds that context to Roger in real time so every call sounds like it came from inside your company.</div></div>

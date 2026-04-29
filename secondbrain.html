@@ -440,7 +440,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <li><a href="secondbrain.html" class="active">Meet Roger</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="visibility.html">Visibility</a></li>
-    <li><a href="investors.html">Investors</a></li>
     <li class="nav-mob-cta-li"><a href="book.html" class="nav-mob-cta">Book Your Growth Call</a></li>
   </ul>
   <a href="book.html" class="nav-cta nav-cta-desk">Book Your Growth Call</a>
@@ -461,29 +460,88 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <h1 class="hero-h1">MEET<br><span class="green">ROGER.</span><br><span class="ghost">YOUR AI AGENT.</span></h1>
     <p class="hero-body">Roger answers every call, qualifies every lead, books every job, and follows up overnight — <strong>while you sleep.</strong> Powered by Anthropic Claude, he knows your operation, your pricing, and exactly what to say.</p>
     <div class="hero-btns">
-      <a href="#roger" class="btn-primary">Watch Roger Live ↓</a>
+      <a href="#roger" class="btn-primary">Try Him Out ↓</a>
       <a href="book.html" class="btn-ghost">Book Your Growth Call →</a>
     </div>
-    <div class="hero-note">↓ Scroll to see a live call demo</div>
+    <div class="hero-note">↓ Scroll down — Roger calls you in 30 seconds</div>
   </div>
 </section>
 
-<!-- LIVE DEMO SETUP -->
-<div class="setup-section" id="roger">
-  <div class="setup-card">
-    <div class="setup-title">🎙️ Try Roger Right Now — With Your Company Name</div>
-    <div class="setup-subtitle">Enter your company name and phone number. Roger will call you as if you're a customer calling YOUR business.</div>
-    <div class="setup-row">
-      <input type="text" class="setup-input" id="bizName" placeholder="Your HVAC Company Name" autocomplete="organization" />
-      <input type="tel" class="setup-input" id="phoneInput" placeholder="Your Phone Number" autocomplete="tel" />
-      <button class="btn-call" id="callMeBtn" onclick="callMe()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call Me Now
-      </button>
+<!-- ═══ ROGER LIVE DEMO — REDESIGNED ═══ -->
+<style>
+.roger-demo-wrap{padding:96px 24px 80px;position:relative;z-index:1;background:var(--bg);border-top:1px solid var(--bd)}
+.roger-demo-wrap::before{content:'';position:absolute;top:30%;left:50%;width:700px;height:700px;background:radial-gradient(circle,rgba(33,230,138,.06) 0%,transparent 65%);filter:blur(80px);transform:translateX(-50%);pointer-events:none;z-index:0}
+.roger-demo-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.roger-demo-eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px}
+.roger-demo-eyebrow-dot{width:8px;height:8px;background:#21E68A;border-radius:50%;box-shadow:0 0 0 0 rgba(33,230,138,.5);animation:rdpulse 1.6s infinite}
+@keyframes rdpulse{0%{box-shadow:0 0 0 0 rgba(33,230,138,.55)}70%{box-shadow:0 0 0 10px rgba(33,230,138,0)}100%{box-shadow:0 0 0 0 rgba(33,230,138,0)}}
+.roger-demo-eyebrow-text{font-family:'JetBrains Mono',monospace;font-size:10px;color:#21E68A;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.roger-demo-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);letter-spacing:1.5px;line-height:.92;text-align:center;margin-bottom:18px;color:var(--text)}
+.roger-demo-heading .green{color:#21E68A}
+.roger-demo-sub{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.85;text-align:center;max-width:540px;margin:0 auto 48px}
+.roger-demo-sub strong{color:var(--text);font-weight:500}
+.roger-card{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg3) 100%);border:1px solid rgba(33,230,138,.22);border-radius:20px;padding:48px 44px;box-shadow:0 0 80px rgba(33,230,138,.10),0 20px 60px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.roger-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#21E68A,transparent);opacity:.7}
+.roger-card-icon{font-size:42px;text-align:center;margin-bottom:20px;line-height:1}
+.roger-card-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;text-align:center;margin-bottom:8px;color:var(--text)}
+.roger-card-sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);line-height:1.7;text-align:center;margin-bottom:32px}
+.roger-input-stack{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.roger-input{background:rgba(7,10,15,.6);border:1px solid rgba(234,240,255,.10);border-radius:12px;padding:16px 20px;color:var(--text);font-family:'Syne',sans-serif;font-size:15px;outline:none;width:100%;transition:border-color .2s,background .2s;-webkit-appearance:none;box-sizing:border-box}
+.roger-input:focus{border-color:rgba(33,230,138,.5);background:rgba(7,10,15,.85)}
+.roger-input::placeholder{color:rgba(234,240,255,.32)}
+.roger-call-btn{width:100%;background:linear-gradient(135deg,#21E68A,#15b86e);color:#070A0F;border:none;padding:20px 28px;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:12px;letter-spacing:.5px;box-shadow:0 0 32px rgba(33,230,138,.35),0 8px 24px rgba(33,230,138,.20)}
+.roger-call-btn:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(33,230,138,.55),0 12px 32px rgba(33,230,138,.30)}
+.roger-call-btn:disabled{opacity:.55;cursor:wait;transform:none}
+.roger-trust-row{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:24px;padding-top:24px;border-top:1px solid rgba(234,240,255,.06);flex-wrap:wrap}
+.roger-trust-item{display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);letter-spacing:.06em;text-transform:uppercase}
+.roger-trust-item::before{content:'✓';color:#21E68A;font-weight:700}
+.roger-direct-line{text-align:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu)}
+.roger-direct-line a{color:#21E68A;text-decoration:none;font-weight:500}
+.roger-direct-line a:hover{text-decoration:underline}
+@media(max-width:640px){
+  .roger-demo-wrap{padding:64px 20px 56px}
+  .roger-card{padding:36px 24px;border-radius:16px}
+  .roger-card-icon{font-size:36px}
+  .roger-card-title{font-size:24px}
+  .roger-call-btn{padding:18px 20px;font-size:16px}
+  .roger-trust-row{gap:14px}
+  .roger-trust-item{font-size:9px}
+}
+</style>
+<section class="roger-demo-wrap" id="roger">
+  <div class="roger-demo-inner">
+    <div class="roger-demo-eyebrow">
+      <span class="roger-demo-eyebrow-dot"></span>
+      <span class="roger-demo-eyebrow-text">Live · Available Right Now</span>
     </div>
-    <div class="call-direct">Or call directly: <a href="tel:+18445419279">(844) 541-9279</a></div>
+    <h2 class="roger-demo-heading">TRY ROGER<br><span class="green">RIGHT NOW.</span></h2>
+    <p class="roger-demo-sub">Drop in your company name and phone number. <strong>Roger will call you in 30 seconds</strong> — pretending to be a real customer ringing YOUR business. Try to break him.</p>
+
+    <div class="roger-card">
+      <div class="roger-card-icon">🎙️</div>
+      <div class="roger-card-title">HAVE ROGER CALL ME</div>
+      <div class="roger-card-sub">Real AI · Real call · No recording, no chatbot</div>
+
+      <div class="roger-input-stack">
+        <input type="text" class="roger-input" id="bizName" placeholder="Your HVAC company name" autocomplete="organization" />
+        <input type="tel" class="roger-input" id="phoneInput" placeholder="Your phone number — Roger calls in 30s" autocomplete="tel" />
+      </div>
+
+      <button class="roger-call-btn" id="callMeBtn" onclick="callMe()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Ring My Phone Now
+      </button>
+
+      <div class="roger-trust-row">
+        <span class="roger-trust-item">Anthropic Claude</span>
+        <span class="roger-trust-item">3-Second Answer</span>
+        <span class="roger-trust-item">24/7 Live</span>
+      </div>
+    </div>
+
+    <div class="roger-direct-line">Or talk to him directly: <a href="tel:+18445419279">(844) 541-9279</a></div>
   </div>
-</div>
+</section>
 
 <!-- STATS BAR -->
 <div class="stats-bar">
@@ -552,7 +610,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <div class="footer-phone">(615) 664-9178</div>
       </div>
       <div><div class="footer-col-title">Platform</div><ul class="footer-links"><li><a href="command-os.html">Command HVAC</a></li><li><a href="secondbrain.html">Meet Roger</a></li><li><a href="visibility.html">Visibility Dashboard</a></li><li><a href="book.html">Book a Call</a></li></ul></div>
-      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="sales.html">Sales Process</a></li><li><a href="investors.html">Investors</a></li></ul></div>
+      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="sales.html">Sales Process</a></li></ul></div>
       <div><div class="footer-col-title">Resources</div><ul class="footer-links"><li><a href="blog.html">HVAC Growth Blog</a></li><li><a href="roi-calculator.html">ROI Calculator</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></div>
     </div>
     <div class="footer-social-row">
@@ -564,9 +622,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
     </div>
-    <div class="footer-legal-row"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
+      <div class="footer-copy">© 2026 eCon Growth, LLC · All Rights Reserved · eCon Growth™, Command HVAC™, and Roger™ are trademarks of eCon Growth, LLC. Unauthorized use, reproduction, reverse-engineering, or redistribution of any part of this website, software, or related materials is strictly prohibited.</div>
       <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> · POWERED BY <span>ANTHROPIC CLAUDE</span></div>
     </div>
   </div>

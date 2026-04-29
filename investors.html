@@ -201,6 +201,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 @media(max-width:600px){.moat-grid{grid-template-columns:1fr!important}.model-cards{grid-template-columns:1fr!important}.market-grid{grid-template-columns:1fr!important}}
 @media(max-width:760px){[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
 @media(max-width:680px){.anthropic-callout{grid-template-columns:1fr!important;text-align:center;padding:28px 24px!important}}
+@media(max-width:880px){.investor-contact-grid{grid-template-columns:1fr!important}}
 
 /* ═══ HAMBURGER MENU ═══ */
 
@@ -233,8 +234,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <li><a href="sales.html">Sales</a></li>
     <li><a href="secondbrain.html">Meet Roger</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="visibility.html">Visibility</a></li>
-    <li><a href="investors.html" class="active">Investors</a></li><li class="nav-mob-cta-li"><a href="book.html" class="nav-mob-cta">Book Your Growth Call</a></li>
+    <li><a href="visibility.html">Visibility</a></li><li class="nav-mob-cta-li"><a href="book.html" class="nav-mob-cta">Book Your Growth Call</a></li>
   </ul>
   <a href="book.html" class="nav-cta nav-cta-desk">Book Your Growth Call</a>
   <button class="ham-btn" id="hamBtn" aria-label="Open menu">
@@ -429,23 +429,33 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="section-inner">
     <div class="rv" style="text-align:center;margin-bottom:48px">
       <div class="section-label">Direct Line</div>
-      <h2 class="section-h2" style="text-align:center">REACH THE FOUNDER<br><span class="green">DIRECTLY.</span></h2>
-      <p class="section-sub" style="margin:0 auto;text-align:center">Investor and partnership inquiries go straight to the founder. Call or text — we respond within one business day. NDA and full deck available on request.</p>
+      <h2 class="section-h2" style="text-align:center">REACH THE FOUNDERS<br><span class="green">DIRECTLY.</span></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Investor and partnership inquiries go straight to the founders. Book a 30-minute strategy call, or call/text for a same-day response. NDA and full deck available on request.</p>
     </div>
-    <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:0 auto">
-      <a href="tel:6156649178" style="background:var(--bg2);border:1px solid var(--gb);border-radius:14px;padding:36px;text-decoration:none;display:block;transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--green)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gb)'">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">📞 Call Founder</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:.5px;margin-bottom:6px">(615) 664-9178</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);line-height:1.7">Direct line to Kristopher Cravens. Best for live conversation. Mon–Fri, 9–6 CT.</div>
+    <div class="rv investor-contact-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;max-width:1080px;margin:0 auto">
+      <a href="book.html" style="background:linear-gradient(135deg,rgba(33,230,138,.10),rgba(33,230,138,.04));border:1px solid var(--green);border-radius:14px;padding:32px 28px;text-decoration:none;display:block;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 0 40px rgba(33,230,138,.25)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:8px;color:#070A0F;background:var(--green);padding:3px 7px;border-radius:3px;letter-spacing:.12em;font-weight:700">RECOMMENDED</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">📅 Book a Call</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);letter-spacing:.5px;margin-bottom:6px">30-Min Strategy Call</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);line-height:1.7">Live calendar — pick any open slot. Calendar invite sent automatically.</div>
       </a>
-      <a href="sms:+16156649178?&amp;body=Hi%20Kris%20%E2%80%94%20I%27d%20like%20to%20open%20an%20investor%2Fpartnership%20conversation%20with%20eCon%20Growth." style="background:var(--bg2);border:1px solid var(--gb);border-radius:14px;padding:36px;text-decoration:none;display:block;transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--green)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gb)'">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">💬 Text the Founder</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--text);letter-spacing:.5px;margin-bottom:6px">Send a Text →</div>
+      <a href="tel:6156649178" style="background:var(--bg2);border:1px solid var(--gb);border-radius:14px;padding:32px 28px;text-decoration:none;display:block;transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--green)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gb)'">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">📞 Call Direct</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);letter-spacing:.5px;margin-bottom:6px">(615) 664-9178</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);line-height:1.7">Founder line. Best for a live conversation. Mon–Fri, 9–6 CT.</div>
+      </a>
+      <a href="sms:+16156649178?&amp;body=Hi%20Kris%20%E2%80%94%20I%27d%20like%20to%20open%20an%20investor%2Fpartnership%20conversation%20with%20eCon%20Growth." style="background:var(--bg2);border:1px solid var(--gb);border-radius:14px;padding:32px 28px;text-decoration:none;display:block;transition:all .25s" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='var(--green)'" onmouseout="this.style.transform='';this.style.borderColor='var(--gb)'">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">💬 Text the Founders</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);letter-spacing:.5px;margin-bottom:6px">Send a Text →</div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);line-height:1.7">Pre-filled investor message. Fastest path to a same-day response.</div>
       </a>
     </div>
-    <div class="rv" style="text-align:center;margin-top:32px">
-      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);letter-spacing:.06em">Founder · <strong style="color:var(--text)">Kristopher Cravens</strong> · 10 years operating inside HVAC · Built Command HVAC on Anthropic's Claude</p>
+    <div class="rv" style="text-align:center;margin-top:36px;max-width:780px;margin-left:auto;margin-right:auto">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);letter-spacing:.06em;line-height:1.85">
+        <strong style="color:var(--text)">Founders</strong> ·
+        <strong style="color:var(--text)">Kristopher Cravens</strong> (10 years operating inside HVAC; built Command HVAC on Anthropic's Claude)
+        + <strong style="color:var(--text)">Watson Wheeler</strong> (scaling, operations, exit strategy)
+      </p>
     </div>
   </div>
 </section>
@@ -455,8 +465,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <h2 class="page-cta-h">THE CATEGORY IS<br><span class="green">BEING BUILT.</span><br><span class="ghost">BE EARLY.</span></h2>
     <p class="page-cta-p">We're selective about who we bring into the eCon Growth story. If you're interested in learning more, start with a conversation. NDA available upon request.</p>
     <div class="page-cta-btns">
-      <a href="tel:6156649178" class="btn-primary">Call (615) 664-9178 →</a>
-      <a href="sms:+16156649178?&amp;body=Hi%20Kris%20%E2%80%94%20I%27d%20like%20to%20open%20an%20investor%2Fpartnership%20conversation%20with%20eCon%20Growth." class="btn-ghost">Text the Founder</a>
+      <a href="book.html" class="btn-primary">Book a Strategy Call →</a>
+      <a href="tel:6156649178" class="btn-ghost">Call (615) 664-9178</a>
     </div>
   </div>
 </section>
@@ -482,9 +492,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
     </div>
-    <div class="footer-legal-row"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
+      <div class="footer-copy">© 2026 eCon Growth, LLC · All Rights Reserved · eCon Growth™, Command HVAC™, and Roger™ are trademarks of eCon Growth, LLC. Unauthorized use, reproduction, reverse-engineering, or redistribution of any part of this website, software, or related materials is strictly prohibited.</div>
       <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> · POWERED BY <span>ANTHROPIC CLAUDE</span></div>
     </div>
   </div>

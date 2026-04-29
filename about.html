@@ -124,11 +124,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* ═══ MISSION SECTION ═══ */
 .mission-sec{background:var(--bg2);border-top:1px solid var(--bd)}
-.mission-layout{max-width:900px;margin:0 auto;text-align:center}
-.mission-statement{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:1.5px;line-height:.9;margin-bottom:28px}
+.mission-layout{max-width:1100px;margin:0 auto;text-align:center}
+.mission-statement{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:1.5px;line-height:.95;margin-bottom:28px;max-width:900px;margin-left:auto;margin-right:auto}
 .mission-statement .green{color:var(--green)}
-.mission-sub{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.9;margin-bottom:60px;overflow-wrap:break-word}
-.mission-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mission-sub{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:300;color:var(--mu);line-height:1.9;margin:0 auto 64px;overflow-wrap:break-word;max-width:680px}
+.mission-pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:8px}
+@media(max-width:1100px){.mission-pillars{grid-template-columns:repeat(3,1fr)}}
+.pillar{background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:32px 22px;text-align:center;position:relative;overflow:hidden;transition:all .3s}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:0;transition:opacity .3s}
+.pillar:hover{border-color:var(--gb);transform:translateY(-3px);background:rgba(33,230,138,.04)}
+.pillar:hover::before{opacity:1}
+.pillar-icon{font-size:30px;margin-bottom:16px;display:block;line-height:1}
+.pillar-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:10px;color:var(--text);letter-spacing:.02em}
+.pillar-text{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:300;color:var(--mu);line-height:1.7}
 .mission-pillar{background:var(--bg3);border:1px solid var(--bd);border-radius:12px;padding:32px;text-align:left;transition:border-color .3s}
 .mission-pillar:hover{border-color:var(--gb)}
 .mission-pillar-icon{font-size:26px;margin-bottom:14px;display:block}
@@ -162,7 +170,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .founders-cta{flex-direction:column!important;align-items:flex-start;gap:16px}
   .mission-layout{padding:0 24px}
   .mission-statement{font-size:clamp(22px,7vw,36px)!important}
-  .mission-pillars{grid-template-columns:1fr 1fr!important;gap:16px}
+  .mission-pillars{grid-template-columns:repeat(2,1fr)!important;gap:14px}
+  .pillar{padding:24px 18px}
+  .pillar-icon{font-size:26px;margin-bottom:12px}
   .page-cta-inner{padding:0 24px}
   .page-cta-btns{flex-direction:column;align-items:center}
   .footer-inner{padding:0 24px}
@@ -245,7 +255,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <li><a href="secondbrain.html">Meet Roger</a></li>
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="visibility.html">Visibility</a></li>
-    <li><a href="investors.html">Investors</a></li>
     <li class="nav-mob-cta-li"><a href="book.html" class="nav-mob-cta">Book Your Growth Call</a></li>
   </ul>
   <a href="book.html" class="nav-cta nav-cta-desk">Book Your Growth Call</a>
@@ -437,7 +446,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <ul class="footer-links">
           <li><a href="about.html">About Us</a></li>
           <li><a href="sales.html">Sales Process</a></li>
-          <li><a href="investors.html">Investors</a></li>
         </ul>
       </div>
       <div>
@@ -459,12 +467,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <a href="https://www.linkedin.com/company/econ-growthoffical/" class="footer-si" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
     </div>
-    <div class="footer-legal-row">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
-    </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 ECON GROWTH. ALL RIGHTS RESERVED.</div>
+      <div class="footer-copy">© 2026 eCon Growth, LLC · All Rights Reserved · eCon Growth™, Command HVAC™, and Roger™ are trademarks of eCon Growth, LLC. Unauthorized use, reproduction, reverse-engineering, or redistribution of any part of this website, software, or related materials is strictly prohibited.</div>
       <div class="footer-tagline">BUILT FOR <span>HVAC BUSINESS OWNERS</span> · POWERED BY <span>ANTHROPIC CLAUDE</span></div>
     </div>
   </div>

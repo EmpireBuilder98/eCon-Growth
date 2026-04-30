@@ -211,7 +211,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <ul class="nav-links" id="navLinks">
     <li><a href="command-os.html">Model</a></li>
     <li><a href="sales.html">Sales</a></li>
-    <li><a href="secondbrain.html">Meet Roger</a></li>
+    <li><a href="roger.html">Roger</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="visibility.html">Visibility</a></li>
     <li class="nav-mob-cta-li"><a href="book.html" class="nav-mob-cta">Book Your Growth Call</a></li>
@@ -257,12 +257,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
       <div class="cal-widget" id="calWidget">
         <!-- STEP 1: MONTH VIEW -->
-                <!-- Auth button — shown when Google Calendar needs authorization -->
-        <div id="authBtn" style="display:none;padding:14px 16px;background:rgba(33,230,138,.06);border:1px solid rgba(33,230,138,.2);border-radius:8px;margin:0 16px 12px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(234,240,255,.7);line-height:1.5">Connect Watson's Google Calendar to see live availability</div>
-          <button onclick="connectCalendar()" style="background:#21E68A;color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">Connect Calendar →</button>
-        </div>
-        <div id="dateStep">
+                <div id="dateStep">
           <div class="cal-month-nav">
             <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
             <div class="cal-month-label" id="monthLabel"></div>
@@ -380,350 +375,204 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 <script>
 /* ══════════════════════════════════════════════
-   BOOKING CALENDAR — WATSON WHEELER
-   Google OAuth2 + Calendar FreeBusy API
-   
-   ⚠️  REQUIRES BEFORE IT WORKS ON LIVE DOMAIN:
-   1. Go to console.cloud.google.com
-   2. Credentials → OAuth 2.0 Client ID:
-      939223794904-c8u6nsoqi02ukfodatipldnf5fh2s2ha
-   3. Add your domain to "Authorized JavaScript origins"
-      e.g. https://econgrowth.com
-   4. Save — calendar goes live automatically
+   BOOKING CALENDAR — eCon Growth
+   Powered by Google Apps Script backend
    ══════════════════════════════════════════════ */
 
-const GCAL_CLIENT_ID = '939223794904-c8u6nsoqi02ukfodatipldnf5fh2s2ha.apps.googleusercontent.com';
-const GCAL_SCOPE = 'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.readonly';
-const TIMEZONE = 'America/Denver';
-const SLOT_HOURS = [9, 10, 11, 14, 15, 16];
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyroDmGItFbPcdJ2B_UG-Qj3FSmaQj72jASQeLwjzxKTo0EkjCjn3q_ghzAfPnNjIkg/exec';
 
-let gapiReady = false;
-let gisReady = false;
-let tokenClient = null;
-let accessToken = null;
-let busySlots = {};
+let availability = {};
 let selectedDate = null;
 let selectedTime = null;
 let currentMonth = new Date();
 currentMonth.setDate(1);
 
+/* ── JSONP helper — bypasses CORS on Apps Script redirects ── */
+function jsonp(url) {
+  return new Promise((resolve, reject) => {
+    const cb = '_ecb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const s = document.createElement('script');
+    const tid = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 12000);
+    function cleanup() { delete window[cb]; if (s.parentNode) s.parentNode.removeChild(s); }
+    window[cb] = (data) => { clearTimeout(tid); cleanup(); resolve(data); };
+    s.onerror = () => { clearTimeout(tid); cleanup(); reject(new Error('error')); };
+    s.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cb;
+    document.head.appendChild(s);
+  });
+}
+
 /* ── STATE TRANSITIONS ── */
-function showDateStep(){ 
-  document.getElementById('dateStep').style.display='block';
+function showDateStep() {
+  document.getElementById('dateStep').style.display = 'block';
   document.getElementById('timeStep').classList.remove('active');
   document.getElementById('confirmStep').classList.remove('active');
   document.getElementById('successStep').classList.remove('active');
 }
-function showTimeStep(){ 
-  document.getElementById('dateStep').style.display='none';
+function showTimeStep() {
+  document.getElementById('dateStep').style.display = 'none';
   document.getElementById('timeStep').classList.add('active');
   document.getElementById('confirmStep').classList.remove('active');
   renderTimeSlots(selectedDate);
 }
-function showConfirmStep(){ 
+function showConfirmStep() {
   document.getElementById('timeStep').classList.remove('active');
   document.getElementById('confirmStep').classList.add('active');
   updateConfirmSummary();
 }
-function showSuccessStep(){ 
+function showSuccessStep() {
   document.getElementById('confirmStep').classList.remove('active');
   document.getElementById('successStep').classList.add('active');
 }
 
 /* ── CALENDAR RENDERING ── */
-function changeMonth(dir){ 
-  currentMonth.setMonth(currentMonth.getMonth()+dir); 
-  renderCalendar(); 
-  fetchBusy(); 
+function changeMonth(dir) {
+  currentMonth.setMonth(currentMonth.getMonth() + dir);
+  renderCalendar();
+  fetchAvailability();
 }
 
-function renderCalendar(){
+function renderCalendar() {
   const now = new Date();
   const year = currentMonth.getFullYear();
   const month = currentMonth.getMonth();
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('monthLabel').textContent = months[month]+' '+year;
-  
-  const firstDay = new Date(year,month,1).getDay();
-  const daysInMonth = new Date(year,month+1,0).getDate();
-  let html = ['Su','Mo','Tu','We','Th','Fr','Sa'].map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  for(let i=0;i<firstDay;i++) html+=`<div class="cal-day empty"></div>`;
-  for(let d=1;d<=daysInMonth;d++){
-    const date = new Date(year,month,d);
-    const dateStr = fmtDate(date);
-    const isPast = date < new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    const isWknd = date.getDay()===0||date.getDay()===6;
-    const isToday = dateStr===fmtDate(now);
-    const isSel = selectedDate===dateStr;
-    const fullyBusy = isDayFullyBusy(dateStr);
-    let cls='cal-day';
-    if(isPast||isWknd) cls+=' disabled';
-    else if(fullyBusy) cls+=' busy';
-    else cls+=' available';
-    if(isToday) cls+=' today';
-    if(isSel) cls+=' selected';
-    const click=(!isPast&&!isWknd&&!fullyBusy)?`onclick="selectDate('${dateStr}')"`:' ';
-    html+=`<div class="${cls}" ${click}>${d}</div>`;
+  document.getElementById('monthLabel').textContent = months[month] + ' ' + year;
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  let html = ['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => `<div class="cal-dow">${d}</div>`).join('');
+  for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    const ds = fmtDate(date);
+    const isPast = date < new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const isWknd = date.getDay() === 0 || date.getDay() === 6;
+    const isToday = ds === fmtDate(now);
+    const isSel = selectedDate === ds;
+    const hasSlots = availability[ds] && availability[ds].length > 0;
+    let cls = 'cal-day';
+    if (isPast || isWknd) cls += ' disabled';
+    else if (!hasSlots) cls += ' busy';
+    else cls += ' available';
+    if (isToday) cls += ' today';
+    if (isSel) cls += ' selected';
+    const click = (!isPast && !isWknd && hasSlots) ? `onclick="selectDate('${ds}')"` : '';
+    html += `<div class="${cls}" ${click}>${d}</div>`;
   }
-  document.getElementById('calGrid').innerHTML=html;
+  document.getElementById('calGrid').innerHTML = html;
 }
 
-function fmtDate(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function fmtDate(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+function fmtMonth(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
 
-function fmtDateDisplay(ds){
-  const [y,m,d]=ds.split('-').map(Number);
-  const date=new Date(y,m-1,d);
-  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return days[date.getDay()]+', '+months[date.getMonth()]+' '+d+', '+y;
+function fmtDateDisplay(ds) {
+  const [y,m,d] = ds.split('-').map(Number);
+  const date = new Date(y, m-1, d);
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + d + ', ' + y;
 }
 
-function fmtTime(h){ const p=h>=12?'PM':'AM'; const hh=h>12?h-12:(h===0?12:h); return hh+':00 '+p; }
-
-function parseTimeToHour(t){ 
-  const[time,p]=t.split(' '); 
-  let h=parseInt(time.split(':')[0]); 
-  if(p==='PM'&&h!==12)h+=12; 
-  if(p==='AM'&&h===12)h=0; 
-  return h; 
+function fmtTimeSlot(t) {
+  const [hStr, mStr] = t.split(':');
+  const h = parseInt(hStr);
+  const p = h >= 12 ? 'PM' : 'AM';
+  const hh = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+  return hh + ':' + mStr + ' ' + p;
 }
 
-function isDayFullyBusy(ds){
-  const avail=SLOT_HOURS.filter(h=>!isSlotBusy(ds,h));
-  return busySlots[ds] && avail.length===0;
-}
-
-function isSlotBusy(ds,h){
-  if(!busySlots[ds]||busySlots[ds].length===0) return false;
-  const[y,m,d]=ds.split('-').map(Number);
-  const start=new Date(y,m-1,d,h,0,0);
-  const end=new Date(y,m-1,d,h+1,0,0);
-  return busySlots[ds].some(b=>{ const bs=new Date(b.start); const be=new Date(b.end); return start<be&&end>bs; });
-}
-
-function selectDate(ds){
-  selectedDate=ds; 
-  selectedTime=null; 
+/* ── DATE & TIME SELECTION ── */
+function selectDate(ds) {
+  selectedDate = ds;
+  selectedTime = null;
   renderCalendar();
-  document.getElementById('timeDateHeader').textContent=fmtDateDisplay(ds);
+  document.getElementById('timeDateHeader').textContent = fmtDateDisplay(ds);
   showTimeStep();
 }
 
-function renderTimeSlots(ds){
-  let html=''; let anyAvail=false;
-  SLOT_HOURS.forEach(h=>{
-    const busy=isSlotBusy(ds,h);
-    const t=fmtTime(h);
-    const sel=selectedTime===t?' selected':'';
-    if(!busy) anyAvail=true;
-    html+=`<div class="time-slot${busy?' busy':sel}" ${busy?'':` onclick="selectTime('${t}')"`}>${t} MT</div>`;
-  });
-  if(!anyAvail) html=`<div class="time-no-slots">No available times on this date.<br>Please pick another day.</div>`;
-  document.getElementById('timeSlots').innerHTML=html;
+function renderTimeSlots(ds) {
+  const slots = availability[ds] || [];
+  if (slots.length === 0) {
+    document.getElementById('timeSlots').innerHTML = `<div class="time-no-slots">No available times on this date.<br>Please pick another day.</div>`;
+    return;
+  }
+  document.getElementById('timeSlots').innerHTML = slots.map(t => {
+    const sel = selectedTime === t ? ' selected' : '';
+    return `<div class="time-slot${sel}" onclick="selectTime('${t}')">${fmtTimeSlot(t)} MT</div>`;
+  }).join('');
 }
 
-function selectTime(t){
-  selectedTime=t;
-  document.querySelectorAll('.time-slot').forEach(el=>el.classList.toggle('selected',el.textContent.trim().startsWith(t)));
-  setTimeout(showConfirmStep,300);
+function selectTime(t) {
+  selectedTime = t;
+  document.querySelectorAll('.time-slot').forEach(el => el.classList.toggle('selected', el.textContent.trim().startsWith(fmtTimeSlot(t))));
+  setTimeout(showConfirmStep, 300);
 }
 
-function updateConfirmSummary(){
-  document.getElementById('confirmSummaryText').innerHTML=`<span>${fmtDateDisplay(selectedDate)}</span><br><span>${selectedTime} MT</span> · 30-minute Growth Call`;
+function updateConfirmSummary() {
+  document.getElementById('confirmSummaryText').innerHTML =
+    `<span>${fmtDateDisplay(selectedDate)}</span><br><span>${fmtTimeSlot(selectedTime)} MT</span> · 30-minute Growth Call`;
 }
 
 /* ── BOOKING SUBMISSION ── */
-function submitBooking(){
-  const fname=document.getElementById('fname').value.trim();
-  const lname=document.getElementById('lname').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const phone=document.getElementById('phone').value.trim();
-  const company=document.getElementById('company').value.trim();
-  const trucks=document.getElementById('trucks').value.trim();
-  
-  if(!fname||!email){ alert('Please enter your name and email to confirm.'); return; }
-  
-  const btn=document.getElementById('bookBtn');
-  btn.disabled=true; btn.textContent='Booking…';
-  
-  const[y,m,d]=selectedDate.split('-').map(Number);
-  const h=parseTimeToHour(selectedTime);
-  
-  // MT offset: UTC-6 (MDT) or UTC-7 (MST) — use -6 for summer, -7 for winter
-  // Detect which based on month (rough DST check)
-  const isDST=m>=3&&m<=10;
-  const offset=isDST?-6:-7;
-  
-  function toISO(date,hr,off){
-    const pad=n=>String(n).padStart(2,'0');
-    const sign=off<0?'-':'+';
-    return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}T${pad(hr)}:00:00${sign}${pad(Math.abs(off))}:00`;
-  }
-  
-  const startISO=toISO(new Date(y,m-1,d),h,offset);
-  const endISO=toISO(new Date(y,m-1,d),h+1,offset);
-  
-  const event={
-    summary:`Growth Call — ${fname} ${lname}${company?' ('+company+')':''}`,
-    description:`eCon Growth Booking\nName: ${fname} ${lname}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nTrucks: ${trucks}\nSource: econ-growth.com`,
-    start:{dateTime:startISO,timeZone:'America/Denver'},
-    end:{dateTime:endISO,timeZone:'America/Denver'},
-    attendees:[{email:email,displayName:`${fname} ${lname}`}],
-    reminders:{useDefault:false,overrides:[{method:'email',minutes:1440},{method:'popup',minutes:30}]},
-    conferenceData:{createRequest:{requestId:'eg-'+Date.now(),conferenceSolutionKey:{type:'hangoutsMeet'}}}
-  };
-  
-  function onSuccess(ev){
-    document.getElementById('successDetails').innerHTML=`
-      <div class="success-detail-row"><strong>Name:</strong> ${fname} ${lname}</div>
-      <div class="success-detail-row"><strong>Date:</strong> ${fmtDateDisplay(selectedDate)}</div>
-      <div class="success-detail-row"><strong>Time:</strong> ${selectedTime} MT</div>
-      <div class="success-detail-row"><strong>Email:</strong> ${email}</div>
-      ${ev&&ev.hangoutLink?`<div class="success-detail-row"><strong>Meet Link:</strong> <a href="${ev.hangoutLink}" style="color:var(--green)">${ev.hangoutLink}</a></div>`:''}
-    `;
-    showSuccessStep();
-  }
-  
-  if(accessToken){
-    fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1&sendUpdates=all',{
-      method:'POST',
-      headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-      body:JSON.stringify(event)
-    }).then(r=>r.json()).then(ev=>{
-      if(ev.error){ console.warn('GCal error:',ev.error); onSuccess(null); }
-      else{ onSuccess(ev); }
-    }).catch(()=>onSuccess(null));
-  } else {
-    // Store pending booking, request auth
-    window._pendingEvent=event;
-    window._pendingSuccess=onSuccess;
-    if(tokenClient){
-      tokenClient.requestAccessToken({prompt:'consent'});
+async function submitBooking() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const company = document.getElementById('company').value.trim();
+  const trucks = document.getElementById('trucks').value.trim();
+  if (!fname || !email) { alert('Please enter your name and email to confirm.'); return; }
+  const btn = document.getElementById('bookBtn');
+  btn.disabled = true;
+  btn.textContent = 'eCon Growth — Booking Your Call…';
+  const params = new URLSearchParams({ action:'book', firstName:fname, lastName:lname, email, phone, company, trucks, date:selectedDate, time:selectedTime, duration:'30', source:'econ-growth.com' });
+  try {
+    const data = await jsonp(SCRIPT_URL + '?' + params.toString());
+    if (data.ok) {
+      document.getElementById('successDetails').innerHTML = `
+        <div class="success-detail-row"><strong>Name:</strong> ${fname} ${lname}</div>
+        <div class="success-detail-row"><strong>Date:</strong> ${fmtDateDisplay(selectedDate)}</div>
+        <div class="success-detail-row"><strong>Time:</strong> ${fmtTimeSlot(selectedTime)} MT</div>
+        <div class="success-detail-row"><strong>Email:</strong> ${email}</div>
+      `;
+      showSuccessStep();
     } else {
-      // No Google API — show success anyway (fallback)
-      setTimeout(()=>onSuccess(null),1200);
+      alert(data.message || 'That slot is no longer available. Please choose another time.');
+      btn.disabled = false;
+      btn.textContent = 'Confirm My Growth Call →';
+      await fetchAvailability();
+      showTimeStep();
     }
+  } catch(e) {
+    alert('Something went wrong. Please try again or call (615) 664-9178.');
+    btn.disabled = false;
+    btn.textContent = 'Confirm My Growth Call →';
   }
 }
 
-/* ── GOOGLE FREEBUSY CHECK ── */
-function fetchBusy(){
-  if(!accessToken){ generateFallback(); return; }
-  const year=currentMonth.getFullYear();
-  const month=currentMonth.getMonth();
-  const timeMin=new Date(year,month,1).toISOString();
-  const timeMax=new Date(year,month+1,0,23,59,59).toISOString();
-  setStatus('<span class="cal-loading"></span>&nbsp;Checking live availability…');
-  fetch('https://www.googleapis.com/calendar/v3/freeBusy',{
-    method:'POST',
-    headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-    body:JSON.stringify({timeMin,timeMax,timeZone:TIMEZONE,items:[{id:'primary'}]})
-  }).then(r=>r.json()).then(data=>{
-    const busy=(data.calendars&&Object.values(data.calendars)[0]?.busy)||[];
-    busySlots={};
-    busy.forEach(b=>{ const ds=b.start.substring(0,10); if(!busySlots[ds])busySlots[ds]=[]; busySlots[ds].push(b); });
+/* ── AVAILABILITY FETCH ── */
+async function fetchAvailability() {
+  setStatus('<span class="cal-loading"></span>&nbsp;eCon Growth — Loading Calendar…');
+  try {
+    const data = await jsonp(SCRIPT_URL + '?action=availability&month=' + fmtMonth(currentMonth));
+    if (data.ok) {
+      availability = data.availability || {};
+      renderCalendar();
+      setStatus('✓ Live availability — select a date.');
+    } else { throw new Error(data.message); }
+  } catch(e) {
+    availability = {};
     renderCalendar();
-    setStatus('✓ Live availability — select a date.');
-  }).catch(()=>{ generateFallback(); setStatus('Select a date to see available times.'); });
+    setStatus('Select a date to see available times.');
+  }
 }
 
-function generateFallback(){
-  busySlots={};
-  const y=currentMonth.getFullYear(), m=currentMonth.getMonth();
-  const days=new Date(y,m+1,0).getDate();
-  for(let d=1;d<=days;d++){
-    const date=new Date(y,m,d);
-    if(date.getDay()===0||date.getDay()===6) continue;
-    if(Math.random()<0.25){
-      const ds=fmtDate(date);
-      busySlots[ds]=[{start:new Date(y,m,d,10,0).toISOString(),end:new Date(y,m,d,12,0).toISOString()}];
-    }
-  }
+function setStatus(h) { const el = document.getElementById('calStatus'); if (el) el.innerHTML = h; }
+
+document.addEventListener('DOMContentLoaded', () => {
   renderCalendar();
-}
-
-function setStatus(h){ const el=document.getElementById('calStatus'); if(el) el.innerHTML=h; }
-
-/* ── GAPI + GIS INIT ── */
-function gapiInit(){
-  if(typeof gapi==='undefined'){ initFallback(); return; }
-  gapi.load('client',async()=>{
-    try{
-      await gapi.client.init({discoveryDocs:['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']});
-      gapiReady=true;
-      tryConnect();
-    }catch(e){ console.warn('gapi init:',e); initFallback(); }
-  });
-}
-
-function gisInit(){
-  if(typeof google==='undefined'||!google.accounts){ initFallback(); return; }
-  try{
-    tokenClient=google.accounts.oauth2.initTokenClient({
-      client_id:GCAL_CLIENT_ID,
-      scope:GCAL_SCOPE,
-      callback:(resp)=>{
-        if(resp.error){ console.warn('OAuth:',resp.error); return; }
-        accessToken=resp.access_token;
-        if(typeof gapi!=='undefined') gapi.client.setToken({access_token:accessToken});
-        // Handle pending booking
-        if(window._pendingEvent){
-          const ev=window._pendingEvent; const cb=window._pendingSuccess;
-          window._pendingEvent=null; window._pendingSuccess=null;
-          fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1&sendUpdates=all',{
-            method:'POST',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-            body:JSON.stringify(ev)
-          }).then(r=>r.json()).then(result=>cb&&cb(result)).catch(()=>cb&&cb(null));
-        } else {
-          fetchBusy();
-          showCalendarAuth(false);
-        }
-      }
-    });
-    gisReady=true;
-    tryConnect();
-  }catch(e){ console.warn('gis init:',e); initFallback(); }
-}
-
-function tryConnect(){
-  if(gapiReady&&gisReady){
-    // Try silent auth first
-    try{ tokenClient.requestAccessToken({prompt:''}); } catch(e){ /* silent fail is fine */ }
-  }
-}
-
-function connectCalendar(){
-  if(tokenClient){ 
-    tokenClient.requestAccessToken({prompt:'select_account'}); 
-  } else {
-    alert('Google Calendar API is loading. Please try again in a moment.');
-  }
-}
-
-function showCalendarAuth(show){
-  const btn=document.getElementById('authBtn');
-  if(btn) btn.style.display=show?'flex':'none';
-}
-
-function initFallback(){ generateFallback(); setStatus('Select a date to see available times.'); renderCalendar(); }
-
-window.addEventListener('load',()=>{
-  renderCalendar();
-  generateFallback();
-  setStatus('<span class="cal-loading"></span>&nbsp;Loading calendar…');
-  // Show connect button after 3s if not authed
-  setTimeout(()=>{ if(!accessToken){ setStatus('Select a date to see available times.'); showCalendarAuth(true); } },3000);
+  fetchAvailability();
 });
-
- });
-document.addEventListener('DOMContentLoaded',()=>{  });
-</script>
-
-
-<!-- Google Calendar API -->
-<script src="https://apis.google.com/js/api.js" onload="gapiInit()" onerror="initFallback()" async defer></script>
-<script src="https://accounts.google.com/gsi/client" onload="gisInit()" onerror="initFallback()" async defer></script>
-<script>
 </script>
 <script>
 (function(){

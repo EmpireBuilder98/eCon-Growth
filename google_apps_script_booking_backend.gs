@@ -172,9 +172,8 @@ function bookSlotResponse_(params) {
         'eCon Growth AI'
       ].join('\n'),
       {
-        from: 'roger@econ-growth.com',
         name: 'Roger | eCon Growth',
-        replyTo: 'support@econ-growth.com'
+        replyTo: 'roger@econ-growth.com'
       }
     );
 
@@ -194,8 +193,8 @@ function bookSlotResponse_(params) {
         'Source: ' + source
       ].filter(Boolean).join('\n'),
       {
-        from: 'noreply@econ-growth.com',
-        name: 'eCon Growth Booking System'
+        name: 'eCon Growth Booking System',
+        replyTo: 'admin@econ-growth.com'
       }
     );
 

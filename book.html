@@ -2,47 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Your Growth Call | eCon Growth</title>
-<meta name="description" content="Schedule a 30-minute Growth Call with eCon Growth — directly in our calendar.">
+<meta name="description" content="Book a 30-minute Growth Call with eCon Growth — see Command OS and Roger live.">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
-
-<!-- Hard redirect to Google Calendar appointment schedule. -->
-<meta http-equiv="refresh" content="0; url=https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3khckBGlQLchkKyAf1147FV-Gs8-chBC1962lejQqBqF-XPi5scHjgPeXI_yYQ9av-kpxjCsMC">
-<link rel="canonical" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3khckBGlQLchkKyAf1147FV-Gs8-chBC1962lejQqBqF-XPi5scHjgPeXI_yYQ9av-kpxjCsMC">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070A0F;--bg2:#0A0E15;--green:#21E68A;--text:#EAF0FF;--mu:rgba(234,240,255,.55);--mu2:rgba(234,240,255,.32);--bd:rgba(234,240,255,.06);--gd:rgba(33,230,138,.08);--gb:rgba(33,230,138,.18)}
+:root{--bg:#070A0F;--bg2:#0A0E15;--green:#21E68A;--text:#EAF0FF;--mu:rgba(234,240,255,.55);--mu2:rgba(234,240,255,.32);--bd:rgba(234,240,255,.1);--gd:rgba(33,230,138,.08);--gb:rgba(33,230,138,.18);--err:#ff6b6b}
 html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;line-height:1.5;text-align:center}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;padding:24px;line-height:1.5}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(33,230,138,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.022) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
 .orb{position:fixed;width:900px;height:900px;background:radial-gradient(circle,rgba(33,230,138,.06) 0%,transparent 60%);top:-300px;right:-200px;filter:blur(90px);border-radius:50%;pointer-events:none;z-index:0}
-.wrap{position:relative;z-index:1;max-width:520px;width:100%}
-.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:36px;text-decoration:none;color:var(--text)}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.6);animation:pd 2.2s infinite}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:24px 0 60px}
+.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;text-decoration:none;color:var(--text)}
+.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.6)}
 .logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px}
 .logo-text .c{color:var(--green)}
-@keyframes pd{0%,100%{box-shadow:0 0 6px rgba(33,230,138,.4),0 0 0 0 rgba(33,230,138,.4)}50%{box-shadow:0 0 14px rgba(33,230,138,.4),0 0 0 8px rgba(33,230,138,0)}}
-.badge{display:inline-flex;align-items:center;gap:8px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px}
-.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pd 2s infinite}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,6vw,58px);letter-spacing:1px;line-height:.95;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,52px);letter-spacing:1px;line-height:1;margin-bottom:14px}
 h1 .green{color:var(--green)}
-.body{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--mu);line-height:1.85;margin-bottom:32px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;padding:18px 32px;border-radius:10px;text-decoration:none;box-shadow:0 0 32px rgba(33,230,138,.3);transition:all .25s;letter-spacing:.4px}
-.btn:hover{background:#fff;transform:translateY(-2px);box-shadow:0 0 56px rgba(33,230,138,.45)}
-.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(7,10,15,.25);border-top-color:#070A0F;border-radius:50%;animation:spin .8s linear infinite}
+.lede{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--mu);line-height:1.75;margin-bottom:30px;max-width:580px}
+.steps{display:flex;gap:8px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.step{flex:1;text-align:center;padding:10px;background:var(--bg2);border:1px solid var(--bd);border-radius:6px;color:var(--mu2);transition:all .25s}
+.step.active{background:var(--gd);border-color:var(--gb);color:var(--green)}
+.step.done{color:var(--text);border-color:var(--bd)}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:28px;margin-bottom:18px}
+.card h2{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.5px;margin-bottom:6px}
+.card .sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);margin-bottom:22px}
+.calendar{margin-top:8px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-month{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px}
+.cal-nav{display:flex;gap:8px}
+.cal-nav button{background:var(--bg);border:1px solid var(--bd);color:var(--text);width:34px;height:34px;border-radius:6px;cursor:pointer;font-size:14px;transition:all .2s}
+.cal-nav button:hover:not(:disabled){border-color:var(--green);color:var(--green)}
+.cal-nav button:disabled{opacity:.3;cursor:not-allowed}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu2);text-align:center;padding:6px 0;letter-spacing:.1em}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--bd);border-radius:6px;font-family:'Syne',sans-serif;font-size:14px;color:var(--text);cursor:pointer;transition:all .2s;position:relative}
+.cal-day.empty{visibility:hidden}
+.cal-day.unavail{opacity:.25;cursor:not-allowed;background:transparent}
+.cal-day.avail{background:rgba(33,230,138,.04);border-color:var(--gb)}
+.cal-day.avail:hover{background:var(--gd);border-color:var(--green);transform:translateY(-1px)}
+.cal-day.selected{background:var(--green);color:#070A0F;border-color:var(--green);font-weight:700}
+.cal-day .dot{position:absolute;bottom:5px;width:4px;height:4px;background:var(--green);border-radius:50%}
+.cal-day.selected .dot{background:#070A0F}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:18px}
+.slot{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:12px 8px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;cursor:pointer;text-align:center;transition:all .2s}
+.slot:hover{background:var(--gd);border-color:var(--green);color:var(--green)}
+.slot.selected{background:var(--green);color:#070A0F;border-color:var(--green);font-weight:700}
+.slot-empty{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);padding:18px 0;text-align:center}
+label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+input[type="tel"],input[type="email"],input[type="text"]{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;color:var(--text);font-family:'Syne',sans-serif;font-size:15px;margin-bottom:18px;outline:none;transition:border-color .2s}
+input[type="tel"]:focus,input[type="email"]:focus,input[type="text"]:focus{border-color:var(--green)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+.consent-row{display:flex;gap:12px;align-items:flex-start;margin:6px 0 22px;padding:16px;background:rgba(33,230,138,.04);border:1px solid var(--bd);border-radius:10px}
+.consent-row input[type="checkbox"]{flex:0 0 auto;width:20px;height:20px;margin-top:2px;accent-color:var(--green);cursor:pointer}
+.consent-row label{margin:0;font-family:'Syne',sans-serif;font-size:13px;color:var(--text);text-transform:none;letter-spacing:0;line-height:1.55;cursor:pointer}
+.consent-row label a{color:var(--green);text-decoration:none}
+.consent-row label a:hover{text-decoration:underline}
+.btn{width:100%;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;padding:16px;border-radius:10px;border:none;cursor:pointer;letter-spacing:.4px;transition:all .25s;margin-top:6px}
+.btn:hover:not(:disabled){background:#fff;transform:translateY(-1px);box-shadow:0 0 32px rgba(33,230,138,.35)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-back{background:transparent;color:var(--mu);border:1px solid var(--bd);margin-top:12px;font-weight:400;font-size:13px;padding:12px}
+.btn-back:hover:not(:disabled){background:var(--bg);color:var(--text);transform:none;box-shadow:none}
+.fineprint{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);line-height:1.65}
+.fineprint a{color:var(--green);text-decoration:none}
+.msg{margin-top:14px;padding:12px 14px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;display:none}
+.msg.ok{background:rgba(33,230,138,.08);border:1px solid var(--gb);color:var(--green);display:block}
+.msg.err{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3);color:var(--err);display:block}
+.summary{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:16px;margin-bottom:20px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text)}
+.summary .lbl{color:var(--mu2);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.summary .when{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;color:var(--green)}
+.success{text-align:center;padding:30px 20px}
+.success .check{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:var(--gd);border:2px solid var(--green);border-radius:50%;color:var(--green);font-size:32px;margin-bottom:18px}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(7,10,15,.25);border-top-color:#070A0F;border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
-.fallback{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);line-height:1.7}
-.fallback a{color:var(--green);text-decoration:none}
-.fallback a:hover{text-decoration:underline}
-.home{margin-top:36px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
+.loading{text-align:center;padding:40px 20px;color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:12px}
+.home{margin-top:20px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
 .home:hover{color:var(--green)}
+.legacy{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2)}
+.legacy a{color:var(--mu);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -52,26 +94,307 @@ h1 .green{color:var(--green)}
     <span class="logo-dot"></span>
     <span class="logo-text">e<span class="c">C</span>on Growth</span>
   </a>
-  <div class="badge"><span class="badge-dot"></span>Booking · Live Calendar</div>
-  <h1>OPENING YOUR<br><span class="green">GROWTH CALL CALENDAR…</span></h1>
-  <p class="body">You're being sent to our live booking calendar. If it doesn't open in 2 seconds, tap the button below.</p>
-  <a id="bookBtn" class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3khckBGlQLchkKyAf1147FV-Gs8-chBC1962lejQqBqF-XPi5scHjgPeXI_yYQ9av-kpxjCsMC">
-    <span class="spin"></span>
-    Open Booking Calendar →
-  </a>
-  <div class="fallback">
-    Calendar not loading? Call us directly at <a href="tel:6156649178">(615) 664-9178</a>.
+  <div class="badge">Growth Call · 30 min · Free</div>
+  <h1>BOOK YOUR <span class="green">GROWTH CALL</span></h1>
+  <p class="lede">A live walkthrough of Command OS and Roger, tailored to your HVAC business. We'll show you exactly how the system would handle your inbound calls, dispatch, and customer follow-up.</p>
+
+  <div class="steps">
+    <div class="step active" id="step-1">1 · Pick a Date</div>
+    <div class="step" id="step-2">2 · Pick a Time</div>
+    <div class="step" id="step-3">3 · Your Details</div>
   </div>
-  <a href="index.html" class="home">← Back to Home</a>
+
+  <!-- STEP 1: CALENDAR -->
+  <div class="card" id="card-cal">
+    <h2>Pick a Date</h2>
+    <p class="sub">All times shown in Mountain Time. Mon–Fri only.</p>
+    <div class="calendar">
+      <div class="cal-head">
+        <div class="cal-month" id="calMonth">—</div>
+        <div class="cal-nav">
+          <button id="prevMonth" aria-label="Previous month">←</button>
+          <button id="nextMonth" aria-label="Next month">→</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid">
+        <div class="loading">Loading availability…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: TIME SLOTS -->
+  <div class="card" id="card-slots" style="display:none">
+    <h2>Pick a Time</h2>
+    <p class="sub" id="slotsSub">—</p>
+    <div class="slots" id="slots"></div>
+    <button class="btn btn-back" type="button" id="backToCal">← Change date</button>
+  </div>
+
+  <!-- STEP 3: DETAILS + CONSENT -->
+  <div class="card" id="card-form" style="display:none">
+    <h2>Your Details</h2>
+    <p class="sub" id="formSub">—</p>
+
+    <div class="summary">
+      <div class="lbl">Selected slot</div>
+      <div class="when" id="summaryWhen">—</div>
+    </div>
+
+    <form id="bookForm" novalidate>
+      <div class="row">
+        <div>
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" autocomplete="given-name" required>
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" autocomplete="family-name">
+        </div>
+      </div>
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" autocomplete="email" required>
+
+      <label for="phone">Mobile Phone (for SMS confirmations)</label>
+      <input type="tel" id="phone" placeholder="(555) 555-5555" autocomplete="tel">
+
+      <label for="company">Company / HVAC Business</label>
+      <input type="text" id="company" autocomplete="organization">
+
+      <div class="consent-row" id="consentBlock" style="display:none">
+        <input type="checkbox" id="consent">
+        <label for="consent">
+          I consent to receive SMS messages from eCon Growth at the phone number above, including booking confirmations, reminders, account notifications, and follow-ups. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time, or HELP for help. I confirm I am the subscriber to this number and at least 18 years old. Consent is not a condition of any purchase. See our <a href="/privacy.html" target="_blank">Privacy Policy</a> and <a href="/terms.html" target="_blank">Terms</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Confirm Booking</button>
+      <button type="button" class="btn btn-back" id="backToSlots">← Change time</button>
+
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+      <p class="fineprint">
+        By confirming, you agree to a 30-minute call from the eCon Growth team. We'll add the meeting to your calendar and email you a Google Meet link. If you provided a phone number with consent, you'll also receive a confirmation text. We never sell or share your contact info.
+      </p>
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card" id="card-success" style="display:none">
+    <div class="success">
+      <div class="check">✓</div>
+      <h2>You're Booked</h2>
+      <p class="sub" style="margin-top:10px;font-size:13px" id="successSub">—</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mu);margin-top:18px;line-height:1.7">
+        A calendar invite is on its way to your inbox.<br>
+        We'll see you then. Reply to that email if anything changes.
+      </p>
+      <a class="btn" id="addToGcal" target="_blank" rel="noopener" style="margin-top:24px;display:inline-block;width:auto;padding:14px 28px;text-decoration:none">Add to Google Calendar</a>
+      <p style="margin-top:18px"><a href="index.html" class="home">← Back to Home</a></p>
+    </div>
+  </div>
+
+  <p class="legacy">Trouble booking? Call us at <a href="tel:6156649178">(615) 664-9178</a> or use our <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3khckBGlQLchkKyAf1147FV-Gs8-chBC1962lejQqBqF-XPi5scHjgPeXI_yYQ9av-kpxjCsMC">backup calendar</a>.</p>
 </div>
+
 <script>
-/* Belt and suspenders: meta-refresh handles the redirect, but trigger an
-   immediate JS redirect too in case meta is blocked or slow. Use replace()
-   so the back button returns the visitor to the previous page on the site,
-   not to this stub page. */
 (function(){
-  var url = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3khckBGlQLchkKyAf1147FV-Gs8-chBC1962lejQqBqF-XPi5scHjgPeXI_yYQ9av-kpxjCsMC';
-  try { window.location.replace(url); } catch(e) { window.location.href = url; }
+  var BUSINESS_ID = 'f65768bf89efe4a1';
+  var API = 'https://hvac-ai-os.fly.dev/booking';
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+
+  var state = {
+    cursor: new Date(),
+    availability: null,
+    monthKey: null,
+    selectedDate: null,
+    selectedSlot: null,
+  };
+
+  // Move cursor to today and zero out time
+  state.cursor.setDate(1);
+
+  var $ = function(id){ return document.getElementById(id); };
+  var calMonth = $('calMonth'), calGrid = $('calGrid');
+  var prevBtn = $('prevMonth'), nextBtn = $('nextMonth');
+  var cardCal = $('card-cal'), cardSlots = $('card-slots'), cardForm = $('card-form'), cardSuccess = $('card-success');
+  var stepEls = [$('step-1'), $('step-2'), $('step-3')];
+
+  function setStep(n) {
+    stepEls.forEach(function(el, i){
+      el.classList.remove('active','done');
+      if (i+1 < n) el.classList.add('done');
+      if (i+1 === n) el.classList.add('active');
+    });
+  }
+
+  function fmtMonth(d) { return MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+  function monthKey(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
+
+  function loadMonth(){
+    var key = monthKey(state.cursor);
+    state.monthKey = key;
+    calMonth.textContent = fmtMonth(state.cursor);
+    calGrid.innerHTML = '<div class="loading">Loading availability…</div>';
+    fetch(API + '/availability?businessId=' + BUSINESS_ID + '&month=' + key)
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j.ok) throw new Error(j.message || 'load failed');
+        state.availability = j.availability;
+        renderCal();
+      })
+      .catch(function(err){
+        calGrid.innerHTML = '<div class="loading" style="color:var(--err)">Could not load calendar. Refresh, or call (615) 664-9178.</div>';
+      });
+  }
+
+  function renderCal(){
+    var year = state.cursor.getFullYear(), month = state.cursor.getMonth();
+    var firstDay = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+    var html = '';
+    DOW.forEach(function(d){ html += '<div class="cal-dow">'+d+'</div>'; });
+    for (var i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
+    for (var d = 1; d <= daysInMonth; d++) {
+      var key = year + '-' + String(month+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+      var info = state.availability && state.availability[key];
+      var cls = 'cal-day';
+      if (!info || !info.available) cls += ' unavail';
+      else cls += ' avail';
+      if (state.selectedDate === key) cls += ' selected';
+      var dot = (info && info.available && state.selectedDate !== key) ? '<span class="dot"></span>' : '';
+      html += '<div class="'+cls+'" data-date="'+key+'">'+d+dot+'</div>';
+    }
+    calGrid.innerHTML = html;
+    Array.prototype.forEach.call(calGrid.querySelectorAll('.cal-day.avail'), function(el){
+      el.addEventListener('click', function(){ pickDate(el.getAttribute('data-date')); });
+    });
+    var now = new Date();
+    var thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    prevBtn.disabled = state.cursor <= thisMonthStart;
+    var maxAhead = new Date(now.getFullYear(), now.getMonth()+2, 1);
+    nextBtn.disabled = state.cursor >= maxAhead;
+  }
+
+  function pickDate(dateKey){
+    state.selectedDate = dateKey;
+    state.selectedSlot = null;
+    renderCal();
+    var info = state.availability[dateKey];
+    var dt = new Date(dateKey + 'T12:00:00');
+    var pretty = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][dt.getDay()] + ', ' + MONTHS[dt.getMonth()] + ' ' + dt.getDate();
+    $('slotsSub').textContent = pretty;
+    var html = '';
+    (info.slots || []).forEach(function(s){
+      html += '<button type="button" class="slot" data-iso="'+s.isoStart+'" data-display="'+s.display+'">'+s.display+'</button>';
+    });
+    if (!html) html = '<div class="slot-empty">No times left this day. Pick another.</div>';
+    $('slots').innerHTML = html;
+    Array.prototype.forEach.call($('slots').querySelectorAll('.slot'), function(el){
+      el.addEventListener('click', function(){ pickSlot(el.getAttribute('data-iso'), el.getAttribute('data-display')); });
+    });
+    cardSlots.style.display = '';
+    cardSlots.scrollIntoView({behavior:'smooth', block:'start'});
+    setStep(2);
+  }
+
+  function pickSlot(iso, display){
+    state.selectedSlot = { iso: iso, display: display };
+    Array.prototype.forEach.call($('slots').querySelectorAll('.slot'), function(el){
+      el.classList.toggle('selected', el.getAttribute('data-iso') === iso);
+    });
+    var dt = new Date(state.selectedDate + 'T12:00:00');
+    var pretty = MONTHS[dt.getMonth()] + ' ' + dt.getDate() + ' · ' + display + ' MT';
+    $('summaryWhen').textContent = pretty;
+    $('formSub').textContent = 'You\'re booking: ' + pretty;
+    cardForm.style.display = '';
+    cardForm.scrollIntoView({behavior:'smooth', block:'start'});
+    setStep(3);
+  }
+
+  // Phone formatting + consent toggle
+  $('phone').addEventListener('input', function(){
+    var d = this.value.replace(/\D/g,'').slice(0,10);
+    if (d.length >= 7) this.value = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    else if (d.length >= 4) this.value = '(' + d.slice(0,3) + ') ' + d.slice(3);
+    else if (d.length > 0) this.value = '(' + d;
+    var hasPhone = d.length === 10;
+    $('consentBlock').style.display = hasPhone ? '' : 'none';
+    if (!hasPhone) $('consent').checked = false;
+  });
+
+  $('prevMonth').addEventListener('click', function(){
+    state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth()-1, 1);
+    loadMonth();
+  });
+  $('nextMonth').addEventListener('click', function(){
+    state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth()+1, 1);
+    loadMonth();
+  });
+  $('backToCal').addEventListener('click', function(){
+    cardSlots.style.display = 'none';
+    cardCal.scrollIntoView({behavior:'smooth', block:'start'});
+    setStep(1);
+  });
+  $('backToSlots').addEventListener('click', function(){
+    cardForm.style.display = 'none';
+    cardSlots.scrollIntoView({behavior:'smooth', block:'start'});
+    setStep(2);
+  });
+
+  $('bookForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg = $('msg');
+    var btn = $('submitBtn');
+    function show(kind, text){ msg.className = 'msg ' + kind; msg.textContent = text; }
+    if (!state.selectedSlot) { show('err', 'Pick a time first.'); return; }
+    var firstName = $('firstName').value.trim();
+    var email = $('email').value.trim();
+    var phoneDigits = $('phone').value.replace(/\D/g,'');
+    if (!firstName) { show('err', 'First name is required.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show('err', 'Valid email is required.'); return; }
+    var hasPhone = phoneDigits.length === 10;
+    if (hasPhone && !$('consent').checked) {
+      show('err', 'You must check the SMS consent box, or remove your phone number to book without text confirmations.');
+      return;
+    }
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Booking…';
+    var consentLabel = $('consentBlock').querySelector('label');
+    var payload = {
+      businessId: BUSINESS_ID,
+      startTime: state.selectedSlot.iso,
+      firstName: firstName,
+      lastName: $('lastName').value.trim(),
+      email: email,
+      company: $('company').value.trim(),
+      phone: hasPhone ? '+1' + phoneDigits : undefined,
+      consent: hasPhone ? !!$('consent').checked : undefined,
+      consent_text: hasPhone ? consentLabel.textContent.trim() : undefined,
+      consent_url: hasPhone ? window.location.href : undefined,
+    };
+    fetch(API + '/book', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, body:j}; }); })
+      .then(function(res){
+        if (!res.ok || !res.body.success) throw new Error(res.body.message || 'booking failed');
+        cardForm.style.display = 'none';
+        cardCal.style.display = 'none';
+        $('card-cal').previousElementSibling.style.display = 'none';
+        document.querySelector('.steps').style.display = 'none';
+        cardSuccess.style.display = '';
+        var dt = new Date(state.selectedDate + 'T12:00:00');
+        $('successSub').textContent = MONTHS[dt.getMonth()] + ' ' + dt.getDate() + ' at ' + state.selectedSlot.display + ' Mountain Time';
+        if (res.body.event && res.body.event.googleLink) $('addToGcal').href = res.body.event.googleLink;
+        else $('addToGcal').style.display = 'none';
+        cardSuccess.scrollIntoView({behavior:'smooth', block:'start'});
+      })
+      .catch(function(err){
+        show('err', 'Booking failed: ' + (err.message || 'unknown') + '. Try again or call (615) 664-9178.');
+        btn.disabled = false; btn.textContent = 'Confirm Booking';
+      });
+  });
+
+  loadMonth();
 })();
 </script>
 </body>

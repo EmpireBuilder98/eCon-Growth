@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Opt-In | eCon Growth</title>
+<meta name="description" content="Opt in to receive SMS appointment confirmations and updates from eCon Growth.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070A0F;--bg2:#0A0E15;--green:#21E68A;--text:#EAF0FF;--mu:rgba(234,240,255,.55);--mu2:rgba(234,240,255,.32);--bd:rgba(234,240,255,.1);--gd:rgba(33,230,138,.08);--gb:rgba(33,230,138,.18);--err:#ff6b6b}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;line-height:1.5}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(33,230,138,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(33,230,138,.022) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+.orb{position:fixed;width:900px;height:900px;background:radial-gradient(circle,rgba(33,230,138,.06) 0%,transparent 60%);top:-300px;right:-200px;filter:blur(90px);border-radius:50%;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:560px;width:100%}
+.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;text-decoration:none;color:var(--text)}
+.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(33,230,138,.6)}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px}
+.logo-text .c{color:var(--green)}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--gd);border:1px solid var(--gb);border-radius:4px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,46px);letter-spacing:1px;line-height:1;margin-bottom:14px}
+h1 .green{color:var(--green)}
+.lede{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--mu);line-height:1.75;margin-bottom:28px}
+form{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:26px}
+label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+input[type="tel"],input[type="email"],input[type="text"]{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;color:var(--text);font-family:'Syne',sans-serif;font-size:15px;margin-bottom:18px;outline:none;transition:border-color .2s}
+input[type="tel"]:focus,input[type="email"]:focus,input[type="text"]:focus{border-color:var(--green)}
+.consent-row{display:flex;gap:12px;align-items:flex-start;margin:6px 0 22px;padding:16px;background:rgba(33,230,138,.04);border:1px solid var(--bd);border-radius:10px}
+.consent-row input[type="checkbox"]{flex:0 0 auto;width:20px;height:20px;margin-top:2px;accent-color:var(--green);cursor:pointer}
+.consent-row label{margin:0;font-family:'Syne',sans-serif;font-size:13px;color:var(--text);text-transform:none;letter-spacing:0;line-height:1.55;cursor:pointer}
+.btn{width:100%;background:var(--green);color:#070A0F;font-family:'Syne',sans-serif;font-weight:700;font-size:16px;padding:16px;border-radius:10px;border:none;cursor:pointer;letter-spacing:.4px;transition:all .25s}
+.btn:hover:not(:disabled){background:#fff;transform:translateY(-1px);box-shadow:0 0 32px rgba(33,230,138,.35)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.fineprint{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu2);line-height:1.65}
+.fineprint a{color:var(--green);text-decoration:none}
+.msg{margin-top:14px;padding:12px 14px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;display:none}
+.msg.ok{background:rgba(33,230,138,.08);border:1px solid var(--gb);color:var(--green);display:block}
+.msg.err{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3);color:var(--err);display:block}
+.home{margin-top:24px;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase}
+.home:hover{color:var(--green)}
+</style>
+</head>
+<body>
+<div class="orb"></div>
+<div class="wrap">
+  <a href="index.html" class="logo">
+    <span class="logo-dot"></span>
+    <span class="logo-text">e<span class="c">C</span>on Growth</span>
+  </a>
+  <div class="badge">SMS · TCPA Opt-In</div>
+  <h1>GET TEXT <span class="green">UPDATES</span></h1>
+  <p class="lede">Opt in to receive SMS appointment confirmations, reminders, and account notifications from eCon Growth. Your consent is required by U.S. law before we can text you.</p>
+
+  <form id="optInForm" novalidate>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" autocomplete="name" required>
+
+    <label for="phone">Mobile Phone</label>
+    <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" autocomplete="tel" required>
+
+    <label for="email">Email (optional)</label>
+    <input type="email" id="email" name="email" autocomplete="email">
+
+    <div class="consent-row">
+      <input type="checkbox" id="consent" name="consent" required>
+      <label for="consent">
+        I consent to receive SMS messages from eCon Growth at the phone number above, including appointment confirmations, reminders, account notifications, and HVAC service updates. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time, or HELP for help. I confirm I am the subscriber to this number and at least 18 years old. Consent is not a condition of purchase. See our <a href="/privacy.html" target="_blank">Privacy Policy</a> and <a href="/terms.html" target="_blank">Terms</a>.
+      </label>
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn" disabled>Opt In to Text Messages</button>
+
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+    <p class="fineprint">
+      By submitting this form, you agree to receive recurring SMS messages from eCon Growth at the phone number provided. Consent is not required to purchase any goods or services. Reply STOP to cancel. Reply HELP for help. Message frequency varies. Msg &amp; data rates may apply. eCon Growth will never sell or share your number with third parties for marketing purposes.
+    </p>
+  </form>
+
+  <a href="index.html" class="home">← Back to Home</a>
+</div>
+
+<script>
+(function(){
+  var form = document.getElementById('optInForm');
+  var consent = document.getElementById('consent');
+  var btn = document.getElementById('submitBtn');
+  var msg = document.getElementById('msg');
+  var phone = document.getElementById('phone');
+
+  // Submit button is disabled until consent checkbox is checked.
+  consent.addEventListener('change', function(){ btn.disabled = !consent.checked; });
+
+  // Light phone formatting: digits only -> (NNN) NNN-NNNN
+  phone.addEventListener('input', function(){
+    var d = phone.value.replace(/\D/g,'').slice(0,10);
+    if (d.length >= 7) phone.value = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    else if (d.length >= 4) phone.value = '(' + d.slice(0,3) + ') ' + d.slice(3);
+    else if (d.length > 0) phone.value = '(' + d;
+  });
+
+  function show(kind, text){ msg.className = 'msg ' + kind; msg.textContent = text; }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!consent.checked) { show('err', 'You must check the consent box to opt in.'); return; }
+    var digits = phone.value.replace(/\D/g,'');
+    if (digits.length !== 10) { show('err', 'Please enter a valid 10-digit US mobile number.'); return; }
+
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    var payload = {
+      name: document.getElementById('name').value.trim(),
+      phone: '+1' + digits,
+      email: document.getElementById('email').value.trim(),
+      consent: true,
+      consent_text: consent.parentElement.querySelector('label').textContent.trim(),
+      consent_url: window.location.href,
+      consent_at: new Date().toISOString(),
+      user_agent: navigator.userAgent
+    };
+
+    fetch('https://hvac-ai-os.fly.dev/api/sms-opt-in/public', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(){
+      show('ok', '✓ You are opted in. A confirmation text will arrive shortly. Reply STOP at any time to opt out.');
+      btn.textContent = 'Opted In ✓';
+    }).catch(function(err){
+      show('err', 'Could not save your opt-in. Please try again or call (615) 664-9178. (' + err.message + ')');
+      btn.disabled = false; btn.textContent = 'Opt In to Text Messages';
+    });
+  });
+})();
+</script>
+</body>
+</html>
